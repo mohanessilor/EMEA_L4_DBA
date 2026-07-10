@@ -1,0 +1,557 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_AEUWE1ER0247\\IO15",
+      "label": "AEUWE1ER0247\\IO15",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    },
+    {
+      "name": "DS_CENTRAL",
+      "label": "Central",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.2.2"
+    },
+    {
+      "type": "datasource",
+      "id": "mssql",
+      "name": "Microsoft SQL Server",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "volkovlabs-table-panel",
+      "name": "Business Table",
+      "version": "3.6.1"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "limit": 100,
+        "name": "Annotations & Alerts",
+        "showIn": 0,
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": 1902,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "default": false,
+        "type": "mssql",
+        "uid": "${Datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 10
+              },
+              {
+                "color": "dark-red",
+                "value": 30
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 490,
+      "maxPerRow": 2,
+      "options": {
+        "columnManagerCustomIcon": "",
+        "columnManagerNativeIcon": "table",
+        "externalExport": {
+          "enabled": false
+        },
+        "isColumnManagerAvailable": false,
+        "isColumnManagerShowCustomIcon": false,
+        "nestedObjects": [],
+        "openColumnManagerMode": "group",
+        "saveUserPreference": false,
+        "tables": [
+          {
+            "actionsColumnConfig": {
+              "alignment": "start",
+              "fontSize": "md",
+              "label": "",
+              "width": {
+                "auto": false,
+                "value": 100
+              }
+            },
+            "addRow": {
+              "enabled": false,
+              "permission": {
+                "mode": "",
+                "userRole": []
+              },
+              "request": {
+                "datasource": "",
+                "payload": {}
+              }
+            },
+            "deleteRow": {
+              "enabled": false,
+              "permission": {
+                "mode": "",
+                "userRole": []
+              },
+              "request": {
+                "datasource": "",
+                "payload": {}
+              }
+            },
+            "expanded": false,
+            "highlightRowsOnHover": false,
+            "items": [
+              {
+                "aggregation": "none",
+                "appearance": {
+                  "alignment": "start",
+                  "background": {
+                    "applyToRow": false
+                  },
+                  "colors": {},
+                  "header": {
+                    "backgroundColor": "#00000000",
+                    "fontColor": "#3274D9",
+                    "fontSize": "sm"
+                  },
+                  "width": {
+                    "auto": true,
+                    "min": 20,
+                    "value": 250
+                  },
+                  "wrap": false
+                },
+                "columnTooltip": "",
+                "edit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false,
+                  "permission": {
+                    "mode": "",
+                    "userRole": []
+                  }
+                },
+                "enabled": true,
+                "field": {
+                  "name": "last_updated",
+                  "source": "A"
+                },
+                "fileCell": {
+                  "size": "md",
+                  "text": "Download",
+                  "variant": "primary"
+                },
+                "filter": {
+                  "enabled": false,
+                  "mode": "client",
+                  "variable": ""
+                },
+                "footer": [],
+                "gauge": {
+                  "mode": "basic",
+                  "valueDisplayMode": "text",
+                  "valueSize": 14
+                },
+                "group": false,
+                "label": "Last Updated",
+                "newRowEdit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false
+                },
+                "objectId": "",
+                "pin": "",
+                "preformattedStyle": false,
+                "scale": "auto",
+                "showingRows": 20,
+                "sort": {
+                  "descFirst": false,
+                  "enabled": true
+                },
+                "type": "auto"
+              },
+              {
+                "aggregation": "none",
+                "appearance": {
+                  "alignment": "start",
+                  "background": {
+                    "applyToRow": false
+                  },
+                  "colors": {},
+                  "header": {
+                    "backgroundColor": "#00000000",
+                    "fontColor": "#5794F2",
+                    "fontSize": "sm"
+                  },
+                  "width": {
+                    "auto": true,
+                    "min": 20,
+                    "value": 100
+                  },
+                  "wrap": false
+                },
+                "columnTooltip": "",
+                "edit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false,
+                  "permission": {
+                    "mode": "",
+                    "userRole": []
+                  }
+                },
+                "enabled": true,
+                "field": {
+                  "name": "database_name",
+                  "source": "A"
+                },
+                "fileCell": {
+                  "size": "md",
+                  "text": "Download",
+                  "variant": "primary"
+                },
+                "filter": {
+                  "enabled": false,
+                  "mode": "client",
+                  "variable": ""
+                },
+                "footer": [],
+                "gauge": {
+                  "mode": "basic",
+                  "valueDisplayMode": "text",
+                  "valueSize": 14
+                },
+                "group": false,
+                "label": "Database Name",
+                "newRowEdit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false
+                },
+                "objectId": "",
+                "pin": "",
+                "preformattedStyle": false,
+                "scale": "auto",
+                "showingRows": 20,
+                "sort": {
+                  "descFirst": false,
+                  "enabled": true
+                },
+                "type": "auto"
+              },
+              {
+                "aggregation": "none",
+                "appearance": {
+                  "alignment": "center",
+                  "background": {
+                    "applyToRow": false
+                  },
+                  "colors": {},
+                  "header": {
+                    "backgroundColor": "#00000000",
+                    "fontColor": "#3274D9",
+                    "fontSize": "sm"
+                  },
+                  "width": {
+                    "auto": true,
+                    "min": 20,
+                    "value": 150
+                  },
+                  "wrap": false
+                },
+                "columnTooltip": "",
+                "edit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false,
+                  "permission": {
+                    "mode": "",
+                    "userRole": []
+                  }
+                },
+                "enabled": true,
+                "field": {
+                  "name": "diff_days",
+                  "source": "A"
+                },
+                "fileCell": {
+                  "size": "md",
+                  "text": "Download",
+                  "variant": "primary"
+                },
+                "filter": {
+                  "enabled": false,
+                  "mode": "client",
+                  "variable": ""
+                },
+                "footer": [],
+                "gauge": {
+                  "mode": "basic",
+                  "valueDisplayMode": "text",
+                  "valueSize": 14
+                },
+                "group": false,
+                "label": "Elapsed Days",
+                "newRowEdit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false
+                },
+                "objectId": "",
+                "pin": "",
+                "preformattedStyle": false,
+                "scale": "auto",
+                "showingRows": 20,
+                "sort": {
+                  "descFirst": false,
+                  "enabled": true
+                },
+                "type": "coloredBackground"
+              }
+            ],
+            "name": "Idx",
+            "pagination": {
+              "defaultPageSize": 10,
+              "enabled": false,
+              "mode": "client"
+            },
+            "rowHighlight": {
+              "backgroundColor": "transparent",
+              "columnId": "A:database_name",
+              "enabled": false,
+              "resetVariable": false,
+              "scrollTo": "start",
+              "smooth": true,
+              "variable": "Datasource"
+            },
+            "showHeader": true,
+            "stripedRows": false,
+            "update": {
+              "datasource": "",
+              "payload": {}
+            }
+          }
+        ],
+        "toolbar": {
+          "alignment": "left",
+          "exportFormats": []
+        }
+      },
+      "pluginVersion": "3.6.1",
+      "repeat": "Datasource",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "dataset": "eTrackingUser",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_AEUWE1ER0247\\IO15}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "DECLARE @sql NVARCHAR(MAX) = '';\r\n\r\nSELECT @sql = @sql + '\r\nUSE [' + name + '];\r\n\r\nSELECT \r\n    ''' + name + ''' AS database_name,\r\n    MAX(STATS_DATE(i.object_id, i.index_id)) AS last_updated,\r\n    DATEDIFF(day, MAX(STATS_DATE(i.object_id, i.index_id)), GETDATE()) AS diff_days\r\nFROM sys.indexes i\r\nWHERE i.index_id > 0\r\n  AND STATS_DATE(i.object_id, i.index_id) IS NOT NULL;\r\n\r\n'\r\nFROM sys.databases\r\nWHERE state_desc = 'ONLINE'\r\n  AND database_id > 4;\r\n\r\nEXEC sp_executesql @sql;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "$Datasource ",
+      "type": "volkovlabs-table-panel"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "definition": "\nSELECT ApplicationGroupName FROM Inventory.ServerList  where \nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END",
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "ApplicationGroupName",
+        "options": [],
+        "query": "\nSELECT ApplicationGroupName FROM Inventory.ServerList  where \nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "definition": "SELECT SiteLocation FROM Inventory.ServerList WHERE  SupportGroup='DBA' and ApplicationGroupName IN ($ApplicationGroupName) AND SiteLocation IS NOT NULL ORDER BY SiteLocation ASC",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Site",
+        "options": [],
+        "query": "SELECT SiteLocation FROM Inventory.ServerList WHERE  SupportGroup='DBA' and ApplicationGroupName IN ($ApplicationGroupName) AND SiteLocation IS NOT NULL ORDER BY SiteLocation ASC",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "definition": "SELECT Environment \nFROM Inventory.ServerList \nWHERE SiteLocation IN ($Site)\nAND ApplicationGroupName IN ($ApplicationGroupName) ORDER BY Environment ASC",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Environment",
+        "options": [],
+        "query": "SELECT Environment \nFROM Inventory.ServerList \nWHERE SiteLocation IN ($Site)\nAND ApplicationGroupName IN ($ApplicationGroupName) ORDER BY Environment ASC",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "definition": "SELECT ServerName \nFROM Inventory.ServerList \nWHERE ApplicationGroupName IN ($ApplicationGroupName) \nAND SiteLocation IN ($Site)\nAND Environment IN ($Environment) and SQLMajor>10 \nAND SupportGroup='DBA' ORDER  BY ServerName ASC",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Datasource",
+        "options": [],
+        "query": "SELECT ServerName \nFROM Inventory.ServerList \nWHERE ApplicationGroupName IN ($ApplicationGroupName) \nAND SiteLocation IN ($Site)\nAND Environment IN ($Environment) and SQLMajor>10 \nAND SupportGroup='DBA' ORDER  BY ServerName ASC",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true,
+    "refresh_intervals": [],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "EMEA Database Statistics New",
+  "uid": "afqt0h4vc5b7ke",
+  "version": 1,
+  "weekStart": ""
+}

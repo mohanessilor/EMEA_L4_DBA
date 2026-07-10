@@ -1,0 +1,931 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_CENTRAL",
+      "label": "Central",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.2.2"
+    },
+    {
+      "type": "datasource",
+      "id": "mssql",
+      "name": "Microsoft SQL Server",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "volkovlabs-table-panel",
+      "name": "Business Table",
+      "version": "3.6.1"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "limit": 100,
+        "name": "Annotations & Alerts",
+        "showIn": 0,
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": 1902,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 489,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "💾 SQL Backup Summary ",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "green",
+                  "index": 3,
+                  "text": "✔"
+                },
+                "System": {
+                  "color": "#242a32",
+                  "index": 1,
+                  "text": "System"
+                },
+                "User": {
+                  "color": "#242a32",
+                  "index": 2,
+                  "text": "User"
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "#31302f",
+                  "index": 0,
+                  "text": "∅"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "from": 1,
+                "result": {
+                  "color": "orange",
+                  "index": 4
+                },
+                "to": 7
+              },
+              "type": "range"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-green",
+                "value": null
+              },
+              {
+                "color": "dark-yellow",
+                "value": 7
+              },
+              {
+                "color": "dark-red",
+                "value": 8
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 466,
+      "options": {
+        "columnManagerCustomIcon": "",
+        "columnManagerNativeIcon": "table",
+        "isColumnManagerShowCustomIcon": false,
+        "nestedObjects": [],
+        "openColumnManagerMode": "group",
+        "tables": [
+          {
+            "actionsColumnConfig": {
+              "alignment": "start",
+              "fontSize": "md",
+              "label": "",
+              "width": {
+                "auto": false,
+                "value": 100
+              }
+            },
+            "addRow": {
+              "enabled": false,
+              "permission": {
+                "mode": "",
+                "userRole": []
+              },
+              "request": {
+                "datasource": "",
+                "payload": {}
+              }
+            },
+            "deleteRow": {
+              "enabled": false,
+              "permission": {
+                "mode": "",
+                "userRole": []
+              },
+              "request": {
+                "datasource": "",
+                "payload": {}
+              }
+            },
+            "expanded": false,
+            "highlightRowsOnHover": false,
+            "items": [
+              {
+                "aggregation": "none",
+                "appearance": {
+                  "alignment": "start",
+                  "background": {
+                    "applyToRow": false
+                  },
+                  "colors": {},
+                  "header": {
+                    "backgroundColor": "#3e5578",
+                    "fontSize": "sm"
+                  },
+                  "width": {
+                    "auto": true,
+                    "min": 200,
+                    "value": 100
+                  },
+                  "wrap": true
+                },
+                "columnTooltip": "",
+                "edit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false,
+                  "permission": {
+                    "mode": "",
+                    "userRole": []
+                  }
+                },
+                "enabled": true,
+                "field": {
+                  "name": "ServerName",
+                  "source": 0
+                },
+                "fileCell": {
+                  "size": "md",
+                  "text": "Download",
+                  "variant": "primary"
+                },
+                "filter": {
+                  "enabled": false,
+                  "mode": "client",
+                  "variable": ""
+                },
+                "footer": [],
+                "gauge": {
+                  "mode": "basic",
+                  "valueDisplayMode": "text",
+                  "valueSize": 14
+                },
+                "group": true,
+                "label": "",
+                "newRowEdit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false
+                },
+                "objectId": "",
+                "pin": "",
+                "preformattedStyle": false,
+                "scale": "auto",
+                "showingRows": 20,
+                "sort": {
+                  "descFirst": false,
+                  "enabled": false
+                },
+                "type": "auto"
+              },
+              {
+                "aggregation": "none",
+                "appearance": {
+                  "alignment": "center",
+                  "background": {
+                    "applyToRow": false
+                  },
+                  "colors": {},
+                  "header": {
+                    "backgroundColor": "#3e5578",
+                    "fontSize": "sm"
+                  },
+                  "width": {
+                    "auto": true,
+                    "min": 20,
+                    "value": 100
+                  },
+                  "wrap": true
+                },
+                "columnTooltip": "",
+                "edit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false,
+                  "permission": {
+                    "mode": "",
+                    "userRole": []
+                  }
+                },
+                "enabled": true,
+                "field": {
+                  "name": "DatabaseType",
+                  "source": 0
+                },
+                "fileCell": {
+                  "size": "md",
+                  "text": "Download",
+                  "variant": "primary"
+                },
+                "filter": {
+                  "enabled": false,
+                  "mode": "client",
+                  "variable": ""
+                },
+                "footer": [],
+                "gauge": {
+                  "mode": "basic",
+                  "valueDisplayMode": "text",
+                  "valueSize": 14
+                },
+                "group": false,
+                "label": "Type",
+                "newRowEdit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false
+                },
+                "objectId": "",
+                "pin": "",
+                "preformattedStyle": false,
+                "scale": "auto",
+                "showingRows": 20,
+                "sort": {
+                  "descFirst": false,
+                  "enabled": false
+                },
+                "type": "auto"
+              },
+              {
+                "aggregation": "none",
+                "appearance": {
+                  "alignment": "start",
+                  "background": {
+                    "applyToRow": false
+                  },
+                  "colors": {},
+                  "header": {
+                    "backgroundColor": "#3e5578",
+                    "fontSize": "sm"
+                  },
+                  "width": {
+                    "auto": true,
+                    "min": 20,
+                    "value": 100
+                  },
+                  "wrap": true
+                },
+                "columnTooltip": "",
+                "edit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false,
+                  "permission": {
+                    "mode": "",
+                    "userRole": []
+                  }
+                },
+                "enabled": true,
+                "field": {
+                  "name": "DatabaseName",
+                  "source": 0
+                },
+                "fileCell": {
+                  "size": "md",
+                  "text": "Download",
+                  "variant": "primary"
+                },
+                "filter": {
+                  "enabled": false,
+                  "mode": "client",
+                  "variable": ""
+                },
+                "footer": [],
+                "gauge": {
+                  "mode": "basic",
+                  "valueDisplayMode": "text",
+                  "valueSize": 14
+                },
+                "group": false,
+                "label": "DB",
+                "newRowEdit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false
+                },
+                "objectId": "",
+                "pin": "",
+                "preformattedStyle": false,
+                "scale": "auto",
+                "showingRows": 20,
+                "sort": {
+                  "descFirst": false,
+                  "enabled": false
+                },
+                "type": "auto"
+              },
+              {
+                "aggregation": "none",
+                "appearance": {
+                  "alignment": "start",
+                  "background": {
+                    "applyToRow": false
+                  },
+                  "colors": {},
+                  "header": {
+                    "backgroundColor": "#3e5578",
+                    "fontSize": "sm"
+                  },
+                  "width": {
+                    "auto": true,
+                    "min": 20,
+                    "value": 100
+                  },
+                  "wrap": true
+                },
+                "columnTooltip": "",
+                "edit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false,
+                  "permission": {
+                    "mode": "",
+                    "userRole": []
+                  }
+                },
+                "enabled": true,
+                "field": {
+                  "name": "Recovery_Model",
+                  "source": 0
+                },
+                "fileCell": {
+                  "size": "md",
+                  "text": "Download",
+                  "variant": "primary"
+                },
+                "filter": {
+                  "enabled": false,
+                  "mode": "client",
+                  "variable": ""
+                },
+                "footer": [],
+                "gauge": {
+                  "mode": "basic",
+                  "valueDisplayMode": "text",
+                  "valueSize": 14
+                },
+                "group": false,
+                "label": "Recovery",
+                "newRowEdit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false
+                },
+                "objectId": "",
+                "pin": "",
+                "preformattedStyle": false,
+                "scale": "auto",
+                "showingRows": 20,
+                "sort": {
+                  "descFirst": false,
+                  "enabled": false
+                },
+                "type": "auto"
+              },
+              {
+                "aggregation": "max",
+                "appearance": {
+                  "alignment": "center",
+                  "background": {
+                    "applyToRow": false
+                  },
+                  "colors": {},
+                  "header": {
+                    "backgroundColor": "#3e5578",
+                    "fontSize": "sm"
+                  },
+                  "width": {
+                    "auto": true,
+                    "min": 150,
+                    "value": 100
+                  },
+                  "wrap": true
+                },
+                "columnTooltip": "",
+                "edit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false,
+                  "permission": {
+                    "mode": "",
+                    "userRole": []
+                  }
+                },
+                "enabled": true,
+                "field": {
+                  "name": "FullBackupAge_Days",
+                  "source": 0
+                },
+                "fileCell": {
+                  "size": "md",
+                  "text": "Download",
+                  "variant": "primary"
+                },
+                "filter": {
+                  "enabled": false,
+                  "mode": "client",
+                  "variable": ""
+                },
+                "footer": [],
+                "gauge": {
+                  "mode": "basic",
+                  "valueDisplayMode": "text",
+                  "valueSize": 14
+                },
+                "group": false,
+                "label": "Full Latency (Days)",
+                "newRowEdit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false
+                },
+                "objectId": "",
+                "pin": "",
+                "preformattedStyle": false,
+                "scale": "auto",
+                "showingRows": 20,
+                "sort": {
+                  "descFirst": false,
+                  "enabled": false
+                },
+                "type": "coloredText"
+              },
+              {
+                "aggregation": "max",
+                "appearance": {
+                  "alignment": "center",
+                  "background": {
+                    "applyToRow": false
+                  },
+                  "colors": {},
+                  "header": {
+                    "backgroundColor": "#3e5578",
+                    "fontSize": "sm"
+                  },
+                  "width": {
+                    "auto": true,
+                    "min": 150,
+                    "value": 100
+                  },
+                  "wrap": true
+                },
+                "columnTooltip": "",
+                "edit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false,
+                  "permission": {
+                    "mode": "",
+                    "userRole": []
+                  }
+                },
+                "enabled": true,
+                "field": {
+                  "name": "DiffBackupAge_Days",
+                  "source": 0
+                },
+                "fileCell": {
+                  "size": "md",
+                  "text": "Download",
+                  "variant": "primary"
+                },
+                "filter": {
+                  "enabled": false,
+                  "mode": "client",
+                  "variable": ""
+                },
+                "footer": [],
+                "gauge": {
+                  "mode": "basic",
+                  "valueDisplayMode": "text",
+                  "valueSize": 14
+                },
+                "group": false,
+                "label": "Diff Latency (Days)",
+                "newRowEdit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false
+                },
+                "objectId": "",
+                "pin": "",
+                "preformattedStyle": false,
+                "scale": "auto",
+                "showingRows": 20,
+                "sort": {
+                  "descFirst": false,
+                  "enabled": false
+                },
+                "type": "coloredText"
+              },
+              {
+                "aggregation": "max",
+                "appearance": {
+                  "alignment": "center",
+                  "background": {
+                    "applyToRow": false
+                  },
+                  "colors": {},
+                  "header": {
+                    "backgroundColor": "#3e5578",
+                    "fontSize": "sm"
+                  },
+                  "width": {
+                    "auto": true,
+                    "min": 150,
+                    "value": 100
+                  },
+                  "wrap": true
+                },
+                "columnTooltip": "",
+                "edit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false,
+                  "permission": {
+                    "mode": "",
+                    "userRole": []
+                  }
+                },
+                "enabled": true,
+                "field": {
+                  "name": "LogBackupAge_Days",
+                  "source": 0
+                },
+                "fileCell": {
+                  "size": "md",
+                  "text": "Download",
+                  "variant": "primary"
+                },
+                "filter": {
+                  "enabled": false,
+                  "mode": "client",
+                  "variable": ""
+                },
+                "footer": [],
+                "gauge": {
+                  "mode": "basic",
+                  "valueDisplayMode": "text",
+                  "valueSize": 14
+                },
+                "group": false,
+                "label": "Log Latency (Days)",
+                "newRowEdit": {
+                  "editor": {
+                    "type": "string"
+                  },
+                  "enabled": false
+                },
+                "objectId": "",
+                "pin": "",
+                "preformattedStyle": false,
+                "scale": "auto",
+                "showingRows": 20,
+                "sort": {
+                  "descFirst": false,
+                  "enabled": false
+                },
+                "type": "coloredText"
+              }
+            ],
+            "name": "Backup",
+            "pagination": {
+              "defaultPageSize": 10,
+              "enabled": false,
+              "mode": "client"
+            },
+            "rowHighlight": {
+              "backgroundColor": "transparent",
+              "columnId": "",
+              "enabled": false,
+              "resetVariable": false,
+              "scrollTo": "",
+              "smooth": false,
+              "variable": ""
+            },
+            "showHeader": true,
+            "stripedRows": false,
+            "update": {
+              "datasource": "",
+              "payload": {}
+            }
+          }
+        ],
+        "toolbar": {
+          "alignment": "left",
+          "exportFormats": [
+            "xlsx"
+          ]
+        }
+      },
+      "pluginVersion": "3.6.1",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "queryType": "randomWalk",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\nUPPER(CASE \r\n        WHEN len(isnull(CAST(SERVERPROPERTY('InstanceName') AS varchar(20)),'')) = 0 THEN UPPER(CAST(SERVERPROPERTY('MachineName') AS varchar(20)))\r\n        ELSE UPPER(CAST(SERVERPROPERTY('MachineName') AS varchar(20)))\r\n             + '\\' + UPPER(CAST(SERVERPROPERTY('InstanceName') AS varchar(20)))\r\n      END) As ServerName,\r\n    DB.name AS DatabaseName,\r\n\r\n    CASE\r\n        WHEN DB.database_id <= 4 THEN 'System'\r\n        ELSE 'User'\r\n    END AS DatabaseType,\r\n\r\n    DB.recovery_model_desc AS Recovery_Model,\r\n\r\n    -- Last Backup Dates\r\n    MAX(CASE WHEN BS.type = 'D' THEN BS.backup_start_date END) AS LastFullBackup,\r\n    MAX(CASE WHEN BS.type = 'I' THEN BS.backup_start_date END) AS LastDiffBackup,\r\n    MAX(CASE WHEN BS.type = 'L' THEN BS.backup_start_date END) AS LastLogBackup,\r\n\r\n    -- Age of Backups (Days)\r\n    DATEDIFF(DAY,\r\n        MAX(CASE WHEN BS.type = 'D' THEN BS.backup_start_date END),\r\n        GETDATE()) AS FullBackupAge_Days,\r\n\r\n    DATEDIFF(DAY,\r\n        MAX(CASE WHEN BS.type = 'I' THEN BS.backup_start_date END),\r\n        GETDATE()) AS DiffBackupAge_Days,\r\n\r\n    DATEDIFF(DAY,\r\n        MAX(CASE WHEN BS.type = 'L' THEN BS.backup_start_date END),\r\n        GETDATE()) AS LogBackupAge_Days\r\n\r\nFROM sys.databases AS DB\r\nLEFT JOIN msdb.dbo.backupset AS BS\r\n    ON BS.database_name = DB.name\r\nLEFT JOIN msdb.dbo.backupmediafamily AS BMF\r\n    ON BS.media_set_id = BMF.media_set_id\r\nWHERE ISNULL(BS.is_damaged, 0) = 0\r\n--AND BMF.physical_device_name LIKE 'VNBU%'\r\nGROUP BY\r\n    DB.name,\r\n    DB.database_id,\r\n    DB.recovery_model_desc\r\nORDER BY\r\n    DatabaseType,\r\n    DatabaseName;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "AdminSQLCentral",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_CENTRAL}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT UPPER(ServerName) ServerName\r\n      ,ApplicationGroupName\r\n      ,Environment\r\n  FROM [AdminSQLCentral].[Inventory].[ServerList] WHERE ApplicationGroupName IN (${ApplicationGroupName})\r\nand Environment in (${Environment}) and Instance in (${Datasource})",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        }
+      ],
+      "type": "volkovlabs-table-panel"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "definition": "\nSELECT ApplicationGroupName FROM Inventory.ServerList  where \nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END",
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "ApplicationGroupName",
+        "options": [],
+        "query": "\nSELECT ApplicationGroupName FROM Inventory.ServerList  where \nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "definition": "SELECT SiteLocation FROM Inventory.ServerList \nWHERE \nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END\nand ApplicationGroupName IN ($ApplicationGroupName) \nAND SiteLocation IS NOT NULL ORDER BY SiteLocation ASC",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Site",
+        "options": [],
+        "query": "SELECT SiteLocation FROM Inventory.ServerList \nWHERE \nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END\nand ApplicationGroupName IN ($ApplicationGroupName) \nAND SiteLocation IS NOT NULL ORDER BY SiteLocation ASC",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "definition": "SELECT Environment \nFROM Inventory.ServerList \nWHERE\nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END\nand SiteLocation IN ($Site)\nAND ApplicationGroupName IN ($ApplicationGroupName) ORDER BY Environment ASC",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Environment",
+        "options": [],
+        "query": "SELECT Environment \nFROM Inventory.ServerList \nWHERE\nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END\nand SiteLocation IN ($Site)\nAND ApplicationGroupName IN ($ApplicationGroupName) ORDER BY Environment ASC",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "definition": "SELECT ServerName \nFROM Inventory.ServerList \nWHERE\nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END\n\tAND\n\tApplicationGroupName IN ($ApplicationGroupName) \nAND SiteLocation IN ($Site)\nAND Environment IN ($Environment) and SQLMajor>10 ORDER BY ServerName ASC",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Datasource",
+        "options": [],
+        "query": "SELECT ServerName \nFROM Inventory.ServerList \nWHERE\nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END\n\tAND\n\tApplicationGroupName IN ($ApplicationGroupName) \nAND SiteLocation IN ($Site)\nAND Environment IN ($Environment) and SQLMajor>10 ORDER BY ServerName ASC",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true,
+    "refresh_intervals": [
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "EMEA SQL Backup - Summary New",
+  "uid": "afqp3odaqjtvka",
+  "version": 7,
+  "weekStart": ""
+}

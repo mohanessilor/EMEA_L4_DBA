@@ -1,0 +1,518 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_AEUWE1ER0211\\IBZ1",
+      "label": "AEUWE1ER0211\\IBZ1",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    },
+    {
+      "name": "DS_CENTRAL",
+      "label": "Central",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.2.2"
+    },
+    {
+      "type": "datasource",
+      "id": "mssql",
+      "name": "Microsoft SQL Server",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "limit": 100,
+        "name": "Annotations & Alerts",
+        "showIn": 0,
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": 1902,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [
+    {
+      "icon": "external link",
+      "tags": [
+        "DBA"
+      ],
+      "targetBlank": true,
+      "type": "dashboards"
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 496,
+      "panels": [],
+      "repeat": "Datasource",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource Database I/O Details",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "name": "${Datasource}",
+        "type": "mssql",
+        "uid": "${Datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 491,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Max",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.4",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_AEUWE1ER0211\\IBZ1}"
+          },
+          "format": "time_series",
+          "rawSql": ";WITH DatabaseIOLatency AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        DatabaseName,\r\n        SUM(io_stall_read_ms) AS io_stall_read_ms,\r\n        SUM(io_stall_write_ms) AS io_stall_write_ms,\r\n        SUM(num_of_reads) AS num_of_reads,\r\n\t\tSUM(num_of_writes) AS num_of_writes\r\n    FROM [Archive].[FileStatistics]\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n    GROUP BY CheckDateTime, DatabaseName\r\n)\r\nSELECT a.CheckDateTime AS time,\r\n\t     a.DatabaseName,\r\n       CASE WHEN(a.num_of_reads-aPrior.num_of_reads) = 0 THEN 0\r\n       ELSE(a.io_stall_read_ms-aPrior.io_stall_read_ms)*1.0/(a.num_of_reads-aPrior.num_of_reads)*1.0 END AS ReadLatency,\r\n       CASE WHEN(a.num_of_writes-aPrior.num_of_writes) = 0 THEN 0\r\n       ELSE(a.io_stall_write_ms-aPrior.io_stall_write_ms)*1.0/(a.num_of_writes-aPrior.num_of_writes)*1.0 END AS WriteLatency\r\nFROM DatabaseIOLatency a\r\nINNER JOIN DatabaseIOLatency aPrior\r\nON a.DatabaseName = aPrior.DatabaseName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_reads >= aPrior.num_of_reads\r\nAND a.num_of_writes >= aPrior.num_of_writes\r\nORDER BY time ASC",
+          "refId": "A"
+        }
+      ],
+      "title": "Database Latency",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "name": "${Datasource}",
+        "type": "mssql",
+        "uid": "${Datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 534,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.4",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_AEUWE1ER0211\\IBZ1}"
+          },
+          "format": "time_series",
+          "rawSql": ";WITH DatabaseIOThroughput AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        DatabaseName,\r\n        SUM(num_of_bytes_read) AS num_of_bytes_read,\r\n\t\tSUM(num_of_bytes_written) AS num_of_bytes_written\r\n    FROM [Archive].[FileStatistics]\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n    GROUP BY CheckDateTime, DatabaseName\r\n)\r\nSELECT  a.CheckDateTime AS time,\r\n\t      a.DatabaseName,\r\n        (a.num_of_bytes_read - aPrior.num_of_bytes_read)/1024/1024*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS ReadThroughputMBPS,\r\n        (a.num_of_bytes_written - aPrior.num_of_bytes_written)/1024/1024*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS WriteThroughputMBPS\r\nFROM DatabaseIOThroughput a\r\nINNER JOIN DatabaseIOThroughput aPrior\r\nON a.DatabaseName = aPrior.DatabaseName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_bytes_read >= aPrior.num_of_bytes_read\r\nAND a.num_of_bytes_written >= aPrior.num_of_bytes_written\r\nORDER BY time ASC",
+          "refId": "A"
+        }
+      ],
+      "title": "Bytes R/W",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "name": "${Datasource}",
+        "type": "mssql",
+        "uid": "${Datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 0,
+        "y": 15
+      },
+      "id": 533,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Max",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.4",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_AEUWE1ER0211\\IBZ1}"
+          },
+          "format": "time_series",
+          "rawSql": ";WITH DatabaseIOIOPS AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        DatabaseName,\r\n        SUM(num_of_reads) AS num_of_reads,\r\n\t\tSUM(num_of_writes) AS num_of_writes\r\n    FROM [Archive].[FileStatistics]\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n    GROUP BY CheckDateTime, DatabaseName\r\n)\r\nSELECT  a.CheckDateTime AS time,\r\n\t      a.DatabaseName,\r\n        (a.num_of_reads - aPrior.num_of_reads)*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS ReadIOPS,\r\n        (a.num_of_writes - aPrior.num_of_writes)*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS WriteIOPS\r\nFROM DatabaseIOIOPS a\r\nINNER JOIN DatabaseIOIOPS aPrior\r\nON a.DatabaseName = aPrior.DatabaseName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_reads >= aPrior.num_of_reads\r\nAND a.num_of_writes >= aPrior.num_of_writes\r\nORDER BY time ASC",
+          "refId": "A"
+        }
+      ],
+      "title": "Operations R/W",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [
+    "DBA",
+    "Databases"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "definition": "SELECT ServerName \nFROM Inventory.ServerList \nWHERE\nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "Datasource",
+        "options": [],
+        "query": "SELECT ServerName \nFROM Inventory.ServerList \nWHERE\nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "",
+          "value": ""
+        },
+        "hide": 0,
+        "name": "DatabasePattern",
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "datasource",
+          "uid": "$Datasource"
+        },
+        "definition": "SELECT name FROM master.sys.databases WHERE name LIKE '%$DatabasePattern%'",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "DatabaseName",
+        "options": [],
+        "query": "SELECT name FROM master.sys.databases WHERE name LIKE '%$DatabasePattern%'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "SQL Server - Database I/O",
+  "uid": "SQLServerDatabaseIO",
+  "version": 5,
+  "weekStart": ""
+}

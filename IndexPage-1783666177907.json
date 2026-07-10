@@ -1,0 +1,2549 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_CENTRAL",
+      "label": "Central",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    }
+  ],
+  "__elements": {
+    "bfrgl769ngphca": {
+      "name": "SupportGroupMatrix",
+      "uid": "bfrgl769ngphca",
+      "kind": 1,
+      "model": {
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "fieldMinMax": false,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "options": {
+          "addUrl": false,
+          "cellPadding": 5,
+          "cellSize": 20,
+          "colCategoryGap": 4,
+          "colCategoryHeaderHeight": 100,
+          "defaultColor": "transparent",
+          "enableColGrouping": false,
+          "enableRowGrouping": false,
+          "inputList": false,
+          "legendType": "range",
+          "nullColor": "transparent",
+          "rowCategoryGap": 4,
+          "rowCategoryHeaderWidth": 100,
+          "showLegend": false,
+          "sortType": "natural-asc",
+          "sourceField": "Environment",
+          "sourceText": "From",
+          "targetField": "SupportGroup",
+          "targetText": "To",
+          "txtLength": 15,
+          "txtSize": 10,
+          "valueField": "SrvCnt",
+          "valueText": "Value"
+        },
+        "pluginVersion": "2.1.0",
+        "targets": [
+          {
+            "dataset": "AdminSQLCentral",
+            "datasource": {
+              "type": "mssql",
+              "uid": "AdminSQLCentral"
+            },
+            "editorMode": "code",
+            "format": "table",
+            "rawQuery": true,
+            "rawSql": "SELECT Environment,SupportGroup , count(CIName) SrvCnt From  AdminSQLCentral.Inventory.ServerList group by Environment , SupportGroup",
+            "refId": "A",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [
+                    {
+                      "name": "*",
+                      "type": "functionParameter"
+                    }
+                  ],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            },
+            "table": "Inventory.ServerList"
+          }
+        ],
+        "transparent": true,
+        "type": "esnet-matrix-panel"
+      }
+    },
+    "bfr3l0eayjp4wc": {
+      "name": "Replication_Labs",
+      "uid": "bfr3l0eayjp4wc",
+      "kind": 1,
+      "model": {
+        "datasource": {
+          "default": false,
+          "type": "datasource",
+          "uid": "-- Mixed --"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "#222121",
+              "mode": "fixed"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "Failed": {
+                    "color": "dark-red",
+                    "index": 2,
+                    "text": "❌"
+                  },
+                  "Idle": {
+                    "color": "dark-blue",
+                    "index": 5,
+                    "text": "✔"
+                  },
+                  "In progress": {
+                    "color": "dark-green",
+                    "index": 4,
+                    "text": "✔"
+                  },
+                  "Retrying": {
+                    "color": "dark-red",
+                    "index": 1,
+                    "text": "❌"
+                  },
+                  "Started": {
+                    "color": "orange",
+                    "index": 3,
+                    "text": "✔"
+                  },
+                  "Succeeded": {
+                    "color": "green",
+                    "index": 0,
+                    "text": "✔"
+                  }
+                },
+                "type": "value"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#292826",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "status"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "Error": {
+                          "color": "dark-red",
+                          "index": 1,
+                          "text": "❌"
+                        },
+                        "OK": {
+                          "color": "dark-green",
+                          "index": 0,
+                          "text": "✔"
+                        }
+                      },
+                      "type": "value"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "options": {
+          "infinitePan": false,
+          "inlineEditing": false,
+          "panZoom": false,
+          "root": {
+            "background": {
+              "color": {
+                "fixed": "transparent"
+              },
+              "image": {
+                "fixed": ""
+              }
+            },
+            "border": {
+              "color": {
+                "fixed": "dark-green"
+              },
+              "width": 0
+            },
+            "constraint": {
+              "horizontal": "left",
+              "vertical": "top"
+            },
+            "elements": [
+              {
+                "background": {
+                  "color": {
+                    "field": "LAB 1",
+                    "fixed": "#D9D9D9"
+                  },
+                  "size": "cover"
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "super-light-blue"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "LAB 1",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "EOLP",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 26,
+                  "left": 32,
+                  "rotation": 0,
+                  "top": 53,
+                  "width": 82
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "field": "status 1",
+                    "fixed": "#D9D9D9"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "#000000"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "status 1",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "connections": [],
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "EOLP_Status",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 26,
+                  "left": 114,
+                  "rotation": 0,
+                  "top": 53,
+                  "width": 32
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "field": "LAB 2",
+                    "fixed": "#D9D9D9"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "super-light-blue"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "LAB 2",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "ELTL",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 26,
+                  "left": 32,
+                  "rotation": 0,
+                  "top": 149,
+                  "width": 82
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "field": "status 1",
+                    "fixed": "#D9D9D9"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "#000000"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "status 2",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "connections": [],
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "ELTL Status",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 26,
+                  "left": 114,
+                  "rotation": 0,
+                  "top": 149,
+                  "width": 32
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "field": "LAB 1",
+                    "fixed": "#D9D9D9"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "super-light-blue"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "LAB 3",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "connections": [],
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "SEDICO",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 26,
+                  "left": 32,
+                  "rotation": 0,
+                  "top": 85,
+                  "width": 82
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "field": "status 1",
+                    "fixed": "#D9D9D9"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "#000000"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "status 3",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "SEDICO Status",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 26,
+                  "left": 114,
+                  "rotation": 0,
+                  "top": 85,
+                  "width": 32
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "field": "LAB 1",
+                    "fixed": "#D9D9D9"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "super-light-blue"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "LAB 4",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "connections": [],
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "CHLOE",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 26,
+                  "left": 32,
+                  "rotation": 0,
+                  "top": 181,
+                  "width": 82
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "field": "status 1",
+                    "fixed": "#D9D9D9"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "#000000"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "status 4",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "connections": [],
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "CHLOE Status",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 26,
+                  "left": 114,
+                  "rotation": 0,
+                  "top": 181,
+                  "width": 32
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "field": "LAB 1",
+                    "fixed": "#D9D9D9"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "super-light-blue"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "LAB 5",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "TRISTAR",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 26,
+                  "left": 32,
+                  "rotation": 0,
+                  "top": 117,
+                  "width": 82
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "field": "status 1",
+                    "fixed": "#D9D9D9"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "#000000"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "status 5",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "connections": [],
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "TRISTAR Status",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 26,
+                  "left": 114,
+                  "rotation": 0,
+                  "top": 117,
+                  "width": 32
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "field": "LAB 1",
+                    "fixed": "#D9D9D9"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "super-light-blue"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "LAB 6",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "EMIL",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 26,
+                  "left": 32,
+                  "rotation": 0,
+                  "top": 213,
+                  "width": 82
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "field": "status 1",
+                    "fixed": "#D9D9D9"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "#000000"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "status 6",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "connections": [],
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "EMIL Status",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 26,
+                  "left": 114,
+                  "rotation": 0,
+                  "top": 213,
+                  "width": 32
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "orange"
+                  },
+                  "size": 11,
+                  "text": {
+                    "fixed": "Replication Status",
+                    "mode": "fixed"
+                  },
+                  "valign": "middle"
+                },
+                "connections": [],
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "Lab Wise Repl",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 25,
+                  "left": 32,
+                  "rotation": 0,
+                  "top": 10,
+                  "width": 115
+                },
+                "type": "text"
+              },
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "#6b6e73"
+                  },
+                  "size": 8,
+                  "text": {
+                    "fixed": "* Agent(s) Status only",
+                    "mode": "fixed"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "Details",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 25,
+                  "left": 28,
+                  "rotation": 0,
+                  "top": 271,
+                  "width": 115
+                },
+                "type": "text"
+              },
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "super-light-blue"
+                  },
+                  "size": 8,
+                  "text": {
+                    "field": "RefDate",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "Element 15",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 18,
+                  "left": 34,
+                  "rotation": 0,
+                  "top": 26,
+                  "width": 109
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "field": "LAB 7",
+                    "fixed": "#D9D9D9"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "super-light-blue"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "LAB 7",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "LABEX",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 25.98750114440918,
+                  "left": 32,
+                  "rotation": 0,
+                  "top": 245,
+                  "width": 82
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "field": "status 7",
+                    "fixed": "#D9D9D9"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "#000000"
+                  },
+                  "size": 11,
+                  "text": {
+                    "field": "status 7",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "links": [],
+                "name": "LABEX Status",
+                "oneClickMode": "off",
+                "placement": {
+                  "height": 25.98750114440918,
+                  "left": 114,
+                  "rotation": 0,
+                  "top": 245,
+                  "width": 32
+                },
+                "type": "metric-value"
+              }
+            ],
+            "name": "Element 1783170975444",
+            "oneClickMode": "off",
+            "placement": {
+              "height": 100,
+              "left": 0,
+              "rotation": 0,
+              "top": 0,
+              "width": 100
+            },
+            "type": "frame"
+          },
+          "showAdvancedTypes": false
+        },
+        "pluginVersion": "11.2.2",
+        "targets": [
+          {
+            "dataset": "distribution",
+            "datasource": {
+              "type": "mssql",
+              "uid": "P6EAEAD8FCEA830D6"
+            },
+            "editorMode": "code",
+            "format": "table",
+            "rawQuery": true,
+            "rawSql": "SELECT \r\nCASE A.ServerName\r\nWHEN 'PLER0104\\PXRP' THEN 'EOLP'\r\nWHEN 'THER5004\\PRNW' THEN 'ELTL'\r\nWHEN 'AZSEAER0012\\PRT1' THEN 'SEDICO'\r\nWHEN 'CNER0343\\PXRH' THEN 'CHLOE'\r\nWHEN 'CNT-RXREPP01\\PXRT' THEN 'TRISTAR'\r\nWHEN 'INLR0425\\PXRG' THEN 'EMIL'\r\nWHEN 'AZFRCER0263\\PRNW' THEN 'LABEX'\r\nEND AS 'LAB',*,Getdate() as 'RefDate'\r\nFROM \r\n(\r\nSELECT\r\n    UPPER(\r\n        CASE\r\n            WHEN LEN(ISNULL(CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20)), '')) = 0\r\n                THEN CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n            ELSE CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n                 + '\\' + CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20))\r\n        END\r\n    ) AS ServerName,\r\n\r\n    CASE publication_type\r\n        WHEN 0 THEN 'Transactional'\r\n        WHEN 1 THEN 'Snapshot'\r\n        WHEN 2 THEN 'Merge'\r\n    END AS publication_type,\r\n\r\n    CASE\r\n        WHEN MAX(CASE WHEN status IN (5,6) THEN 1 ELSE 0 END) = 1\r\n            THEN 'Error'\r\n        ELSE 'OK'\r\n    END AS [status]\r\n\r\nFROM distribution.dbo.MSreplication_monitordata  \r\nwhere publication_type=0\r\nGROUP BY\r\n    publication_type ) A\r\n\r\n\r\n",
+            "refId": "EOLP",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            }
+          },
+          {
+            "dataset": "distribution",
+            "datasource": {
+              "type": "mssql",
+              "uid": "dfl4p1nxqfmyoe"
+            },
+            "editorMode": "code",
+            "format": "table",
+            "hide": false,
+            "rawQuery": true,
+            "rawSql": "SELECT \r\nCASE A.ServerName\r\nWHEN 'PLER0104\\PXRP' THEN 'EOLP'\r\nWHEN 'THER5004\\PRNW' THEN 'ELTL'\r\nWHEN 'AZSEAER0012\\PRT1' THEN 'SEDICO'\r\nWHEN 'CNER0343\\PXRH' THEN 'CHLOE'\r\nWHEN 'CNT-RXREPP01\\PXRT' THEN 'TRISTAR'\r\nWHEN 'INLR0425\\PXRG' THEN 'EMIL'\r\nWHEN 'AZFRCER0263\\PRNW' THEN 'LABEX'\r\nEND AS 'LAB',*,Getdate() as 'RefDate'\r\nFROM \r\n(\r\nSELECT\r\n    UPPER(\r\n        CASE\r\n            WHEN LEN(ISNULL(CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20)), '')) = 0\r\n                THEN CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n            ELSE CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n                 + '\\' + CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20))\r\n        END\r\n    ) AS ServerName,\r\n\r\n    CASE publication_type\r\n        WHEN 0 THEN 'Transactional'\r\n        WHEN 1 THEN 'Snapshot'\r\n        WHEN 2 THEN 'Merge'\r\n    END AS publication_type,\r\n\r\n    CASE\r\n        WHEN MAX(CASE WHEN status IN (5,6) THEN 1 ELSE 0 END) = 1\r\n            THEN 'Error'\r\n        ELSE 'OK'\r\n    END AS [status]\r\n\r\nFROM distribution.dbo.MSreplication_monitordata  \r\nwhere publication_type=0\r\nGROUP BY\r\n    publication_type ) A\r\n\r\n\r\n",
+            "refId": "ELTL",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            }
+          },
+          {
+            "dataset": "AdminSQL",
+            "datasource": {
+              "type": "mssql",
+              "uid": "afr2z025hotfkf"
+            },
+            "editorMode": "code",
+            "format": "table",
+            "hide": false,
+            "rawQuery": true,
+            "rawSql": "SELECT \r\nCASE A.ServerName\r\nWHEN 'PLER0104\\PXRP' THEN 'EOLP'\r\nWHEN 'THER5004\\PRNW' THEN 'ELTL'\r\nWHEN 'AZSEAER0012\\PRT1' THEN 'SEDICO'\r\nWHEN 'CNER0343\\PXRH' THEN 'CHLOE'\r\nWHEN 'CNT-RXREPP01\\PXRT' THEN 'TRISTAR'\r\nWHEN 'INLR0425\\PXRG' THEN 'EMIL'\r\nWHEN 'AZFRCER0263\\PRNW' THEN 'LABEX'\r\nEND AS 'LAB',*,Getdate() as 'RefDate'\r\nFROM \r\n(\r\nSELECT\r\n    UPPER(\r\n        CASE\r\n            WHEN LEN(ISNULL(CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20)), '')) = 0\r\n                THEN CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n            ELSE CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n                 + '\\' + CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20))\r\n        END\r\n    ) AS ServerName,\r\n\r\n    CASE publication_type\r\n        WHEN 0 THEN 'Transactional'\r\n        WHEN 1 THEN 'Snapshot'\r\n        WHEN 2 THEN 'Merge'\r\n    END AS publication_type,\r\n\r\n    CASE\r\n        WHEN MAX(CASE WHEN status IN (5,6) THEN 1 ELSE 0 END) = 1\r\n            THEN 'Error'\r\n        ELSE 'OK'\r\n    END AS [status]\r\n\r\nFROM distribution.dbo.MSreplication_monitordata  \r\nwhere publication_type=0\r\nGROUP BY\r\n    publication_type ) A\r\n\r\n\r\n",
+            "refId": "SEDICO",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            }
+          },
+          {
+            "dataset": "AdminSQL",
+            "datasource": {
+              "type": "mssql",
+              "uid": "afk1zzogeb8xsf"
+            },
+            "editorMode": "code",
+            "format": "table",
+            "hide": false,
+            "rawQuery": true,
+            "rawSql": "SELECT \r\nCASE A.ServerName\r\nWHEN 'PLER0104\\PXRP' THEN 'EOLP'\r\nWHEN 'THER5004\\PRNW' THEN 'ELTL'\r\nWHEN 'AZSEAER0012\\PRT1' THEN 'SEDICO'\r\nWHEN 'CNER0343\\PXRH' THEN 'CHLOE'\r\nWHEN 'CNT-RXREPP01\\PXRT' THEN 'TRISTAR'\r\nWHEN 'INLR0425\\PXRG' THEN 'EMIL'\r\nWHEN 'AZFRCER0263\\PRNW' THEN 'LABEX'\r\nEND AS 'LAB',*,Getdate() as 'RefDate'\r\nFROM \r\n(\r\nSELECT\r\n    UPPER(\r\n        CASE\r\n            WHEN LEN(ISNULL(CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20)), '')) = 0\r\n                THEN CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n            ELSE CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n                 + '\\' + CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20))\r\n        END\r\n    ) AS ServerName,\r\n\r\n    CASE publication_type\r\n        WHEN 0 THEN 'Transactional'\r\n        WHEN 1 THEN 'Snapshot'\r\n        WHEN 2 THEN 'Merge'\r\n    END AS publication_type,\r\n\r\n    CASE\r\n        WHEN MAX(CASE WHEN status IN (5,6) THEN 1 ELSE 0 END) = 1\r\n            THEN 'Error'\r\n        ELSE 'OK'\r\n    END AS [status]\r\n\r\nFROM distribution.dbo.MSreplication_monitordata  \r\nwhere publication_type=0\r\nGROUP BY\r\n    publication_type ) A\r\n\r\n\r\n",
+            "refId": "CHLOE",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            }
+          },
+          {
+            "dataset": "AdminSQL",
+            "datasource": {
+              "type": "mssql",
+              "uid": "P6B719F6538EF040B"
+            },
+            "editorMode": "code",
+            "format": "table",
+            "hide": false,
+            "rawQuery": true,
+            "rawSql": "SELECT \r\nCASE A.ServerName\r\nWHEN 'PLER0104\\PXRP' THEN 'EOLP'\r\nWHEN 'THER5004\\PRNW' THEN 'ELTL'\r\nWHEN 'AZSEAER0012\\PRT1' THEN 'SEDICO'\r\nWHEN 'CNER0343\\PXRH' THEN 'CHLOE'\r\nWHEN 'CNT-RXREPP01\\PXRT' THEN 'TRISTAR'\r\nWHEN 'INLR0425\\PXRG' THEN 'EMIL'\r\nWHEN 'AZFRCER0263\\PRNW' THEN 'LABEX'\r\nEND AS 'LAB',*,Getdate() as 'RefDate'\r\nFROM \r\n(\r\nSELECT\r\n    UPPER(\r\n        CASE\r\n            WHEN LEN(ISNULL(CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20)), '')) = 0\r\n                THEN CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n            ELSE CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n                 + '\\' + CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20))\r\n        END\r\n    ) AS ServerName,\r\n\r\n    CASE publication_type\r\n        WHEN 0 THEN 'Transactional'\r\n        WHEN 1 THEN 'Snapshot'\r\n        WHEN 2 THEN 'Merge'\r\n    END AS publication_type,\r\n\r\n    CASE\r\n        WHEN MAX(CASE WHEN status IN (5,6) THEN 1 ELSE 0 END) = 1\r\n            THEN 'Error'\r\n        ELSE 'OK'\r\n    END AS [status]\r\n\r\nFROM distribution.dbo.MSreplication_monitordata  \r\nwhere publication_type=0\r\nGROUP BY\r\n    publication_type ) A\r\n\r\n\r\n",
+            "refId": "TRISTAR",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            }
+          },
+          {
+            "dataset": "AdminSQL",
+            "datasource": {
+              "type": "mssql",
+              "uid": "dfqke9anpbwu8c"
+            },
+            "editorMode": "code",
+            "format": "table",
+            "hide": false,
+            "rawQuery": true,
+            "rawSql": "SELECT \r\nCASE A.ServerName\r\nWHEN 'PLER0104\\PXRP' THEN 'EOLP'\r\nWHEN 'THER5004\\PRNW' THEN 'ELTL'\r\nWHEN 'AZSEAER0012\\PRT1' THEN 'SEDICO'\r\nWHEN 'CNER0343\\PXRH' THEN 'CHLOE'\r\nWHEN 'CNT-RXREPP01\\PXRT' THEN 'TRISTAR'\r\nWHEN 'INLR0425\\PXRG' THEN 'EMIL'\r\nWHEN 'AZFRCER0263\\PRNW' THEN 'LABEX'\r\nEND AS 'LAB',*,Getdate() as 'RefDate'\r\nFROM \r\n(\r\nSELECT\r\n    UPPER(\r\n        CASE\r\n            WHEN LEN(ISNULL(CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20)), '')) = 0\r\n                THEN CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n            ELSE CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n                 + '\\' + CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20))\r\n        END\r\n    ) AS ServerName,\r\n\r\n    CASE publication_type\r\n        WHEN 0 THEN 'Transactional'\r\n        WHEN 1 THEN 'Snapshot'\r\n        WHEN 2 THEN 'Merge'\r\n    END AS publication_type,\r\n\r\n    CASE\r\n        WHEN MAX(CASE WHEN status IN (5,6) THEN 1 ELSE 0 END) = 1\r\n            THEN 'Error'\r\n        ELSE 'OK'\r\n    END AS [status]\r\n\r\nFROM distribution.dbo.MSreplication_monitordata  \r\nwhere publication_type=0\r\nGROUP BY\r\n    publication_type ) A\r\n\r\n\r\n",
+            "refId": "EMIL",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            }
+          },
+          {
+            "dataset": "CONTROL_DECIDE_DB_REPL",
+            "datasource": {
+              "type": "mssql",
+              "uid": "P9956F662427E92A9"
+            },
+            "editorMode": "code",
+            "format": "table",
+            "hide": false,
+            "rawQuery": true,
+            "rawSql": "SELECT \r\nCASE A.ServerName\r\nWHEN 'PLER0104\\PXRP' THEN 'EOLP'\r\nWHEN 'THER5004\\PRNW' THEN 'ELTL'\r\nWHEN 'AZSEAER0012\\PRT1' THEN 'SEDICO'\r\nWHEN 'CNER0343\\PXRH' THEN 'CHLOE'\r\nWHEN 'CNT-RXREPP01\\PXRT' THEN 'TRISTAR'\r\nWHEN 'INLR0425\\PXRG' THEN 'EMIL'\r\nWHEN 'AZFRCER0263\\PRNW' THEN 'LABEX'\r\nEND AS 'LAB',*,Getdate() as 'RefDate'\r\nFROM \r\n(\r\nSELECT\r\n    UPPER(\r\n        CASE\r\n            WHEN LEN(ISNULL(CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20)), '')) = 0\r\n                THEN CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n            ELSE CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n                 + '\\' + CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20))\r\n        END\r\n    ) AS ServerName,\r\n\r\n    CASE publication_type\r\n        WHEN 0 THEN 'Transactional'\r\n        WHEN 1 THEN 'Snapshot'\r\n        WHEN 2 THEN 'Merge'\r\n    END AS publication_type,\r\n\r\n    CASE\r\n        WHEN MAX(CASE WHEN status IN (5,6) THEN 1 ELSE 0 END) = 1\r\n            THEN 'Error'\r\n        ELSE 'OK'\r\n    END AS [status]\r\n\r\nFROM distribution.dbo.MSreplication_monitordata  \r\nwhere publication_type=0\r\nGROUP BY\r\n    publication_type ) A\r\n\r\n\r\n",
+            "refId": "LABEX",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            }
+          }
+        ],
+        "transformations": [
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "ServerName",
+              "mode": "outer"
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "canvas"
+      }
+    }
+  },
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "canvas",
+      "name": "Canvas",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.2.2"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-clock-panel",
+      "name": "Clock",
+      "version": "3.2.2"
+    },
+    {
+      "type": "datasource",
+      "id": "mssql",
+      "name": "Microsoft SQL Server",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": false,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${DS_CENTRAL}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "shades"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 21,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "infinitePan": false,
+        "inlineEditing": false,
+        "panZoom": false,
+        "root": {
+          "background": {
+            "color": {
+              "fixed": "transparent"
+            },
+            "image": {
+              "field": "",
+              "fixed": "img/bg/GfBck.png",
+              "mode": "fixed"
+            },
+            "size": "cover"
+          },
+          "border": {
+            "color": {
+              "fixed": "dark-green"
+            },
+            "radius": 30,
+            "width": 0
+          },
+          "constraint": {
+            "horizontal": "left",
+            "vertical": "top"
+          },
+          "elements": [
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                },
+                "size": "cover"
+              },
+              "border": {
+                "color": {
+                  "fixed": "#63625d"
+                },
+                "radius": 0,
+                "width": 0
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "orange"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "Alert Overview"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [
+                {
+                  "title": "Alert Overview",
+                  "url": "d/ffqp4z3phjq4ga/alert-overview-new"
+                }
+              ],
+              "name": "Element 1",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 30.05000114440918,
+                "left": 70,
+                "rotation": 0,
+                "top": 29,
+                "width": 127.75
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                },
+                "radius": 0,
+                "width": 0
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "#89ff1d"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "DiskSpace - Summary"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [
+                {
+                  "title": "Disk space ",
+                  "url": "/d/afd46i503xfk0f/emea-sql-diskspace-summary?orgId=1"
+                }
+              ],
+              "name": "Element 2",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 30.037500381469727,
+                "left": 70,
+                "rotation": 0,
+                "top": 156,
+                "width": 181
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "#89ff1d"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "Online Dashboard"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [
+                {
+                  "title": "Online Dashboard",
+                  "url": "/d/bff36b75-3eae-44b8-994b-c7a87274d162/emea-l4-sql-dashboard?orgId=1"
+                }
+              ],
+              "name": "Element 3",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 30.037500381469727,
+                "left": 69,
+                "top": 208,
+                "width": 151.5
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "#89ff1d"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "Database Statistics"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [
+                {
+                  "title": "ds",
+                  "url": "/d/ffee1jc4l1wjkc/emea-database-statistics?orgId=1"
+                }
+              ],
+              "name": "Element 4",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 30.037500381469727,
+                "left": 69,
+                "rotation": 0,
+                "top": 260,
+                "width": 151.5
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "orange"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "Deadlocks & Blockings"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [
+                {
+                  "title": "Deadlocks & Blockings",
+                  "url": "/d/dfehk2dqdbwu8c/blocking-deadlocks?orgId=1"
+                }
+              ],
+              "name": "Element 5",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 42.66250228881836,
+                "left": 69,
+                "top": 76,
+                "width": 195
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "orange"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/info-circle.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 6",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 47.525001525878906,
+                "left": 20,
+                "top": 20,
+                "width": 36.75
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "green"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/compact-disc.svg",
+                  "mode": "fixed"
+                }
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 7",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 52.91250228881836,
+                "left": 17,
+                "top": 147,
+                "width": 36.75
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "green"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/dashboard.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 8",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 45.75,
+                "left": 17,
+                "top": 200,
+                "width": 36.75
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "#73BF69"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/database-alt.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 9",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 35.875,
+                "left": 15,
+                "rotation": 0,
+                "top": 257,
+                "width": 39.625
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "orange"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/padlock.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 10",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 40.375,
+                "left": 20,
+                "top": 76,
+                "width": 36.75
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "DXC -  Scope Servers"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [
+                {
+                  "title": "DXC Scope Servers",
+                  "url": "/d/afe6n7une0nb4f/dxc-scope-servers?orgId=1"
+                }
+              ],
+              "name": "Element 11",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 30,
+                "left": 64,
+                "top": 401,
+                "width": 182
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "DXC - NetBackup"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [
+                {
+                  "title": "Net Backup",
+                  "url": "/d/aetyngmza0o3kb/dxc-sql-backup-summary-netbackup?orgId=1"
+                }
+              ],
+              "name": "Element 12",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 29,
+                "left": 65,
+                "top": 372,
+                "width": 205
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "super-light-blue"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/comment-info-alt.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 13",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 34,
+                "left": 15,
+                "top": 384,
+                "width": 29.984375
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "semi-dark-blue"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/search-alt.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 14",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 60.98333740234375,
+                "left": 484,
+                "rotation": 0,
+                "top": 372,
+                "width": 32.983333587646484
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "semi-dark-blue"
+                },
+                "size": 14,
+                "text": {
+                  "fixed": "Server"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [
+                {
+                  "title": "Servers",
+                  "url": "/d/dfee00xbej9c0b/search?from=1771886555468&to=1771929755468&orgId=1"
+                }
+              ],
+              "name": "Element 15",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 32,
+                "left": 533,
+                "rotation": 0,
+                "top": 385,
+                "width": 57.98333740234375
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "semi-dark-blue"
+                },
+                "size": 14,
+                "text": {
+                  "fixed": "Service Accounts"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [
+                {
+                  "title": "Service Accounts",
+                  "url": "/d/fff66f4s5d1xce/search-service-accounts?orgId=1"
+                }
+              ],
+              "name": "Element 16",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 33.96666717529297,
+                "left": 720,
+                "rotation": 0,
+                "top": 387,
+                "width": 129.98333740234375
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "semi-dark-blue"
+                },
+                "size": 14,
+                "text": {
+                  "fixed": "User / Groups"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [
+                {
+                  "title": "User/Groups",
+                  "url": "/d/efqp5x8m0p2bkc/user-group?orgId=1&refresh=1h"
+                }
+              ],
+              "name": "Element 17",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 33.96666717529297,
+                "left": 597,
+                "rotation": 0,
+                "top": 385,
+                "width": 108.98333740234375
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "dark-blue"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/backpack.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 18",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 51,
+                "left": 17,
+                "rotation": 0,
+                "top": 309,
+                "width": 41
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "dark-blue"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "Backup Summary"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [
+                {
+                  "title": "Backup Summary",
+                  "url": "/d/afqp3odaqjtvka/emea-sql-backup-summary-new"
+                }
+              ],
+              "name": "Element 19",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 30.037500381469727,
+                "left": 70,
+                "rotation": 0,
+                "top": 319,
+                "width": 151.5
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                },
+                "size": "cover"
+              },
+              "border": {
+                "color": {
+                  "fixed": "#63625d"
+                },
+                "radius": 0,
+                "width": 0
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "semi-dark-red"
+                },
+                "size": 15,
+                "text": {
+                  "fixed": "Live Metric's"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [
+                {
+                  "title": "Live Metrics CPU,Mem,Disk iop",
+                  "url": "/d/cfqloyvaw4p34c/live-metrics?orgId=1&refresh=5m"
+                }
+              ],
+              "name": "Element 20",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 29.98611068725586,
+                "left": 533,
+                "rotation": 0,
+                "top": 265,
+                "width": 127.73611450195312
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "semi-dark-blue"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/book-open.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 21",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 60.97222137451172,
+                "left": 484,
+                "rotation": 0,
+                "top": 319,
+                "width": 32.97222137451172
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                },
+                "image": {
+                  "fixed": ""
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "dark-red"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/analytics.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 22",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 60.97222137451172,
+                "left": 484,
+                "top": 246,
+                "width": 32.97222137451172
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "semi-dark-blue"
+                },
+                "size": 14,
+                "text": {
+                  "fixed": "Replication SOP"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [
+                {
+                  "title": "Replication SOP",
+                  "url": "/public/SOP/L3_DBA_ReplicationSOP.pdf"
+                }
+              ],
+              "name": "Element 23",
+              "oneClickMode": "link",
+              "placement": {
+                "height": 32,
+                "left": 533,
+                "rotation": 0,
+                "top": 333,
+                "width": 118
+              },
+              "type": "text"
+            }
+          ],
+          "name": "Element 1776491944893",
+          "oneClickMode": "off",
+          "placement": {
+            "height": 100,
+            "left": 0,
+            "rotation": 0,
+            "top": 0,
+            "width": 100
+          },
+          "type": "frame"
+        },
+        "showAdvancedTypes": true
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "dataset": "AdminSQLCentral",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_CENTRAL}"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "",
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "canvas"
+    },
+    {
+      "gridPos": {
+        "h": 6,
+        "w": 3,
+        "x": 21,
+        "y": 0
+      },
+      "id": 14,
+      "libraryPanel": {
+        "uid": "bfrgl769ngphca",
+        "name": "SupportGroupMatrix"
+      }
+    },
+    {
+      "gridPos": {
+        "h": 8,
+        "w": 3,
+        "x": 21,
+        "y": 6
+      },
+      "id": 12,
+      "libraryPanel": {
+        "uid": "bfr3l0eayjp4wc",
+        "name": "Replication_Labs"
+      }
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${DS_CENTRAL}"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 7,
+        "x": 0,
+        "y": 14
+      },
+      "id": 10,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div id=\"moma-section\"></div>\n\n<script>\n  // Replace this with actual Grafana user variable if available\n  var userId = $__user;\n\n  // Allowed user IDs\n  var allowedUsers = [4, 6, 21];\n\n  if (allowedUsers.includes(Number(userId))) {\n    document.getElementById(\"moma-section\").innerHTML = `\n      <table style=\"border-style: none;\">\n                      <tr>\n          <td style=\"border-style: none;\">\n            <a href=\"/d/cfjtztjeejt34e/replication?orgId=1\">Replication </a>\n          </td>\n          <td style=\"border-style: none;\">\n            <a href=\"/d/advqnzp/mssql-overview-moma?from=now-30m&to=now&orgId=1\"> MOMA Dashboard (NProd) </a> \n          </td>\n              <td style=\"border-style: none;\">\n            <a href=\"/d/cfjqwj11q248we/moma-alert-settings?orgId=1\">MOMA Config </a>\n          </td>\n        </tr>\n      </table>\n    `;\n  }\n  \n</script>\n\n",
+        "mode": "html"
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "dataset": "AdminSQLCentral",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_CENTRAL}"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "",
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 15,
+        "y": 14
+      },
+      "id": 7,
+      "options": {
+        "bgColor": "transparent",
+        "clockType": "custom",
+        "countdownSettings": {
+          "endCountdownTime": "2026-04-14T02:02:46+05:30",
+          "endText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
+        },
+        "countupSettings": {
+          "beginCountupTime": "2026-04-14T02:02:46+05:30",
+          "beginText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
+        },
+        "dateSettings": {
+          "dateFormat": "DD-MMM-YYYY",
+          "fontSize": "10px",
+          "fontWeight": "normal",
+          "locale": "",
+          "showDate": false
+        },
+        "descriptionSettings": {
+          "descriptionText": "",
+          "fontSize": "10px",
+          "fontWeight": "bold",
+          "noValueText": "no description found",
+          "source": "none"
+        },
+        "digitalSettings": {
+          "fillColor": "orange",
+          "glowSize": 0,
+          "strokeColor": "dark-orange",
+          "strokeWidth": 0
+        },
+        "fontMono": false,
+        "mode": "time",
+        "refresh": "sec",
+        "style": "text",
+        "timeSettings": {
+          "customFormat": "hh:mm a",
+          "fontSize": "22px",
+          "fontWeight": "normal"
+        },
+        "timezone": "Europe/Paris",
+        "timezoneSettings": {
+          "fontSize": "12px",
+          "fontWeight": "normal",
+          "showTimezone": true,
+          "zoneFormat": "name"
+        }
+      },
+      "pluginVersion": "3.2.2",
+      "transparent": true,
+      "type": "grafana-clock-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 17,
+        "y": 14
+      },
+      "id": 9,
+      "options": {
+        "bgColor": "transparent",
+        "clockType": "custom",
+        "countdownSettings": {
+          "endCountdownTime": "2026-04-14T02:02:46+05:30",
+          "endText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
+        },
+        "countupSettings": {
+          "beginCountupTime": "2026-04-14T02:02:46+05:30",
+          "beginText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
+        },
+        "dateSettings": {
+          "dateFormat": "DD-MMM-YYYY",
+          "fontSize": "10px",
+          "fontWeight": "normal",
+          "locale": "",
+          "showDate": false
+        },
+        "descriptionSettings": {
+          "descriptionText": "",
+          "fontSize": "12px",
+          "fontWeight": "bold",
+          "noValueText": "no description found",
+          "source": "none"
+        },
+        "digitalSettings": {
+          "fillColor": "orange",
+          "glowSize": 0,
+          "strokeColor": "dark-orange",
+          "strokeWidth": 0
+        },
+        "fontMono": false,
+        "mode": "time",
+        "refresh": "sec",
+        "style": "text",
+        "timeSettings": {
+          "customFormat": "hh:mm a",
+          "fontSize": "22px",
+          "fontWeight": "normal"
+        },
+        "timezone": "Asia/Calcutta",
+        "timezoneSettings": {
+          "fontSize": "12px",
+          "fontWeight": "normal",
+          "showTimezone": true,
+          "zoneFormat": "name"
+        }
+      },
+      "pluginVersion": "3.2.2",
+      "transparent": true,
+      "type": "grafana-clock-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 19,
+        "y": 14
+      },
+      "id": 8,
+      "options": {
+        "bgColor": "transparent",
+        "clockType": "custom",
+        "countdownSettings": {
+          "endCountdownTime": "2026-04-14T02:02:46+05:30",
+          "endText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
+        },
+        "countupSettings": {
+          "beginCountupTime": "2026-04-14T02:02:46+05:30",
+          "beginText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
+        },
+        "dateSettings": {
+          "dateFormat": "DD-MMM-YYYY",
+          "fontSize": "10px",
+          "fontWeight": "normal",
+          "locale": "",
+          "showDate": false
+        },
+        "descriptionSettings": {
+          "descriptionText": "",
+          "fontSize": "12px",
+          "fontWeight": "bold",
+          "noValueText": "no description found",
+          "source": "none"
+        },
+        "digitalSettings": {
+          "fillColor": "orange",
+          "glowSize": 0,
+          "strokeColor": "dark-orange",
+          "strokeWidth": 0
+        },
+        "fontMono": false,
+        "mode": "time",
+        "refresh": "sec",
+        "style": "text",
+        "timeSettings": {
+          "customFormat": "hh:mm a",
+          "fontSize": "22px",
+          "fontWeight": "normal"
+        },
+        "timezone": "Asia/Singapore",
+        "timezoneSettings": {
+          "fontSize": "12px",
+          "fontWeight": "normal",
+          "showTimezone": true,
+          "zoneFormat": "name"
+        }
+      },
+      "pluginVersion": "3.2.2",
+      "transparent": true,
+      "type": "grafana-clock-panel"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2026-02-23T22:42:35.468Z",
+    "to": "2026-02-24T10:42:35.468Z"
+  },
+  "timepicker": {
+    "hidden": true,
+    "refresh_intervals": []
+  },
+  "timezone": "utc",
+  "title": "IndexPage",
+  "uid": "bfjfyzb7gsn40c",
+  "version": 175,
+  "weekStart": ""
+}

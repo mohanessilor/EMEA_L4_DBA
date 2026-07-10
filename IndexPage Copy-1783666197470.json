@@ -1,0 +1,488 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_CENTRAL",
+      "label": "Central",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "dalvany-image-panel",
+      "name": "Dynamic image panel",
+      "version": "5.0.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.2.2"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-clock-panel",
+      "name": "Clock",
+      "version": "3.2.2"
+    },
+    {
+      "type": "datasource",
+      "id": "mssql",
+      "name": "Microsoft SQL Server",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "serrrios-statusoverview-panel",
+      "name": "Status Overview Panel",
+      "version": "0.0.4"
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${DS_CENTRAL}"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 11,
+      "options": {
+        "ColorAverage": "rgba(250, 100, 0, 0.99)",
+        "ColorDisable": "rgba(128, 128, 128, 0.9)",
+        "ColorDisaster": "rgba(196, 22, 42, 0.9)",
+        "ColorHigh": "rgba(217, 92, 29, 0.9)",
+        "ColorInformation": "rgba(138, 184, 255, 0.99)",
+        "ColorNa": "rgba(20, 60, 120, 0.9)",
+        "ColorOK": "rgba(55, 135, 45, 0.9)",
+        "ColorWarning": "rgba(224, 180, 0, 0.99)",
+        "blink": true,
+        "dataLink": "/d/cfqloyvaw4p34c/live-metrics",
+        "modePanel": "line",
+        "panelName": "Example name panel",
+        "ruleConfig": {
+          "animationSpeed": "1500",
+          "enabled": true,
+          "rule": []
+        },
+        "statePanel": "enable"
+      },
+      "targets": [
+        {
+          "dataset": "AdminSQLCentral",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_CENTRAL}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT [ApplicationGroupName]\r\n      ,[Environment],\r\n      count(ServerName) SrvCnt\r\n  FROM [AdminSQLCentral].[Inventory].[ServerList]\r\n  group by  [ApplicationGroupName]\r\n      ,[Environment]\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Panel Title",
+      "type": "serrrios-statusoverview-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 1,
+        "w": 4,
+        "x": 12,
+        "y": 0
+      },
+      "id": 7,
+      "options": {
+        "bgColor": "#303133",
+        "clockType": "custom",
+        "countdownSettings": {
+          "endCountdownTime": "2026-04-14T02:02:46+05:30",
+          "endText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
+        },
+        "countupSettings": {
+          "beginCountupTime": "2026-04-14T02:02:46+05:30",
+          "beginText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
+        },
+        "dateSettings": {
+          "dateFormat": "DD-MMM-YYYY",
+          "fontSize": "10px",
+          "fontWeight": "normal",
+          "locale": "",
+          "showDate": false
+        },
+        "descriptionSettings": {
+          "descriptionText": "",
+          "fontSize": "10px",
+          "fontWeight": "bold",
+          "noValueText": "no description found",
+          "source": "none"
+        },
+        "digitalSettings": {
+          "fillColor": "orange",
+          "glowSize": 0,
+          "strokeColor": "dark-orange",
+          "strokeWidth": 0
+        },
+        "fontMono": false,
+        "mode": "time",
+        "refresh": "sec",
+        "style": "text",
+        "timeSettings": {
+          "customFormat": "hh:mm a",
+          "fontSize": "22px",
+          "fontWeight": "normal"
+        },
+        "timezone": "Europe/Paris",
+        "timezoneSettings": {
+          "fontSize": "12px",
+          "fontWeight": "normal",
+          "showTimezone": true,
+          "zoneFormat": "name"
+        }
+      },
+      "pluginVersion": "3.2.2",
+      "type": "grafana-clock-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 1,
+        "w": 4,
+        "x": 16,
+        "y": 0
+      },
+      "id": 9,
+      "options": {
+        "bgColor": "#303133",
+        "clockType": "custom",
+        "countdownSettings": {
+          "endCountdownTime": "2026-04-14T02:02:46+05:30",
+          "endText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
+        },
+        "countupSettings": {
+          "beginCountupTime": "2026-04-14T02:02:46+05:30",
+          "beginText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
+        },
+        "dateSettings": {
+          "dateFormat": "DD-MMM-YYYY",
+          "fontSize": "10px",
+          "fontWeight": "normal",
+          "locale": "",
+          "showDate": false
+        },
+        "descriptionSettings": {
+          "descriptionText": "",
+          "fontSize": "12px",
+          "fontWeight": "bold",
+          "noValueText": "no description found",
+          "source": "none"
+        },
+        "digitalSettings": {
+          "fillColor": "orange",
+          "glowSize": 0,
+          "strokeColor": "dark-orange",
+          "strokeWidth": 0
+        },
+        "fontMono": false,
+        "mode": "time",
+        "refresh": "sec",
+        "style": "text",
+        "timeSettings": {
+          "customFormat": "hh:mm a",
+          "fontSize": "22px",
+          "fontWeight": "normal"
+        },
+        "timezone": "Asia/Calcutta",
+        "timezoneSettings": {
+          "fontSize": "12px",
+          "fontWeight": "normal",
+          "showTimezone": true,
+          "zoneFormat": "name"
+        }
+      },
+      "pluginVersion": "3.2.2",
+      "type": "grafana-clock-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 8,
+      "options": {
+        "bgColor": "#303133",
+        "clockType": "custom",
+        "countdownSettings": {
+          "endCountdownTime": "2026-04-14T02:02:46+05:30",
+          "endText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
+        },
+        "countupSettings": {
+          "beginCountupTime": "2026-04-14T02:02:46+05:30",
+          "beginText": "00:00:00",
+          "invalidValueText": "invalid value",
+          "noValueText": "no value found",
+          "queryCalculation": "last",
+          "source": "input"
+        },
+        "dateSettings": {
+          "dateFormat": "DD-MMM-YYYY",
+          "fontSize": "10px",
+          "fontWeight": "normal",
+          "locale": "",
+          "showDate": false
+        },
+        "descriptionSettings": {
+          "descriptionText": "",
+          "fontSize": "12px",
+          "fontWeight": "bold",
+          "noValueText": "no description found",
+          "source": "none"
+        },
+        "digitalSettings": {
+          "fillColor": "orange",
+          "glowSize": 0,
+          "strokeColor": "dark-orange",
+          "strokeWidth": 0
+        },
+        "fontMono": false,
+        "mode": "time",
+        "refresh": "sec",
+        "style": "text",
+        "timeSettings": {
+          "customFormat": "hh:mm a",
+          "fontSize": "22px",
+          "fontWeight": "normal"
+        },
+        "timezone": "Asia/Singapore",
+        "timezoneSettings": {
+          "fontSize": "12px",
+          "fontWeight": "normal",
+          "showTimezone": true,
+          "zoneFormat": "name"
+        }
+      },
+      "pluginVersion": "3.2.2",
+      "type": "grafana-clock-panel"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${DS_CENTRAL}"
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 8,
+        "x": 0,
+        "y": 8
+      },
+      "id": 1,
+      "options": {
+        "alt_field": "ApplicationGroupName",
+        "autofit": false,
+        "height": "75",
+        "icon_field": "",
+        "open_url": {
+          "base_url": "",
+          "enable": false,
+          "metric_field": "",
+          "open_in_tab": true,
+          "suffix": ""
+        },
+        "overlay": {
+          "bindings": {
+            "bindings": [],
+            "has_text": true,
+            "unbounded": "#66666620"
+          },
+          "field": "",
+          "height": {
+            "size": 5,
+            "unit": "%"
+          },
+          "position": "Top right",
+          "width": {
+            "size": 5,
+            "unit": "%"
+          }
+        },
+        "shared_cross_hair": {
+          "backgroundColor": "#FFFFFF10",
+          "borderColor": "#FFFFFF20"
+        },
+        "singleFill": true,
+        "slideshow": {
+          "duration": 5000,
+          "enable": false,
+          "infinite": true,
+          "pauseOnHover": true,
+          "transition": "Slide",
+          "transition_duration": 1000
+        },
+        "tooltip": false,
+        "tooltip_date_elapsed": false,
+        "tooltip_field": "",
+        "tooltip_include_date": false,
+        "tooltip_include_field": true,
+        "underline": {
+          "bindings": {
+            "bindings": [],
+            "has_text": true,
+            "unbounded": "#CCCCDCFF"
+          },
+          "bindings_field": "",
+          "field": "",
+          "text_align": "left",
+          "text_size": "14"
+        },
+        "width": "75"
+      },
+      "pluginVersion": "2.1.0",
+      "type": "dalvany-image-panel"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${DS_CENTRAL}"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 12,
+        "x": 0,
+        "y": 21
+      },
+      "id": 10,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div id=\"moma-section\"></div>\n\n<script>\n  // Replace this with actual Grafana user variable if available\n  var userId = $__user;\n\n  // Allowed user IDs\n  var allowedUsers = [4, 6, 21];\n\n  if (allowedUsers.includes(Number(userId))) {\n    document.getElementById(\"moma-section\").innerHTML = `\n      <table style=\"border-style: none;\">\n                      <tr>\n          <td style=\"border-style: none;\">\n            <a href=\"/d/cfjtztjeejt34e/replication?orgId=1\">Replication </a>\n          </td>\n          <td style=\"border-style: none;\">\n            <a href=\"/d/advqnzp/mssql-overview-moma?from=now-30m&to=now&orgId=1\"> MOMA Dashboard (NProd) </a> \n          </td>\n              <td style=\"border-style: none;\">\n            <a href=\"/d/cfjqwj11q248we/moma-alert-settings?orgId=1\">MOMA Config </a>\n          </td>\n        </tr>\n      </table>\n    `;\n  }\n  \n</script>\n\n",
+        "mode": "html"
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "dataset": "AdminSQLCentral",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_CENTRAL}"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "",
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "text"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2026-02-23T22:42:35.468Z",
+    "to": "2026-02-24T10:42:35.468Z"
+  },
+  "timepicker": {
+    "hidden": true,
+    "refresh_intervals": []
+  },
+  "timezone": "utc",
+  "title": "IndexPage Copy",
+  "uid": "ffqvnxvb8u39cd",
+  "version": 5,
+  "weekStart": ""
+}

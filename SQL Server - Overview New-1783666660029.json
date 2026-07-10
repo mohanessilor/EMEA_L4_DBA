@@ -1,0 +1,6066 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_AZFRCER0173\\INL1",
+      "label": "AZFRCER0173\\INL1",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    },
+    {
+      "name": "DS_CENTRAL",
+      "label": "Central",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    },
+    {
+      "name": "DS_FRER1527\\PDB1",
+      "label": "FRER1527\\PDB1",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.2.2"
+    },
+    {
+      "type": "datasource",
+      "id": "mssql",
+      "name": "Microsoft SQL Server",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "limit": 100,
+        "name": "Annotations & Alerts",
+        "showIn": 0,
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": 1902,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [
+    {
+      "icon": "external link",
+      "tags": [
+        "DBA"
+      ],
+      "targetBlank": true,
+      "type": "dashboards"
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 582,
+      "panels": [],
+      "title": "$Datasource Configurations",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "mssql",
+        "uid": "${Datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "cost threshold for parallelism": {
+                  "color": "red",
+                  "index": 0
+                },
+                "max degree of parallelism": {
+                  "color": "red",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 108
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value_in_use"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 134
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 393
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 23,
+        "x": 0,
+        "y": 1
+      },
+      "id": 583,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "dataset": "ASSISTEDCONTROL",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_AZFRCER0173\\INL1}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "select Name,Value,Value_in_use, Description from sys.configurations where name in ('max degree of parallelism',\r\n'max server memory (MB)',\r\n'min server memory (MB)',\r\n'network packet size (B)',\r\n'remote query timeout (s)',\r\n'cost threshold for parallelism') order by Name",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "SQL Configurations",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${DS_CENTRAL}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "cost threshold for parallelism": {
+                  "color": "red",
+                  "index": 0
+                },
+                "max degree of parallelism": {
+                  "color": "red",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 108
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value_in_use"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 134
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 393
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 585,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.2.2",
+      "repeat": "Datasource",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "dataset": "ASSISTEDCONTROL",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_CENTRAL}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT * FROM [AdminSQLCentral].[dbo].[Server_SA] A\r\nLEFT OUTER  JOIN \r\n[Inventory].[ServerList] B ON substring(b.Servername,1,charindex('\\',b.ServerName)-1)  = A.SERVER_NAME \r\nWHERE B.ServerName IN ($Datasource)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "SQL Configurations",
+      "type": "table"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 525,
+      "panels": [
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "login_name"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 186
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "dd hh:mm:ss.mss"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 140
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "session_id"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 82
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "database_name"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 137
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "program_name"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 194
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "wait_info"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 116
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 18
+          },
+          "id": 527,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "EXEC sp_WhoIsActive\r\n    @filter = '',\r\n    @filter_type = 'session',\r\n    @not_filter = '',\r\n    @not_filter_type = 'session',\r\n    @show_own_spid = 0,\r\n    @show_system_spids = 0,\r\n    @show_sleeping_spids = 1,\r\n    @get_full_inner_text = 0,\r\n    @get_plans = 0,\r\n    @get_outer_command = 0,\r\n    @get_transaction_info = 0,\r\n    @get_task_info = 0,\r\n    @get_locks = 0,\r\n    @get_avg_time = 0,\r\n    @get_additional_info = 0,\r\n    @find_block_leaders = 1,\r\n    @delta_interval = 0,\r\n    @output_column_list = '[dd%][session_id][login_name][wait_info][database_name][program_name][sql_text]',\r\n    @sort_order = '[start_time] ASC',\r\n    @format_output = 1,\r\n    @destination_table = '',\r\n    @return_schema = 0,\r\n    @schema = NULL,\r\n    @help = 0",
+              "refId": "A"
+            }
+          ],
+          "title": "Active Processes",
+          "transformations": [
+            {
+              "id": "merge",
+              "options": {
+                "reducers": []
+              }
+            }
+          ],
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 24
+          },
+          "id": 528,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "SELECT t1.resource_type AS [lock type], DB_NAME(resource_database_id) AS [database],\r\nt1.resource_associated_entity_id AS [blk object],t1.request_mode AS [lock req],  --- lock requested\r\nt1.request_session_id AS [waiter sid], t2.wait_duration_ms AS [wait time],       -- spid of waiter  \r\n(SELECT [text] FROM sys.dm_exec_requests AS r WITH (NOLOCK)                      -- get sql for waiter\r\nCROSS APPLY sys.dm_exec_sql_text(r.[sql_handle]) \r\nWHERE r.session_id = t1.request_session_id) AS [waiter_batch],\r\n(SELECT SUBSTRING(qt.[text],r.statement_start_offset/2, \r\n    (CASE WHEN r.statement_end_offset = -1 \r\n    THEN LEN(CONVERT(nvarchar(max), qt.[text])) * 2 \r\n    ELSE r.statement_end_offset END - r.statement_start_offset)/2) \r\nFROM sys.dm_exec_requests AS r WITH (NOLOCK)\r\nCROSS APPLY sys.dm_exec_sql_text(r.[sql_handle]) AS qt\r\nWHERE r.session_id = t1.request_session_id) AS [waiter_stmt],\t\t\t\t\t-- statement blocked\r\nt2.blocking_session_id AS [blocker sid],\t\t\t\t\t\t\t\t\t\t-- spid of blocker\r\n(SELECT [text] FROM sys.sysprocesses AS p\t\t\t\t\t\t\t\t\t\t-- get sql for blocker\r\nCROSS APPLY sys.dm_exec_sql_text(p.[sql_handle]) \r\nWHERE p.spid = t2.blocking_session_id) AS [blocker_stmt]\r\nFROM sys.dm_tran_locks AS t1 WITH (NOLOCK)\r\nINNER JOIN sys.dm_os_waiting_tasks AS t2 WITH (NOLOCK)\r\nON t1.lock_owner_address = t2.resource_address OPTION (RECOMPILE);",
+              "refId": "A"
+            }
+          ],
+          "title": "Blocking Processes",
+          "transformations": [
+            {
+              "id": "merge",
+              "options": {
+                "reducers": []
+              }
+            }
+          ],
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 24
+          },
+          "id": 573,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "SET NOCOUNT ON\r\n\r\nSELECT SPID, BLOCKED, REPLACE (REPLACE (T.TEXT, CHAR(10), ' '), CHAR (13), ' ' ) AS BATCH\r\nINTO #T\r\nFROM sys.sysprocesses R CROSS APPLY sys.dm_exec_sql_text(R.SQL_HANDLE) T\r\n\r\n;WITH BLOCKERS (SPID, BLOCKED, LEVEL, BATCH)\r\nAS\r\n(\r\nSELECT SPID,\r\nBLOCKED,\r\nCAST (REPLICATE ('0', 4-LEN (CAST (SPID AS VARCHAR))) + CAST (SPID AS VARCHAR) AS VARCHAR (1000)) AS LEVEL,\r\nBATCH FROM #T R\r\nWHERE (BLOCKED = 0 OR BLOCKED = SPID)\r\nAND EXISTS (SELECT * FROM #T R2 WHERE R2.BLOCKED = R.SPID AND R2.BLOCKED <> R2.SPID)\r\nUNION ALL\r\nSELECT R.SPID,\r\nR.BLOCKED,\r\nCAST (BLOCKERS.LEVEL + RIGHT (CAST ((1000 + R.SPID) AS VARCHAR (100)), 4) AS VARCHAR (1000)) AS LEVEL,\r\nR.BATCH FROM #T AS R\r\nINNER JOIN BLOCKERS ON R.BLOCKED = BLOCKERS.SPID WHERE R.BLOCKED > 0 AND R.BLOCKED <> R.SPID\r\n)\r\nSELECT N'    ' + REPLICATE (N'|         ', LEN (LEVEL)/4 - 1) +\r\nCASE WHEN (LEN(LEVEL)/4 - 1) = 0\r\nTHEN 'HEAD -  '\r\nELSE '|------  ' END\r\n+ CAST (SPID AS NVARCHAR (10)) + N' ' + BATCH AS BLOCKING_TREE\r\nFROM BLOCKERS ORDER BY LEVEL ASC\r\n\r\nDROP TABLE #T\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Head Blocker",
+          "transformations": [
+            {
+              "id": "merge",
+              "options": {
+                "reducers": []
+              }
+            }
+          ],
+          "type": "table"
+        }
+      ],
+      "repeat": "Datasource",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource Live",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 494,
+      "panels": [
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "N/A"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "m"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 0,
+            "y": 3
+          },
+          "id": 489,
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "none",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "SELECT DATEDIFF(MINUTE,sqlserver_start_time,GETUTCDATE()) FROM sys.dm_os_sys_info;",
+              "refId": "A"
+            }
+          ],
+          "title": "Uptime",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "N/A"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 3,
+            "y": 3
+          },
+          "id": 502,
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "none",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "SELECT cpu_count AS [Logical CPU Count]\r\nFROM sys.dm_os_sys_info WITH (NOLOCK) OPTION (RECOMPILE);",
+              "refId": "A"
+            }
+          ],
+          "title": "CPU Count",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "kbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 6,
+            "y": 3
+          },
+          "id": 503,
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "none",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "allValues"
+              ],
+              "fields": "",
+              "values": true
+            },
+            "showPercentChange": false,
+            "text": {},
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "SELECT getdate() AS time, CAST(value_in_use AS INT) AS Value\r\nFROM sys.configurations WITH (NOLOCK)\r\nWHERE name = 'min server memory (MB)'\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "Minimum SQL Server Memory",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_CENTRAL}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "N/A"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "mbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 9,
+            "y": 3
+          },
+          "id": 504,
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "none",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_CENTRAL}"
+              },
+              "format": "table",
+              "rawSql": "SELECT getdate() AS time, CAST(value_in_use AS INT) AS Value\r\nFROM sys.configurations WITH (NOLOCK)\r\nWHERE name = 'max server memory (MB)'\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "Maximum SQL Server Memory",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "N/A"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#d44a3a"
+                  },
+                  {
+                    "color": "rgba(237, 129, 40, 0.89)",
+                    "value": 32
+                  },
+                  {
+                    "color": "#299c46",
+                    "value": 64
+                  }
+                ]
+              },
+              "unit": "kbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 12,
+            "y": 3
+          },
+          "id": 505,
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "SELECT total_physical_memory_kb \nFROM sys.dm_os_sys_memory",
+              "refId": "A"
+            }
+          ],
+          "title": "Total OS Memory",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "N/A"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#d44a3a"
+                  },
+                  {
+                    "color": "rgba(237, 129, 40, 0.89)",
+                    "value": 4
+                  },
+                  {
+                    "color": "#299c46",
+                    "value": 10
+                  }
+                ]
+              },
+              "unit": "kbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 15,
+            "y": 3
+          },
+          "id": 506,
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "SELECT available_physical_memory_kb \nFROM sys.dm_os_sys_memory",
+              "refId": "A"
+            }
+          ],
+          "title": "Available OS Memory",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "N/A"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46"
+                  },
+                  {
+                    "color": "rgba(237, 129, 40, 0.89)",
+                    "value": 10
+                  },
+                  {
+                    "color": "#d44a3a",
+                    "value": 100
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 4,
+            "x": 18,
+            "y": 3
+          },
+          "id": 490,
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "SELECT COUNT(*) FROM sys.databases WHERE database_id > 4",
+              "refId": "A"
+            }
+          ],
+          "title": "Database Count",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "connection count"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "short"
+                  },
+                  {
+                    "id": "custom.align"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 8
+          },
+          "id": 519,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "SELECT ec.client_net_address, es.[program_name], es.[host_name], es.login_name, \r\nCOUNT(ec.session_id) AS [connection count] \r\nFROM sys.dm_exec_sessions AS es WITH (NOLOCK) \r\nINNER JOIN sys.dm_exec_connections AS ec WITH (NOLOCK) \r\nON es.session_id = ec.session_id \r\nGROUP BY ec.client_net_address, es.[program_name], es.[host_name], es.login_name  \r\nORDER BY [connection count] DESC  OPTION (RECOMPILE);",
+              "refId": "A"
+            }
+          ],
+          "title": "Connections",
+          "transformations": [
+            {
+              "id": "merge",
+              "options": {
+                "reducers": []
+              }
+            }
+          ],
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 8
+          },
+          "id": 562,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT  CheckDateTime as time,\r\n        CounterName,\r\n\t\tCounterValue AS Value\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('User Connections')\r\n\tORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "User Connections (Performance Counter)",
+          "type": "timeseries"
+        }
+      ],
+      "repeat": "Datasource",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource Summary",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
+      "id": 509,
+      "panels": [
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Count"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "short"
+                  },
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "mode": "gradient",
+                      "type": "color-background"
+                    }
+                  },
+                  {
+                    "id": "custom.align"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "#FADE2A"
+                        },
+                        {
+                          "color": "#37872D",
+                          "value": 0
+                        },
+                        {
+                          "color": "#C4162A",
+                          "value": 1
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 5,
+            "x": 0,
+            "y": 43
+          },
+          "id": 510,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "SELECT S.Severity\r\n\t , ISNULL([Count], 0) AS [Count]\r\nFROM\r\n(\r\n\tSELECT Severity\r\n\t\t , COUNT(DISTINCT name) AS [Count]\r\n\tFROM Monitoring.Alert\r\n\tWHERE $__timeFilter(CreateDateTime)\r\n\tGROUP BY Severity\r\n) AS A\r\nRIGHT JOIN Report.V_Severity AS S ON A.Severity = S.Severity",
+              "refId": "A"
+            }
+          ],
+          "title": "Overview",
+          "transformations": [
+            {
+              "id": "merge",
+              "options": {
+                "reducers": []
+              }
+            }
+          ],
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 19,
+            "x": 5,
+            "y": 43
+          },
+          "id": 511,
+          "options": {
+            "legend": {
+              "calcs": [
+                "sum"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Total",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT CreateDateTime AS time, \r\n       Name, \r\n       COUNT(*) AlertCount\r\nFROM [Monitoring].[Alert]\r\nWHERE $__timeFilter(CreateDateTime)\r\nGROUP BY CreateDateTime,Name \r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "Alert",
+          "transformations": [
+            {
+              "id": "merge",
+              "options": {
+                "reducers": []
+              }
+            }
+          ],
+          "type": "timeseries"
+        }
+      ],
+      "repeat": "Datasource",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource Alerts",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 501,
+      "panels": [
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "SQLProcessUtilization"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 13
+          },
+          "id": 521,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT CheckDateTime AS time\r\n  ,SQLProcessUtilization\r\n  ,OtherProcessUtilization\r\n\t,SQLProcessUtilization+OtherProcessUtilization AS TotalProcessUtilization\r\n--\t,SystemIdle\r\nFROM Archive.ProcessUtilization\r\nWHERE $__timeFilter(CheckDateTime)\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Process Utilization",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "Task > 10 = Blocking/Deadlocking  \nRunnable > 1 = CPU Pressure  \nPendingDiskIO > 1 = Disk Pressure  ",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 13
+          },
+          "id": 522,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT CheckDateTime AS time\r\n\t,[AverageTaskCount]\r\n\t,[AverageRunnableTaskCount]\r\n\t,[AveragePendingDiskIOCount]\r\nFROM Archive.Schedulers\r\nWHERE $__timeFilter(CheckDateTime)\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Schedulers",
+          "type": "timeseries"
+        }
+      ],
+      "repeat": "Datasource",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource CPU",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 515,
+      "panels": [
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "deckbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 24,
+            "x": 0,
+            "y": 6
+          },
+          "id": 565,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT  CheckDateTime as time,\r\n        CounterName,\r\n\t\tCounterValue AS Value\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Total Server Memory (KB)','Lock Memory (KB)','Connection Memory (KB)','Database Cache Memory (KB)')\r\n\tORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "Memory Usage (KB)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "Should be less than 2",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "line"
+                }
+              },
+              "mappings": [],
+              "max": 20,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 2
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 12,
+            "x": 0,
+            "y": 11
+          },
+          "id": 536,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH SQLStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        CounterName,\r\n\t\tCounterValue\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Lazy writes/sec')\r\n)\r\nSELECT a.CheckDateTime AS time,\r\n\t     a.CounterName,\r\n       (a.[CounterValue] - aPrior.[CounterValue])/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS CounterValue\r\nFROM SQLStatistics a\r\nINNER JOIN SQLStatistics aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue]\r\nORDER BY time ASC\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Lazy writes/sec",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "Should be 0",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "line"
+                }
+              },
+              "mappings": [],
+              "max": 10,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 12,
+            "x": 12,
+            "y": 11
+          },
+          "id": 564,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT  CheckDateTime as time,\r\n        CounterName,\r\n\t\tCounterValue AS Value\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Memory Grants Pending')\r\n\tORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "Memory Grants Pending",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "Calculated PLE per 4GB, threshold fixed at 300 seconds",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "line"
+                }
+              },
+              "mappings": [],
+              "max": 1000,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red"
+                  },
+                  {
+                    "color": "green",
+                    "value": 300
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "                                                                                                                                "
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "purple",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 16
+          },
+          "id": 523,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT CheckDateTime as time,\nInstanceName,\n(PageLifeExpectancyDynamic) AS Value\nFROM Archive.V_PageLifeExpectancy\nWHERE $__timeFilter(CheckDateTime)\nORDER BY time ASC\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Page Life Expectancy",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "Should be less than 20",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "line"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 20
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 16
+          },
+          "id": 567,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH SQLStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        CounterName,\r\n\t\tCounterValue\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Free list stalls/sec')\r\n)\r\nSELECT a.CheckDateTime AS time,\r\n\t     a.CounterName,\r\n       (a.[CounterValue] - aPrior.[CounterValue])/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS CounterValue\r\nFROM SQLStatistics a\r\nINNER JOIN SQLStatistics aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue]\r\nORDER BY time ASC\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Free list stalls/sec",
+          "type": "timeseries"
+        }
+      ],
+      "repeat": "Datasource",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource Memory",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 496,
+      "panels": [
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "ms"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 46
+          },
+          "id": 491,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Database IO",
+              "url": "/d/SQLServerDatabaseIO"
+            }
+          ],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH DriveIOLatency AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        LEFT(UPPER(PhysicalName), 1) AS Drive,\r\n        SUM(io_stall_read_ms) AS io_stall_read_ms,\r\n        SUM(io_stall_write_ms) AS io_stall_write_ms,\r\n        SUM(num_of_reads) AS num_of_reads,\r\n\t\tSUM(num_of_writes) AS num_of_writes\r\n    FROM [Archive].[FileStatistics]\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n    GROUP BY CheckDateTime, LEFT(UPPER(PhysicalName), 1)\r\n)\r\nSELECT a.CheckDateTime AS time,\r\n\t     a.Drive,\r\n       CASE WHEN(a.num_of_reads-aPrior.num_of_reads) = 0 THEN 0\r\n       ELSE(a.io_stall_read_ms-aPrior.io_stall_read_ms)*1.0/(a.num_of_reads-aPrior.num_of_reads)*1.0 END AS ReadLatency,\r\n       CASE WHEN(a.num_of_writes-aPrior.num_of_writes) = 0 THEN 0\r\n       ELSE(a.io_stall_write_ms-aPrior.io_stall_write_ms)*1.0/(a.num_of_writes-aPrior.num_of_writes)*1.0 END AS WriteLatency\r\nFROM DriveIOLatency a\r\nINNER JOIN DriveIOLatency aPrior\r\nON a.Drive = aPrior.Drive\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_reads >= aPrior.num_of_reads\r\nAND a.num_of_writes >= aPrior.num_of_writes\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "Drive Latency",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 53
+          },
+          "id": 533,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Database IO",
+              "url": "/d/SQLServerDatabaseIO"
+            }
+          ],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH DriveIOIOPS AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        LEFT(UPPER(PhysicalName), 1) AS Drive,\r\n        SUM(num_of_reads) AS num_of_reads,\r\n\t\tSUM(num_of_writes) AS num_of_writes\r\n    FROM [Archive].[FileStatistics]\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n    GROUP BY CheckDateTime, LEFT(UPPER(PhysicalName), 1)\r\n)\r\nSELECT  a.CheckDateTime AS time,\r\n\t      a.Drive,\r\n        (a.num_of_reads - aPrior.num_of_reads)*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS ReadIOPS,\r\n        (a.num_of_writes - aPrior.num_of_writes)*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS WriteIOPS\r\nFROM DriveIOIOPS a\r\nINNER JOIN DriveIOIOPS aPrior\r\nON a.Drive = aPrior.Drive\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_reads >= aPrior.num_of_reads\r\nAND a.num_of_writes >= aPrior.num_of_writes\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "R/W IOPS",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "decmbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 53
+          },
+          "id": 534,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Database IO",
+              "url": "/d/SQLServerDatabaseIO"
+            }
+          ],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH DriveIOThroughput AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        LEFT(UPPER(PhysicalName), 1) AS Drive,\r\n        SUM(num_of_bytes_read) AS num_of_bytes_read,\r\n\t\tSUM(num_of_bytes_written) AS num_of_bytes_written\r\n    FROM [Archive].[FileStatistics]\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n    GROUP BY CheckDateTime, LEFT(UPPER(PhysicalName), 1)\r\n)\r\nSELECT  a.CheckDateTime AS time,\r\n\t      a.Drive,\r\n        (a.num_of_bytes_read - aPrior.num_of_bytes_read)/1024/1024*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS ReadThroughputMBPS,\r\n        (a.num_of_bytes_written - aPrior.num_of_bytes_written)/1024/1024*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS WriteThroughputMBPS\r\nFROM DriveIOThroughput a\r\nINNER JOIN DriveIOThroughput aPrior\r\nON a.Drive = aPrior.Drive\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_bytes_read >= aPrior.num_of_bytes_read\r\nAND a.num_of_bytes_written >= aPrior.num_of_bytes_written\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "R/W Throughput",
+          "type": "timeseries"
+        }
+      ],
+      "repeat": "Datasource",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource I/O",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 498,
+      "panels": [
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "bars",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 47
+          },
+          "id": 576,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT [StartTime] AS time,\r\nDatabaseName,\r\nDATEDIFF(SECOND,StartTime,EndTime) Value\r\n  FROM msdb.[dbo].[CommandLog]\r\n  WHERE 1=1\r\nAND CommandType IN ('BACKUP_DATABASE')\r\nAND $__timeFilter(StartTime)\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "CommandLog (BACKUP_DATABASE)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "bars",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 47
+          },
+          "id": 571,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT [StartTime] AS time,\r\nDatabaseName,\r\nDATEDIFF(SECOND,StartTime,EndTime) Value\r\n  FROM msdb.[dbo].[CommandLog]\r\n  WHERE 1=1\r\nAND CommandType IN ('DBCC_CHECKDB')\r\n--AND Command LIKE '%DIFF%'\r\nAND $__timeFilter(StartTime)\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "CommandLog (DBCC_CHECKDB)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "bars",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 54
+          },
+          "id": 577,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD(minute,DATEDIFF(minute,'2000-01-01',StartTime)/5*5,'2000-01-01') AS time,\r\nDatabaseName,\r\nDATEDIFF(SECOND,MIN(StartTime),MAX(EndTime)) Value\r\n  FROM ITE_DBA_ADMIN_DB.[dbo].[CommandLog]\r\n  WHERE 1=1\r\nAND CommandType IN ('UPDATE_STATISTICS')\r\n--AND Command LIKE '%DIFF%'\r\nAND $__timeFilter(StartTime)\r\nGROUP BY DATEADD(minute,DATEDIFF(minute,'2000-01-01',StartTime)/5*5,'2000-01-01'),DatabaseName\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "CommandLog (UPDATE_STATISTICS)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 54
+          },
+          "id": 572,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD(minute,DATEDIFF(minute,'2000-01-01',StartTime)/5*5,'2000-01-01') AS time,\r\nDatabaseName,\r\nDATEDIFF(SECOND,MIN(StartTime),MAX(EndTime)) Value\r\n  FROM msdb.[dbo].[CommandLog]\r\n  WHERE 1=1\r\nAND CommandType IN ('ALTER_INDEX')\r\n--AND Command LIKE '%DIFF%'\r\nAND $__timeFilter(StartTime)\r\nGROUP BY DATEADD(minute,DATEDIFF(minute,'2000-01-01',StartTime)/5*5,'2000-01-01'),DatabaseName\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "CommandLog (ALTER_INDEX)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "RunStatus"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Run Status"
+                  },
+                  {
+                    "id": "unit",
+                    "value": "short"
+                  },
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "mode": "gradient",
+                      "type": "color-background"
+                    }
+                  },
+                  {
+                    "id": "custom.align"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "rgba(245, 54, 54, 0.9)"
+                        },
+                        {
+                          "color": "red",
+                          "value": 0
+                        },
+                        {
+                          "color": "rgba(50, 172, 45, 0.97)",
+                          "value": 1
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "RunStartTime"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Run Start Time"
+                  },
+                  {
+                    "id": "unit",
+                    "value": "short"
+                  },
+                  {
+                    "id": "decimals",
+                    "value": 2
+                  },
+                  {
+                    "id": "unit",
+                    "value": "time: YYYY-MM-DD HH:mm:ss"
+                  },
+                  {
+                    "id": "custom.align"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "RunDuration"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Run Duration"
+                  },
+                  {
+                    "id": "unit",
+                    "value": "s"
+                  },
+                  {
+                    "id": "decimals",
+                    "value": 2
+                  },
+                  {
+                    "id": "custom.align"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 61
+          },
+          "id": 507,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "Run Duration"
+              }
+            ]
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "\t   SELECT sJOB.name AS JobName\r\n\t\t, msdb.dbo.agent_datetime(run_date, run_time) AS RunStartTime\r\n\t\t, ( run_duration / 10000 * 60 * 60 ) + ( run_duration / 100 % 100 * 60 ) + ( run_duration % 100 ) AS RunDuration --seconds\r\n\t\t\t, sJOBH.run_status AS RunStatus\r\n\t\t\t--, CASE WHEN sJOBH.run_status = 0 THEN 'Failed'\r\n\t\t\t--\t   WHEN sJOBH.run_status = 1 THEN 'Succeeded'\r\n\t\t\t--\t   WHEN sJOBH.run_status = 2 THEN 'Retry'\r\n\t\t\t--\t   WHEN sJOBH.run_status = 3 THEN 'Canceled'\r\n\t\t\t--\t   WHEN sJOBH.run_status = 4 THEN 'In Progress'\r\n\t\t\t--END AS RunStatus\r\n\t   FROM msdb.dbo.sysjobs AS sJOB\r\n\t   LEFT JOIN\r\n\t   (\r\n\t\t   SELECT job_id\r\n\t\t\t\t, step_name\r\n\t\t\t\t, run_date\r\n\t\t\t\t, run_time\r\n\t\t\t\t, run_status\r\n\t\t\t\t, run_duration\r\n\t\t\t\t, message\r\n\t\t\t\t, ROW_NUMBER() OVER(PARTITION BY job_id\r\n\t\t\t\t\t\t\t\t\t\t\t   , step_id\r\n\t\t\t\t  ORDER BY run_date DESC\r\n\t\t\t\t\t\t , run_time DESC) AS RowNumber\r\n\t\t   FROM msdb.dbo.sysjobhistory\r\n\t\t   WHERE step_id <> 0\r\n\t   ) AS sJOBH ON sJOB.job_id = sJOBH.job_id AND \r\n\t\t\t\t\t sJOBH.RowNumber = 1\r\n\t\r\n\t   WHERE sJOB.enabled = 1 AND \r\n\t   ( sJOB.name LIKE 'DBA_SystemDatabaseBackup%'\r\n\t   OR sJOB.name LIKE 'DBA_UserDatabaseBackup%'\r\n\t   OR sJOB.name LIKE 'DBA_UpdateStatistics'\r\n\t   OR sJOB.Name LIKE 'DBA_SystemDatabaseIntegrityCheck'\r\n\t   OR sJOB.Name LIKE 'DBA_UserDatabaseIntegrityCheck'\r\n\t   OR sJOB.Name LIKE 'DBA_IndexMaintenance'\r\n\t   )\r\n\t\t\t OPTION(RECOMPILE);",
+              "refId": "A"
+            }
+          ],
+          "title": "Maintenance Jobs",
+          "transformations": [
+            {
+              "id": "merge",
+              "options": {
+                "reducers": []
+              }
+            }
+          ],
+          "type": "table"
+        }
+      ],
+      "repeat": "Datasource",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource Maintenance",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 517,
+      "panels": [
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 9
+          },
+          "id": 530,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH WaitStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        WaitType,\r\n\t\tWaitCount,\r\n\t\tWait_Seconds\r\n    FROM [Archive].WaitStatistics\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n)\r\nSELECT a.CheckDateTime AS time,\r\n\t   a.WaitType,\r\n\t   --(a.WaitCount - aPrior.WaitCount) AS WaitCountDelta,\r\n       (a.[Wait_Seconds] - aPrior.[Wait_Seconds]) AS Value\r\nFROM WaitStatistics a\r\nINNER JOIN WaitStatistics aPrior\r\nON a.WaitType = aPrior.WaitType\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.WaitCount >= aPrior.WaitCount\r\nORDER BY time ASC\r\n\r\n\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Waits",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "Waits/WaitCount",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 9
+          },
+          "id": 531,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": false
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH WaitStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n    WaitType,\r\n\t\tWaitCount,\r\n\t\tWait_Seconds\r\n    FROM [Archive].WaitStatistics\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n)\r\nSELECT a.CheckDateTime AS time,\r\n\t   a.WaitType,\r\n    (a.[Wait_Seconds] - aPrior.[Wait_Seconds]) / NULLIF((a.[WaitCount] - aPrior.[WaitCount]),0) AS Value\r\nFROM WaitStatistics a\r\nINNER JOIN WaitStatistics aPrior\r\nON a.WaitType = aPrior.WaitType\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.WaitCount >= aPrior.WaitCount\r\nORDER BY time ASC\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Avg Waits",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "default": false,
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 15
+          },
+          "id": 532,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "editorMode": "code",
+              "format": "time_series",
+              "rawQuery": true,
+              "rawSql": ";WITH WaitStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        WaitType,\r\n\t\tWaitCount,\r\n\t\tWait_Seconds,\r\n\t\tSignal_Seconds\r\n    FROM [Archive].WaitStatistics\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n)\r\nSELECT a.CheckDateTime AS time,\r\n\t   a.WaitType,\r\n\t   CAST(100.0 * SUM(a.Signal_Seconds-aPrior.Signal_Seconds) / NULLIF(SUM(a.Wait_Seconds-aPrior.Wait_Seconds),0) AS NUMERIC(20, 2)) AS [%signal (cpu) waits],\r\n     CAST(100.0 * nullif(SUM((a.Wait_Seconds-aPrior.Wait_Seconds) - (a.Signal_Seconds-aPrior.Signal_Seconds)),0) / nullif(SUM((a.Wait_Seconds-aPrior.Wait_Seconds)),0) AS NUMERIC(20, 2)) AS [%resource waits]\r\nFROM WaitStatistics a\r\nINNER JOIN WaitStatistics aPrior\r\nON a.WaitType = aPrior.WaitType\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.WaitCount >= aPrior.WaitCount\r\nGROUP BY a.CheckDateTime,a.WaitType\r\nORDER BY time ASC",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "Signal Waits",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 15
+          },
+          "id": 551,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH WaitStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n    WaitType,\r\n\t\tWaitCount,\r\n\t\tWait_Seconds,\r\n\t\tSignal_Seconds\r\n    FROM [Archive].WaitStatistics\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n)\r\nSELECT a.CheckDateTime AS time,\r\n\t   CAST(100.0 * SUM(a.Signal_Seconds-aPrior.Signal_Seconds) / NULLIF(SUM(a.Wait_Seconds-aPrior.Wait_Seconds),0) AS NUMERIC(20, 2)) AS [%signal (cpu) waits],\r\n     CAST(100.0 * SUM((a.Wait_Seconds-aPrior.Wait_Seconds) - (a.Signal_Seconds-aPrior.Signal_Seconds)) / SUM((a.Wait_Seconds-aPrior.Wait_Seconds)) AS NUMERIC(20, 2)) AS [%resource waits]\r\nFROM WaitStatistics a\r\nINNER JOIN WaitStatistics aPrior\r\nON a.WaitType = aPrior.WaitType\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.WaitCount >= aPrior.WaitCount\r\nGROUP BY a.CheckDateTime\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "Signal Waits",
+          "type": "timeseries"
+        }
+      ],
+      "repeat": "Datasource",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource Wait Statistics",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 538,
+      "panels": [
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 10
+          },
+          "id": 566,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH SQLStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        CounterName,\r\n\t\tCounterValue\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Batch Requests/sec',\r\n                         'SQL Compilations/sec',\r\n                         'SQL Re-Compilations/sec')\r\n)\r\nSELECT a.CheckDateTime AS time,\r\n\t     a.CounterName,\r\n       (a.[CounterValue] - aPrior.[CounterValue])\r\n\t   /\r\n\t   CASE WHEN DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) = 0 THEN 1 ELSE DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) END AS CounterValue\r\nFROM SQLStatistics a\r\nINNER JOIN SQLStatistics aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue]\r\nORDER BY time ASC\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "SQL Statistics",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 10
+          },
+          "id": 574,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH SQLStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        CounterName,\r\n\t\tCounterValue\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Page Splits/sec')\r\n)\r\nSELECT a.CheckDateTime AS time,\r\n\t     a.CounterName,\r\n       (a.[CounterValue] - aPrior.[CounterValue])/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS CounterValue\r\nFROM SQLStatistics a\r\nINNER JOIN SQLStatistics aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue]\r\nORDER BY time ASC\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Page Splits/sec",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 18
+          },
+          "id": 575,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH SQLStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        CounterName,\r\n\t\tCounterValue\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Forwarded Records/sec')\r\n)\r\nSELECT a.CheckDateTime AS time,\r\n\t     a.CounterName,\r\n       (a.[CounterValue] - aPrior.[CounterValue])/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS CounterValue\r\nFROM SQLStatistics a\r\nINNER JOIN SQLStatistics aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue]\r\nORDER BY time ASC\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Forwarded Records/sec",
+          "type": "timeseries"
+        }
+      ],
+      "repeat": "Datasource",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource SQL Activity",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "id": 542,
+      "panels": [
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 11
+          },
+          "id": 540,
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT CheckDateTime AS time, \n       DriveLetter,\n       (TotalSizeMB - (TotalSizeMB - FreeSizeMB))*1.0/TotalSizeMB * 100.0 AS [Free%]\nFROM Archive.DriveSize\nWHERE 1=1\nAND $__timeFilter(CheckDateTime)\nAND (TotalSizeMB - (TotalSizeMB - FreeSizeMB))*1.0/TotalSizeMB * 100.0 < 20\nORDER BY time ASC\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Free Space Less Than 20%",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "decmbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 11
+          },
+          "id": 543,
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT CheckDateTime AS time, \n       DriveLetter,\n       TotalSizeMB - FreeSizeMB AS UsedSizeMB\nFROM Archive.DriveSize\nWHERE 1=1\nAND $__timeFilter(CheckDateTime)\nORDER BY time ASC\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Used Space",
+          "type": "timeseries"
+        }
+      ],
+      "repeat": "Datasource",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource Capacity",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 23
+      },
+      "id": 545,
+      "panels": [
+        {
+          "datasource": {
+            "default": false,
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 12
+          },
+          "id": 560,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "editorMode": "code",
+              "format": "time_series",
+              "rawQuery": true,
+              "rawSql": "SELECT  CheckDateTime as time,\r\n        CounterName,\r\n\t\tCounterValue AS Value\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Processes blocked') \r\n\tORDER BY time ASC",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "Processes blocked (performance counter)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "points",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "s"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 12
+          },
+          "id": 548,
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD(MINUTE,DATEDIFF(MINUTE,'2000-01-01',EventTimeStamp)/15*15,'2000-01-01') AS time, \n       SUM(DurationMS/1000) AS Duration,\n       SUM(TotalBlockCount) AS TotalBlockCount\nFROM Archive.BlockedProcessReport\nWHERE 1=1\nAND $__timeFilter(CheckDateTime)\nGROUP BY DATEADD(MINUTE,DATEDIFF(MINUTE,'2000-01-01',EventTimeStamp)/15*15,'2000-01-01')\nORDER BY time ASC\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Processes Blocked (Extended Events)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "ms"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "BlockingProcess"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 424
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "BlockedProcess"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 418
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "EventTimeStamp"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 214
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 19
+          },
+          "id": 555,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "11.2.2",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "SELECT EventTimeStamp,\n       TotalBlockCount,\n       BlockedProcess,\n       BlockingProcess,\n       BlockedClientApp,\n       BlockedHostName,\n       BlockedLoginName,\n       BlockedIsolationLevel,\n       BlockingClientApp,\n       BlockingHostName,\n       BlockingLoginName,\n       BlockingIsolationLevel\nFROM Archive.BlockedProcessReport\nWHERE 1=1\nAND $__timeFilter(CheckDateTime)\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Processes Blocked Details",
+          "type": "table"
+        }
+      ],
+      "repeat": "Datasource",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource Blocking",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 547,
+      "panels": [
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "line"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 10
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 13
+          },
+          "id": 568,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH SQLStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        CounterName,\r\n\t\tCounterValue\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Number of Deadlocks/sec',\r\n\t\t\t\t\t\t\t'Lock Timeouts (timeout > 0)/sec')\r\n)\r\nSELECT a.CheckDateTime AS time,\r\n\t     a.CounterName,\r\n       (a.[CounterValue] - aPrior.[CounterValue])/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS Value\r\nFROM SQLStatistics a\r\nINNER JOIN SQLStatistics aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue]\r\nORDER BY time ASC\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Locks Performance Counter",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "ms"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 20
+          },
+          "id": 549,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD(MINUTE,DATEDIFF(MINUTE,'2000-01-01',EventTimeStamp)/15*15,'2000-01-01') AS time, \n       COUNT(*) AS DeadlockCount\nFROM Archive.XMLDeadlockReport\nWHERE 1=1\nAND $__timeFilter(EventTimeStamp)\nGROUP BY DATEADD(MINUTE,DATEDIFF(MINUTE,'2000-01-01',EventTimeStamp)/15*15,'2000-01-01')\nORDER BY time ASC\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Deadlocks (Extended Events)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "ms"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 20
+          },
+          "id": 550,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "last"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD(MINUTE,DATEDIFF(MINUTE,'2000-01-01',EventTimeStamp)/15*15,'2000-01-01') AS time, \n       LockedObject,\n       COUNT(*) AS DeadlockCount\nFROM Archive.XMLDeadlockReportShredded\nWHERE 1=1\nAND $__timeFilter(EventTimeStamp)\nGROUP BY DATEADD(MINUTE,DATEDIFF(MINUTE,'2000-01-01',EventTimeStamp)/15*15,'2000-01-01'),LockedObject\nORDER BY time ASC\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Deadlocks by Object",
+          "type": "timeseries"
+        }
+      ],
+      "repeat": "Datasource",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource Deadlock",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 25
+      },
+      "id": 554,
+      "panels": [
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "ms"
+                  }
+                ]
+              },
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "{Error=\"2627\", ErrorMessage=\"Violation of UNIQUE KEY constraint 'UQ_INDEX_3'. C\", Severity=\"14\"}"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 49
+          },
+          "id": 552,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD(MINUTE,DATEDIFF(MINUTE,'2000-01-01',EventTimeStamp)/15*15,'2000-01-01') AS time, \n       CAST(ErrorNumber AS VARCHAR(5)) AS Error,\n       CAST(Severity AS VARCHAR(2)) AS Severity,\n       CAST(ErrorMessage AS VARCHAR(50)) AS ErrorMessage,\n       COUNT(*) AS Value\nFROM Archive.ErrorReported E\nWHERE 1=1\nAND $__timeFilter(EventTimeStamp)\nGROUP BY DATEADD(MINUTE,DATEDIFF(MINUTE,'2000-01-01',EventTimeStamp)/15*15,'2000-01-01'), CAST(ErrorNumber AS VARCHAR(5)), CAST(Severity AS VARCHAR(2)),CAST(ErrorMessage AS VARCHAR(50))\nORDER BY time ASC\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Error Reported",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "name": "${Datasource}",
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "ms"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "EventTimeStamp"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 187
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "ErrorNumber"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 144
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Severity"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 136
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "SQLText"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 212
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 56
+          },
+          "id": 559,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "EventTimeStamp"
+              }
+            ]
+          },
+          "pluginVersion": "11.2.2",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_AZFRCER0173\\INL1}"
+              },
+              "format": "table",
+              "rawSql": "SELECT EventTimeStamp, \n       ErrorNumber,\n       Severity,\n       ErrorMessage,\n       [SQLText],\n       [ClientAppName], \n       [ClientHostName], \n       [DatabaseName], \n       [ServerPrincipalName]\nFROM Archive.ErrorReported E\nWHERE 1=1\nAND $__timeFilter(EventTimeStamp)\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "Error Reported Details",
+          "type": "table"
+        }
+      ],
+      "repeat": "Datasource",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource Error Reported",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "id": 578,
+      "panels": [],
+      "title": "$Datasource User/Group Modifications",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "mssql",
+        "uid": "${Datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-green",
+            "mode": "shades"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "RoleName"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "applyToRow": false,
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "sysadmin": {
+                        "color": "dark-red",
+                        "index": 0
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 27
+      },
+      "id": 579,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "dataset": "ITE_DBA_ADMIN_DB",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_AZFRCER0173\\INL1}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT [Event_Time]\r\n      ,[Login]\r\n      ,[RoleName]\r\n      ,[ApplicationName]\r\n      ,[HostName]\r\n      ,[LogonName]\r\n      ,[SessionLogonName]\r\n      ,[SQL_Txt]\r\n  FROM [dbo].[DBA_UserChanges] order by event_time ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "*",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "dbo.DBA_UserChanges"
+        }
+      ],
+      "title": "User / Group - Modification's ",
+      "type": "table"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 34
+      },
+      "id": 580,
+      "panels": [
+        {
+          "datasource": {
+            "default": false,
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 32
+          },
+          "id": 581,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.2.2",
+          "targets": [
+            {
+              "dataset": "AdminSQLCentral",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_FRER1527\\PDB1}"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT\r\n  distinct local_tcp_port as value\r\nFROM sys.dm_exec_connections where local_tcp_port is not null",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "TCP Port in use",
+          "type": "stat"
+        }
+      ],
+      "title": "$Datasource TCP Port",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 35
+      },
+      "id": 586,
+      "panels": [],
+      "title": "$Datasource Backup Details",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "mssql",
+        "uid": "${Datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "max": 0,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DateDiff"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "applyToRow": true,
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "from": 0,
+                      "result": {
+                        "color": "#114b09",
+                        "index": 0
+                      },
+                      "to": 0
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 1,
+                      "result": {
+                        "color": "dark-red",
+                        "index": 1
+                      },
+                      "to": 1
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "dark-red",
+                        "index": 2
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 36
+      },
+      "id": 587,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "dataset": "ASSISTEDCONTROL",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_AZFRCER0173\\INL1}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "Select *, \r\ncase  \r\nwhen DATEDIFF(DAY,GETDATE(),A.Last_Backup)<0 then 1\r\nwhen DATEDIFF(DAY,GETDATE(),A.Last_Backup)=0 then 0\r\nend\r\nDateDiff FROM\r\n(\r\n\tSELECT DB.name AS Database_Name\r\n\t,MAX(DB.recovery_model_desc) AS Recovery_Model\r\n\t,MAX(BS.backup_start_date) AS Last_Backup\r\n\t,MAX(CASE WHEN BS.type = 'D'\r\n\tTHEN BS.backup_start_date END)\r\n\tAS Last_Full_backup,\r\n\tMAX(CASE WHEN BS.type = 'I'\r\n\tTHEN BS.backup_start_date END)\r\n\tAS Last_Differential_backup\r\n\t,MAX(CASE WHEN BS.type = 'L'\r\n\tTHEN BS.backup_start_date END)\r\n\tAS Last_Log_backup\r\n\tFROM sys.databases AS DB\r\n\tLEFT JOIN\r\n\tmsdb.dbo.backupset AS BS\r\n\tON BS.database_name = DB.name\r\n\tWHERE ISNULL(BS.is_damaged, 0) = 0\r\n\tGROUP BY DB.name\r\n ) AS A\r\n WHERE A.Database_Name<>'tempdb'\r\n \tORDER BY Last_Backup desc",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Backup Details",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "DateDiff": false
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Database_Name": "DB",
+              "DateDiff": "Day(S) Elapsed",
+              "Last_Backup": "",
+              "Last_Differential_backup": "Diff Backup",
+              "Last_Full_backup": "Full Backup",
+              "Last_Log_backup": "Log Backup",
+              "Recovery_Model": "Recovery"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "Datasource",
+        "options": [],
+        "query": "mssql",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "SQL Server - Overview New",
+  "uid": "eetynjfj5dfcwd",
+  "version": 1,
+  "weekStart": ""
+}

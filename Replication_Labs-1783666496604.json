@@ -1,0 +1,1030 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_PLER0104\\PXRP",
+      "label": "PLER0104\\PXRP",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    },
+    {
+      "name": "DS_THER5004\\PRNW",
+      "label": "THER5004\\PRNW",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    },
+    {
+      "name": "DS_AZSEAER0012\\PRT1",
+      "label": "AZSEAER0012\\PRT1",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    },
+    {
+      "name": "DS_CNER0343\\PXRH",
+      "label": "CNER0343\\PXRH",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    },
+    {
+      "name": "DS_CNT-RXREPP01\\PXRT",
+      "label": "CNT-RXREPP01\\PXRT",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    },
+    {
+      "name": "DS_INLR0425\\PXRG",
+      "label": "INLR0425\\PXRG",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "canvas",
+      "name": "Canvas",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.2.2"
+    },
+    {
+      "type": "datasource",
+      "id": "mssql",
+      "name": "Microsoft SQL Server",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "limit": 100,
+        "name": "Annotations & Alerts",
+        "showIn": 0,
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": 1902,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "DBA"
+      ],
+      "targetBlank": true,
+      "title": "Other Dashboards",
+      "type": "dashboards"
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 489,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Show Dashboard",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "Failed": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "❌"
+                },
+                "Idle": {
+                  "color": "dark-blue",
+                  "index": 5,
+                  "text": "✔"
+                },
+                "In progress": {
+                  "color": "dark-green",
+                  "index": 4,
+                  "text": "✔"
+                },
+                "Retrying": {
+                  "color": "dark-red",
+                  "index": 1,
+                  "text": "❌"
+                },
+                "Started": {
+                  "color": "orange",
+                  "index": 3,
+                  "text": "✔"
+                },
+                "Succeeded": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "✔"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#413e3a",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "Error": {
+                        "color": "dark-red",
+                        "index": 1,
+                        "text": "❌"
+                      },
+                      "OK": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "✔"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 22,
+        "x": 0,
+        "y": 1
+      },
+      "id": 466,
+      "options": {
+        "infinitePan": false,
+        "inlineEditing": true,
+        "panZoom": false,
+        "root": {
+          "background": {
+            "color": {
+              "fixed": "transparent"
+            },
+            "image": {
+              "fixed": ""
+            }
+          },
+          "border": {
+            "color": {
+              "fixed": "dark-green"
+            }
+          },
+          "constraint": {
+            "horizontal": "left",
+            "vertical": "top"
+          },
+          "elements": [
+            {
+              "background": {
+                "color": {
+                  "field": "LAB 1",
+                  "fixed": "#D9D9D9"
+                },
+                "size": "cover"
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#020202"
+                },
+                "size": 18,
+                "text": {
+                  "field": "LAB 1",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 1",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32,
+                "left": 9,
+                "top": 31,
+                "width": 140
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "status 1",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "status 1",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 2",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32,
+                "left": 149,
+                "top": 31,
+                "width": 40
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "LAB 2",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 18,
+                "text": {
+                  "field": "LAB 2",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 3",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32,
+                "left": 207,
+                "top": 31,
+                "width": 140
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "status 1",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "status 2",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 4",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32,
+                "left": 347,
+                "top": 31,
+                "width": 40
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "LAB 1",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 18,
+                "text": {
+                  "field": "LAB 3",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 5",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32,
+                "left": 405,
+                "top": 31,
+                "width": 140
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "status 1",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "status 3",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 6",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32,
+                "left": 545,
+                "top": 31,
+                "width": 40
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "LAB 1",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 18,
+                "text": {
+                  "field": "LAB 4",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 7",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32,
+                "left": 603,
+                "top": 31,
+                "width": 140
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "status 1",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "status 4",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 8",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32,
+                "left": 743,
+                "top": 31,
+                "width": 40
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "LAB 1",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 18,
+                "text": {
+                  "field": "LAB 5",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 9",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32,
+                "left": 801,
+                "top": 31,
+                "width": 139.9999542236328
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "status 1",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "status 5",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 10",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32,
+                "left": 941,
+                "top": 31,
+                "width": 40
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "LAB 1",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 18,
+                "text": {
+                  "field": "LAB 6",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 11",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32,
+                "left": 999,
+                "top": 31,
+                "width": 140
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "status 1",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "status 6",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 12",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32,
+                "left": 1139,
+                "top": 31,
+                "width": 40
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "#4f8947"
+                },
+                "size": 13,
+                "text": {
+                  "fixed": "Replication ( Transactional ) Status",
+                  "mode": "fixed"
+                },
+                "valign": "top"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 13",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 26,
+                "left": 9,
+                "rotation": 0,
+                "top": 5,
+                "width": 376
+              },
+              "type": "text"
+            }
+          ],
+          "name": "Element 1783170975444",
+          "oneClickMode": "off",
+          "placement": {
+            "height": 100,
+            "left": 0,
+            "rotation": 0,
+            "top": 0,
+            "width": 100
+          },
+          "type": "frame"
+        },
+        "showAdvancedTypes": true
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "dataset": "distribution",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_PLER0104\\PXRP}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \r\nCASE A.ServerName\r\nWHEN 'PLER0104\\PXRP' THEN 'EOLP'\r\nWHEN 'THER5004\\PRNW' THEN 'ELTL'\r\nWHEN 'AZSEAER0012\\PRT1' THEN 'SEDICO'\r\nWHEN 'CNER0343\\PXRH' THEN 'CHLOE'\r\nWHEN 'CNT-RXREPP01\\PXRT' THEN 'TRISTAR'\r\nWHEN 'INLR0425\\PXRG' THEN 'EMIL'\r\nEND AS 'LAB',*\r\nFROM \r\n(\r\nSELECT\r\n    UPPER(\r\n        CASE\r\n            WHEN LEN(ISNULL(CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20)), '')) = 0\r\n                THEN CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n            ELSE CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n                 + '\\' + CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20))\r\n        END\r\n    ) AS ServerName,\r\n\r\n    CASE publication_type\r\n        WHEN 0 THEN 'Transactional'\r\n        WHEN 1 THEN 'Snapshot'\r\n        WHEN 2 THEN 'Merge'\r\n    END AS publication_type,\r\n\r\n    CASE\r\n        WHEN MAX(CASE WHEN status IN (5,6) THEN 1 ELSE 0 END) = 1\r\n            THEN 'Error'\r\n        ELSE 'OK'\r\n    END AS [status]\r\n\r\nFROM distribution.dbo.MSreplication_monitordata  where publication_type=0\r\nGROUP BY\r\n    publication_type ) A",
+          "refId": "EOLP",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "distribution",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_THER5004\\PRNW}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "\r\nSELECT \r\nCASE A.ServerName\r\nWHEN 'PLER0104\\PXRP' THEN 'EOLP'\r\nWHEN 'THER5004\\PRNW' THEN 'ELTL'\r\nWHEN 'AZSEAER0012\\PRT1' THEN 'SEDICO'\r\nWHEN 'CNER0343\\PXRH' THEN 'CHLOE'\r\nWHEN 'CNT-RXREPP01\\PXRT' THEN 'TRISTAR'\r\nWHEN 'INLR0425\\PXRG' THEN 'EMIL'\r\nEND AS 'LAB',*\r\nFROM \r\n(\r\nSELECT\r\n    UPPER(\r\n        CASE\r\n            WHEN LEN(ISNULL(CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20)), '')) = 0\r\n                THEN CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n            ELSE CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n                 + '\\' + CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20))\r\n        END\r\n    ) AS ServerName,\r\n\r\n    CASE publication_type\r\n        WHEN 0 THEN 'Transactional'\r\n        WHEN 1 THEN 'Snapshot'\r\n        WHEN 2 THEN 'Merge'\r\n    END AS publication_type,\r\n\r\n    CASE\r\n        WHEN MAX(CASE WHEN status IN (5,6) THEN 1 ELSE 0 END) = 1\r\n            THEN 'Error'\r\n        ELSE 'OK'\r\n    END AS [status]\r\n\r\nFROM distribution.dbo.MSreplication_monitordata  where publication_type=0\r\nGROUP BY\r\n    publication_type ) A",
+          "refId": "ELTL",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "AdminSQL",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_AZSEAER0012\\PRT1}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "\r\nSELECT \r\nCASE A.ServerName\r\nWHEN 'PLER0104\\PXRP' THEN 'EOLP'\r\nWHEN 'THER5004\\PRNW' THEN 'ELTL'\r\nWHEN 'AZSEAER0012\\PRT1' THEN 'SEDICO'\r\nWHEN 'CNER0343\\PXRH' THEN 'CHLOE'\r\nWHEN 'CNT-RXREPP01\\PXRT' THEN 'TRISTAR'\r\nWHEN 'INLR0425\\PXRG' THEN 'EMIL'\r\nEND AS 'LAB',*\r\nFROM \r\n(\r\nSELECT\r\n    UPPER(\r\n        CASE\r\n            WHEN LEN(ISNULL(CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20)), '')) = 0\r\n                THEN CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n            ELSE CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n                 + '\\' + CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20))\r\n        END\r\n    ) AS ServerName,\r\n\r\n    CASE publication_type\r\n        WHEN 0 THEN 'Transactional'\r\n        WHEN 1 THEN 'Snapshot'\r\n        WHEN 2 THEN 'Merge'\r\n    END AS publication_type,\r\n\r\n    CASE\r\n        WHEN MAX(CASE WHEN status IN (5,6) THEN 1 ELSE 0 END) = 1\r\n            THEN 'Error'\r\n        ELSE 'OK'\r\n    END AS [status]\r\n\r\nFROM distribution.dbo.MSreplication_monitordata  where publication_type=0\r\nGROUP BY\r\n    publication_type ) A",
+          "refId": "SEDICO",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "AdminSQL",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_CNER0343\\PXRH}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "\r\nSELECT \r\nCASE A.ServerName\r\nWHEN 'PLER0104\\PXRP' THEN 'EOLP'\r\nWHEN 'THER5004\\PRNW' THEN 'ELTL'\r\nWHEN 'AZSEAER0012\\PRT1' THEN 'SEDICO'\r\nWHEN 'CNER0343\\PXRH' THEN 'CHLOE'\r\nWHEN 'CNT-RXREPP01\\PXRT' THEN 'TRISTAR'\r\nWHEN 'INLR0425\\PXRG' THEN 'EMIL'\r\nEND AS 'LAB',*\r\nFROM \r\n(\r\nSELECT\r\n    UPPER(\r\n        CASE\r\n            WHEN LEN(ISNULL(CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20)), '')) = 0\r\n                THEN CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n            ELSE CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n                 + '\\' + CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20))\r\n        END\r\n    ) AS ServerName,\r\n\r\n    CASE publication_type\r\n        WHEN 0 THEN 'Transactional'\r\n        WHEN 1 THEN 'Snapshot'\r\n        WHEN 2 THEN 'Merge'\r\n    END AS publication_type,\r\n\r\n    CASE\r\n        WHEN MAX(CASE WHEN status IN (5,6) THEN 1 ELSE 0 END) = 1\r\n            THEN 'Error'\r\n        ELSE 'OK'\r\n    END AS [status]\r\n\r\nFROM distribution.dbo.MSreplication_monitordata  where publication_type=0\r\nGROUP BY\r\n    publication_type ) A",
+          "refId": "CHLOE",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "AdminSQL",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_CNT-RXREPP01\\PXRT}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "\r\nSELECT \r\nCASE A.ServerName\r\nWHEN 'PLER0104\\PXRP' THEN 'EOLP'\r\nWHEN 'THER5004\\PRNW' THEN 'ELTL'\r\nWHEN 'AZSEAER0012\\PRT1' THEN 'SEDICO'\r\nWHEN 'CNER0343\\PXRH' THEN 'CHLOE'\r\nWHEN 'CNT-RXREPP01\\PXRT' THEN 'TRISTAR'\r\nWHEN 'INLR0425\\PXRG' THEN 'EMIL'\r\nEND AS 'LAB',*\r\nFROM \r\n(\r\nSELECT\r\n    UPPER(\r\n        CASE\r\n            WHEN LEN(ISNULL(CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20)), '')) = 0\r\n                THEN CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n            ELSE CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n                 + '\\' + CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20))\r\n        END\r\n    ) AS ServerName,\r\n\r\n    CASE publication_type\r\n        WHEN 0 THEN 'Transactional'\r\n        WHEN 1 THEN 'Snapshot'\r\n        WHEN 2 THEN 'Merge'\r\n    END AS publication_type,\r\n\r\n    CASE\r\n        WHEN MAX(CASE WHEN status IN (5,6) THEN 1 ELSE 0 END) = 1\r\n            THEN 'Error'\r\n        ELSE 'OK'\r\n    END AS [status]\r\n\r\nFROM distribution.dbo.MSreplication_monitordata  where publication_type=0\r\nGROUP BY\r\n    publication_type ) A",
+          "refId": "TRISTAR",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "AdminSQL",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_INLR0425\\PXRG}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "\r\nSELECT \r\nCASE A.ServerName\r\nWHEN 'PLER0104\\PXRP' THEN 'EOLP'\r\nWHEN 'THER5004\\PRNW' THEN 'ELTL'\r\nWHEN 'AZSEAER0012\\PRT1' THEN 'SEDICO'\r\nWHEN 'CNER0343\\PXRH' THEN 'CHLOE'\r\nWHEN 'CNT-RXREPP01\\PXRT' THEN 'TRISTAR'\r\nWHEN 'INLR0425\\PXRG' THEN 'EMIL'\r\nEND AS 'LAB',*\r\nFROM \r\n(\r\nSELECT\r\n    UPPER(\r\n        CASE\r\n            WHEN LEN(ISNULL(CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20)), '')) = 0\r\n                THEN CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n            ELSE CAST(SERVERPROPERTY('MachineName') AS VARCHAR(20))\r\n                 + '\\' + CAST(SERVERPROPERTY('InstanceName') AS VARCHAR(20))\r\n        END\r\n    ) AS ServerName,\r\n\r\n    CASE publication_type\r\n        WHEN 0 THEN 'Transactional'\r\n        WHEN 1 THEN 'Snapshot'\r\n        WHEN 2 THEN 'Merge'\r\n    END AS publication_type,\r\n\r\n    CASE\r\n        WHEN MAX(CASE WHEN status IN (5,6) THEN 1 ELSE 0 END) = 1\r\n            THEN 'Error'\r\n        ELSE 'OK'\r\n    END AS [status]\r\n\r\nFROM distribution.dbo.MSreplication_monitordata  where publication_type=0\r\nGROUP BY\r\n    publication_type ) A",
+          "refId": "EMIL",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "ServerName",
+            "mode": "outer"
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "canvas"
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2026-02-23T22:42:35.468Z",
+    "to": "2026-02-24T10:42:35.468Z"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "Replication_Labs",
+  "uid": "efqyv1z5kzrwgc",
+  "version": 28,
+  "weekStart": ""
+}

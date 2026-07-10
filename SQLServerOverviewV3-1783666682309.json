@@ -1,0 +1,5211 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_10.206.194.16\\PEA1",
+      "label": "10.206.194.16\\PEA1",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.2.2"
+    },
+    {
+      "type": "datasource",
+      "id": "mssql",
+      "name": "Microsoft SQL Server",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "limit": 100,
+        "name": "Annotations & Alerts",
+        "showIn": 0,
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": 1902,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [
+    {
+      "icon": "external link",
+      "tags": [
+        "DBA"
+      ],
+      "targetBlank": true,
+      "type": "dashboards"
+    }
+  ],
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 755,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Uptime",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${Datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "m"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 774,
+      "maxPerRow": 8,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.2",
+      "repeat": "Datasource",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "format": "table",
+          "rawSql": "SELECT DATEDIFF(MINUTE,sqlserver_start_time,GETUTCDATE()) FROM sys.dm_os_sys_info; ",
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 501,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "CPU",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${Datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "CPU%"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 521,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.4",
+      "repeat": "Datasource",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "format": "time_series",
+          "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time \r\n  ,$Aggregate(SQLProcessUtilization+OtherProcessUtilization) AS [CPU%]\r\nFROM Archive.ProcessUtilization\r\nWHERE $__timeFilter(CheckDateTime)\r\nGROUP BY DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue\r\nORDER BY time ASC",
+          "refId": "A"
+        },
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "format": "time_series",
+          "hide": false,
+          "rawSql": "SELECT $__time(T.DataAdd)\r\n  ,$Aggregate(SQLProcessUtilization+OtherProcessUtilization) AS [CPU%_PreviousMonth]\r\nFROM Archive.ProcessUtilization\r\nCROSS APPLY (SELECT DATEADD(MONTH,1,DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01')) AS DataAdd) T\r\nWHERE $__timeFilter(T.DataAdd)\r\nGROUP BY T.DataAdd\r\nORDER BY time ASC",
+          "refId": "B"
+        }
+      ],
+      "title": "$Datasource $Aggregate for $IntervalValue $Interval CPU %",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${DS_10.206.194.16\\PEA1}"
+      },
+      "description": "Task > 10 = Blocking/Deadlocking  \nRunnable > 1 = CPU Pressure  \nPendingDiskIO > 1 = Disk Pressure  ",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "AverageTaskCount"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
+      "id": 522,
+      "maxPerRow": 3,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.4",
+      "repeat": "Datasource",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "format": "time_series",
+          "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time \r\n\t,$Aggregate([AverageTaskCount]) AS AverageTaskCount\r\n\t,$Aggregate([AverageRunnableTaskCount]) AS AverageRunnableTaskCount\r\n\t,$Aggregate([AveragePendingDiskIOCount]) AS AveragePendingDiskIOCount\r\nFROM Archive.Schedulers\r\nWHERE $__timeFilter(CheckDateTime)\r\nGROUP BY DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue\r\nORDER BY time ASC\r\n",
+          "refId": "A"
+        }
+      ],
+      "title": "$Datasource $Aggregate for $IntervalValue $Interval Schedulers",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${DS_10.206.194.16\\PEA1}"
+      },
+      "description": "Task > 10 = Blocking/Deadlocking  \nRunnable > 1 = CPU Pressure  \nPendingDiskIO > 1 = Disk Pressure  ",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 23
+      },
+      "id": 1865,
+      "maxPerRow": 3,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.4",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "format": "time_series",
+          "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time \r\n\t,$Aggregate([AverageTaskCount]) AS AverageTaskCount\r\nFROM Archive.Schedulers\r\nWHERE $__timeFilter(CheckDateTime)\r\nGROUP BY DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue\r\nORDER BY time ASC\r\n",
+          "refId": "A"
+        },
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "format": "time_series",
+          "hide": false,
+          "rawSql": "SELECT $__time(T.DataAdd)\r\n\t,$Aggregate([AverageTaskCount]) AS AverageTaskCount_PreviousMonth\r\nFROM Archive.Schedulers\r\nCROSS APPLY (SELECT DATEADD(MONTH,1,DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01')) AS DataAdd) T\r\nWHERE $__timeFilter(T.DataAdd)\r\nGROUP BY T.DataAdd\r\nORDER BY time ASC",
+          "refId": "B"
+        }
+      ],
+      "title": "$Datasource $Aggregate for $IntervalValue $Interval Schedulers",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "id": 515,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "deckbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 12,
+            "x": 0,
+            "y": 3
+          },
+          "id": 565,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\nCounterName,\r\n$Aggregate(CounterValue) AS Value\r\nFROM [Archive].PerformanceCounter\r\nWHERE 1=1\r\nAND $__timeFilter(CheckDateTime)\r\nAND CounterName IN ('Total Server Memory (KB)','Lock Memory (KB)','Connection Memory (KB)','Database Cache Memory (KB)')\r\nGROUP BY DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue, CounterName\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Memory Usage (KB)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "Should be less than 2",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "line"
+                }
+              },
+              "mappings": [],
+              "max": 20,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 2
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 12,
+            "x": 0,
+            "y": 8
+          },
+          "id": 536,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH LazyWrites AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n    CounterName,\r\n\t\tCounterValue\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Lazy writes/sec')\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   CounterName,\r\n\t   $Aggregate(CounterValue) AS CounterValue\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t     a.CounterName,\r\n       (a.CounterValue - aPrior.CounterValue)/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS CounterValue\r\nFROM LazyWrites a\r\nINNER JOIN LazyWrites aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue]\r\n)A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), CounterName\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Lazy writes/sec",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "Should be 0",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "line"
+                }
+              },
+              "mappings": [],
+              "max": 10,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 12,
+            "x": 0,
+            "y": 13
+          },
+          "id": 564,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT  DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n        CounterName,\r\n\t\t$Aggregate(CounterValue) AS Value\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Memory Grants Pending')\r\n\tGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), CounterName\r\n\tORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Memory Grants Pending",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "Should be less than 20",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "line"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 20
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 18
+          },
+          "id": 567,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH FreeListStalls AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n    CounterName,\r\n\t\tCounterValue\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Free list stalls/sec')\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   CounterName,\r\n\t   $Aggregate(CounterValue) AS CounterValue\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t     a.CounterName,\r\n       (a.CounterValue - aPrior.CounterValue)/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS CounterValue\r\nFROM FreeListStalls a\r\nINNER JOIN FreeListStalls aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue]\r\n)A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), CounterName\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Free list stalls/sec",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Memory",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "id": 846,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "Calculated PLE per 4GB, threshold fixed at 300 seconds",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "line"
+                }
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red"
+                  },
+                  {
+                    "color": "green",
+                    "value": 300
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "Value"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 4
+          },
+          "id": 523,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\n$Aggregate(PageLifeExpectancyDynamic) AS Value\nFROM Archive.V_PageLifeExpectancy\nWHERE $__timeFilter(CheckDateTime)\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01')\nORDER BY time ASC\n",
+              "refId": "A"
+            },
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "SELECT $__time(T.DataAdd),\n$Aggregate(PageLifeExpectancyDynamic) AS PreviousMonth\nFROM Archive.V_PageLifeExpectancy\nCROSS APPLY (SELECT DATEADD(MONTH,1,DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01')) AS DataAdd) T\nWHERE $__timeFilter(T.DataAdd)\nGROUP BY T.DataAdd\nORDER BY time ASC",
+              "refId": "B"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Page Life Expectancy",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Page Life Expectancy",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 33
+      },
+      "id": 496,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "ms"
+            },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "ReadLatency G"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 5
+          },
+          "id": 491,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Database IO",
+              "url": "/d/SQLServerDatabaseIO"
+            }
+          ],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH DriveIOLatency AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        LEFT(UPPER(PhysicalName), 1) AS Drive,\r\n        SUM(io_stall_read_ms) AS io_stall_read_ms,\r\n        SUM(io_stall_write_ms) AS io_stall_write_ms,\r\n        SUM(num_of_reads) AS num_of_reads,\r\n\t\tSUM(num_of_writes) AS num_of_writes\r\n    FROM [Archive].[FileStatistics]\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n    AND LEFT(UPPER(PhysicalName), 1) = 'G'\r\n    GROUP BY CheckDateTime, LEFT(UPPER(PhysicalName), 1)\r\n)\r\n\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   Drive,\r\n\t   $Aggregate(ReadLatency) AS ReadLatency,\r\n\t   $Aggregate(WriteLatency) AS WriteLatency\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t     a.Drive,\r\n       CASE WHEN(a.num_of_reads-aPrior.num_of_reads) <= 0 THEN 0\r\n       ELSE(a.io_stall_read_ms-aPrior.io_stall_read_ms)*1.0/(a.num_of_reads-aPrior.num_of_reads)*1.0 END AS ReadLatency,\r\n       CASE WHEN(a.num_of_writes-aPrior.num_of_writes) <= 0 THEN 0\r\n       ELSE(a.io_stall_write_ms-aPrior.io_stall_write_ms)*1.0/(a.num_of_writes-aPrior.num_of_writes)*1.0 END AS WriteLatency\r\nFROM DriveIOLatency a\r\nINNER JOIN DriveIOLatency aPrior\r\nON a.Drive = aPrior.Drive\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_reads >= aPrior.num_of_reads\r\nAND a.num_of_writes >= aPrior.num_of_writes\r\nAND (a.num_of_reads-aPrior.num_of_reads) >= 0\r\nAND (a.io_stall_read_ms-aPrior.io_stall_read_ms) >= 0\r\n) A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), Drive\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Drive Latency",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "ms"
+            },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "WriteLatency G"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 12
+          },
+          "id": 1863,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Database IO",
+              "url": "/d/SQLServerDatabaseIO"
+            }
+          ],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH DriveIOLatency AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        LEFT(UPPER(PhysicalName), 1) AS Drive,\r\n        SUM(io_stall_read_ms) AS io_stall_read_ms,\r\n        SUM(io_stall_write_ms) AS io_stall_write_ms,\r\n        SUM(num_of_reads) AS num_of_reads,\r\n\t\tSUM(num_of_writes) AS num_of_writes\r\n    FROM [Archive].[FileStatistics]\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n    AND LEFT(UPPER(PhysicalName), 1) = 'G'\r\n    GROUP BY CheckDateTime, LEFT(UPPER(PhysicalName), 1)\r\n)\r\n\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   Drive,\r\n\t   $Aggregate(ReadLatency) AS ReadLatency,\r\n\t   $Aggregate(WriteLatency) AS WriteLatency\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t     a.Drive,\r\n       CASE WHEN(a.num_of_reads-aPrior.num_of_reads) <= 0 THEN 0\r\n       ELSE(a.io_stall_read_ms-aPrior.io_stall_read_ms)*1.0/(a.num_of_reads-aPrior.num_of_reads)*1.0 END AS ReadLatency,\r\n       CASE WHEN(a.num_of_writes-aPrior.num_of_writes) <= 0 THEN 0\r\n       ELSE(a.io_stall_write_ms-aPrior.io_stall_write_ms)*1.0/(a.num_of_writes-aPrior.num_of_writes)*1.0 END AS WriteLatency\r\nFROM DriveIOLatency a\r\nINNER JOIN DriveIOLatency aPrior\r\nON a.Drive = aPrior.Drive\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_reads >= aPrior.num_of_reads\r\nAND a.num_of_writes >= aPrior.num_of_writes\r\nAND (a.num_of_reads-aPrior.num_of_reads) >= 0\r\nAND (a.io_stall_read_ms-aPrior.io_stall_read_ms) >= 0\r\n) A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), Drive\r\nORDER BY time ASC",
+              "refId": "A"
+            },
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "hide": false,
+              "rawSql": ";WITH DriveIOLatency AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        LEFT(UPPER(PhysicalName), 1) AS Drive,\r\n        SUM(io_stall_read_ms) AS io_stall_read_ms,\r\n        SUM(io_stall_write_ms) AS io_stall_write_ms,\r\n        SUM(num_of_reads) AS num_of_reads,\r\n\t\tSUM(num_of_writes) AS num_of_writes\r\n    FROM [Archive].[FileStatistics]\r\n    CROSS APPLY (SELECT DATEADD(MONTH,1,DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01')) AS DataAdd) T\r\n    WHERE 1=1\r\n    AND $__timeFilter(T.DataAdd)\r\n    AND LEFT(UPPER(PhysicalName), 1) = 'G'\r\n    GROUP BY CheckDateTime, LEFT(UPPER(PhysicalName), 1)\r\n)\r\n\r\nSELECT $__time(T.DataAdd),\r\n\t   Drive,\r\n\t   $Aggregate(ReadLatency) AS ReadLatency_PreviousMonth,\r\n\t   $Aggregate(WriteLatency) AS WriteLatency_PreviousMonth\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t     a.Drive,\r\n       CASE WHEN(a.num_of_reads-aPrior.num_of_reads) <= 0 THEN 0\r\n       ELSE(a.io_stall_read_ms-aPrior.io_stall_read_ms)*1.0/(a.num_of_reads-aPrior.num_of_reads)*1.0 END AS ReadLatency,\r\n       CASE WHEN(a.num_of_writes-aPrior.num_of_writes) <= 0 THEN 0\r\n       ELSE(a.io_stall_write_ms-aPrior.io_stall_write_ms)*1.0/(a.num_of_writes-aPrior.num_of_writes)*1.0 END AS WriteLatency\r\nFROM DriveIOLatency a\r\nINNER JOIN DriveIOLatency aPrior\r\nON a.Drive = aPrior.Drive\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_reads >= aPrior.num_of_reads\r\nAND a.num_of_writes >= aPrior.num_of_writes\r\nAND (a.num_of_reads-aPrior.num_of_reads) >= 0\r\nAND (a.io_stall_read_ms-aPrior.io_stall_read_ms) >= 0\r\n) A\r\nCROSS APPLY (SELECT DATEADD(MONTH,1,DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01')) AS DataAdd) T\r\nWHERE $__timeFilter(T.DataAdd)\r\nGROUP BY T.DataAdd, Drive\r\nORDER BY time ASC",
+              "refId": "B"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Drive Latency",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "I/O Latency",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 34
+      },
+      "id": 988,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "WriteIOPS G"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 6
+          },
+          "id": 533,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Database IO",
+              "url": "/d/SQLServerDatabaseIO"
+            }
+          ],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH DriveIOIOPS AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        LEFT(UPPER(PhysicalName), 1) AS Drive,\r\n        SUM(num_of_reads) AS num_of_reads,\r\n\t\tSUM(num_of_writes) AS num_of_writes\r\n    FROM [Archive].[FileStatistics]\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n    AND LEFT(UPPER(PhysicalName), 1) = 'G'\r\n    GROUP BY CheckDateTime, LEFT(UPPER(PhysicalName), 1)\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   Drive,\r\n\t   $Aggregate(ReadIOPS) AS ReadIOPS,\r\n\t   $Aggregate(WriteIOPS) AS WriteIOPS\r\nFROM (\r\nSELECT  a.CheckDateTime,\r\n\t      a.Drive,\r\n        (a.num_of_reads - aPrior.num_of_reads)*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS ReadIOPS,\r\n        (a.num_of_writes - aPrior.num_of_writes)*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS WriteIOPS\r\nFROM DriveIOIOPS a\r\nINNER JOIN DriveIOIOPS aPrior\r\nON a.Drive = aPrior.Drive\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_reads >= aPrior.num_of_reads\r\nAND a.num_of_writes >= aPrior.num_of_writes) A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), Drive\r\nORDER BY time ASC",
+              "refId": "A"
+            },
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "hide": false,
+              "rawSql": ";WITH DriveIOIOPS AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        LEFT(UPPER(PhysicalName), 1) AS Drive,\r\n        SUM(num_of_reads) AS num_of_reads,\r\n\t\tSUM(num_of_writes) AS num_of_writes\r\n    FROM [Archive].[FileStatistics]\r\n    CROSS APPLY (SELECT DATEADD(MONTH,1,DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01')) AS DataAdd) T\r\n    WHERE 1=1\r\n    AND $__timeFilter(T.DataAdd)\r\n    AND LEFT(UPPER(PhysicalName), 1) = 'G'\r\n    GROUP BY CheckDateTime, LEFT(UPPER(PhysicalName), 1)\r\n)\r\nSELECT $__time(T.DataAdd),\r\n\t   Drive,\r\n\t   $Aggregate(ReadIOPS) AS ReadIOPS_PreviousMonth,\r\n\t   $Aggregate(WriteIOPS) AS WriteIOPS_PreviousMonth\r\nFROM (\r\nSELECT  a.CheckDateTime,\r\n\t      a.Drive,\r\n        (a.num_of_reads - aPrior.num_of_reads)*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS ReadIOPS,\r\n        (a.num_of_writes - aPrior.num_of_writes)*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS WriteIOPS\r\nFROM DriveIOIOPS a\r\nINNER JOIN DriveIOIOPS aPrior\r\nON a.Drive = aPrior.Drive\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_reads >= aPrior.num_of_reads\r\nAND a.num_of_writes >= aPrior.num_of_writes) A\r\nCROSS APPLY (SELECT DATEADD(MONTH,1,DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01')) AS DataAdd) T\r\nGROUP BY T.DataAdd, Drive\r\nORDER BY time ASC",
+              "refId": "B"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval R/W IOPS",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "I/O IOPS",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 35
+      },
+      "id": 1020,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "decmbytes"
+            },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "ReadThroughputMBPS G"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 7
+          },
+          "id": 534,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Database IO",
+              "url": "/d/SQLServerDatabaseIO"
+            }
+          ],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH DriveIOThroughput AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        LEFT(UPPER(PhysicalName), 1) AS Drive,\r\n        SUM(num_of_bytes_read) AS num_of_bytes_read,\r\n\t\tSUM(num_of_bytes_written) AS num_of_bytes_written\r\n    FROM [Archive].[FileStatistics]\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n    AND LEFT(UPPER(PhysicalName), 1) = 'G'\r\n    GROUP BY CheckDateTime, LEFT(UPPER(PhysicalName), 1)\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   Drive,\r\n\t   $Aggregate(ReadThroughputMBPS) AS ReadThroughputMBPS,\r\n\t   $Aggregate(WriteThroughputMBPS) AS WriteThroughputMBPS\r\nFROM (\r\nSELECT  a.CheckDateTime,\r\n\t      a.Drive,\r\n        (a.num_of_bytes_read - aPrior.num_of_bytes_read)/1024/1024*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS ReadThroughputMBPS,\r\n        (a.num_of_bytes_written - aPrior.num_of_bytes_written)/1024/1024*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS WriteThroughputMBPS\r\nFROM DriveIOThroughput a\r\nINNER JOIN DriveIOThroughput aPrior\r\nON a.Drive = aPrior.Drive\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_bytes_read >= aPrior.num_of_bytes_read\r\nAND a.num_of_bytes_written >= aPrior.num_of_bytes_written) A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), Drive\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval R/W Throughput",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "decmbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 14
+          },
+          "id": 1864,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Database IO",
+              "url": "/d/SQLServerDatabaseIO"
+            }
+          ],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH DriveIOThroughput AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        LEFT(UPPER(PhysicalName), 1) AS Drive,\r\n        SUM(num_of_bytes_read) AS num_of_bytes_read,\r\n\t\tSUM(num_of_bytes_written) AS num_of_bytes_written\r\n    FROM [Archive].[FileStatistics]\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n    AND LEFT(UPPER(PhysicalName), 1) = 'G'\r\n    GROUP BY CheckDateTime, LEFT(UPPER(PhysicalName), 1)\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   Drive,\r\n\t   $Aggregate(ReadThroughputMBPS) AS ReadThroughputMBPS,\r\n\t   $Aggregate(WriteThroughputMBPS) AS WriteThroughputMBPS\r\nFROM (\r\nSELECT  a.CheckDateTime,\r\n\t      a.Drive,\r\n        (a.num_of_bytes_read - aPrior.num_of_bytes_read)/1024/1024*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS ReadThroughputMBPS,\r\n        (a.num_of_bytes_written - aPrior.num_of_bytes_written)/1024/1024*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS WriteThroughputMBPS\r\nFROM DriveIOThroughput a\r\nINNER JOIN DriveIOThroughput aPrior\r\nON a.Drive = aPrior.Drive\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_bytes_read >= aPrior.num_of_bytes_read\r\nAND a.num_of_bytes_written >= aPrior.num_of_bytes_written) A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), Drive\r\nORDER BY time ASC",
+              "refId": "A"
+            },
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "hide": false,
+              "rawSql": ";WITH DriveIOThroughput AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\t    CheckDateTime,\r\n        LEFT(UPPER(PhysicalName), 1) AS Drive,\r\n        SUM(num_of_bytes_read) AS num_of_bytes_read,\r\n\t\tSUM(num_of_bytes_written) AS num_of_bytes_written\r\n    FROM [Archive].[FileStatistics]\r\n    CROSS APPLY (SELECT DATEADD(MONTH,1,DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01')) AS DataAdd) T\r\n    WHERE 1=1\r\n    AND $__timeFilter(T.DataAdd)\r\n    AND LEFT(UPPER(PhysicalName), 1) = 'G'\r\n    GROUP BY CheckDateTime, LEFT(UPPER(PhysicalName), 1)\r\n)\r\nSELECT $__time(T.DataAdd),\r\n\t   Drive,\r\n\t   $Aggregate(ReadThroughputMBPS) AS ReadThroughputMBPS_PreviousMonth,\r\n\t   $Aggregate(WriteThroughputMBPS) AS WriteThroughputMBPS_PreviousMonth\r\nFROM (\r\nSELECT  a.CheckDateTime,\r\n\t      a.Drive,\r\n        (a.num_of_bytes_read - aPrior.num_of_bytes_read)/1024/1024*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS ReadThroughputMBPS,\r\n        (a.num_of_bytes_written - aPrior.num_of_bytes_written)/1024/1024*1.0/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS WriteThroughputMBPS\r\nFROM DriveIOThroughput a\r\nINNER JOIN DriveIOThroughput aPrior\r\nON a.Drive = aPrior.Drive\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.num_of_bytes_read >= aPrior.num_of_bytes_read\r\nAND a.num_of_bytes_written >= aPrior.num_of_bytes_written) A\r\nCROSS APPLY (SELECT DATEADD(MONTH,1,DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01')) AS DataAdd) T\r\nGROUP BY T.DataAdd, Drive\r\nORDER BY time ASC",
+              "refId": "B"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval R/W Throughput",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "I/O Throughput",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 36
+      },
+      "id": 1092,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 4,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 8
+          },
+          "id": 558,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',StartTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   DatabaseName,\r\n\t   $Aggregate(Value) AS Value\r\nFROM (\r\nSELECT [StartTime],\r\nDatabaseName,\r\nDATEDIFF(SECOND,StartTime,EndTime) Value\r\n  FROM msdb.[dbo].[CommandLog]\r\n  WHERE 1=1\r\nAND CommandType IN ('BACKUP_DATABASE')\r\nAND $__timeFilter(StartTime))A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',StartTime)/$IntervalValue*$IntervalValue,'2000-01-01'), DatabaseName\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource CommandLog (BACKUP_DATABASE)",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Maintenance - Backup",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 37
+      },
+      "id": 1124,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 5,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 9
+          },
+          "id": 571,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',StartTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   DatabaseName,\r\n\t   $Aggregate(Value) AS Value\r\nFROM (\r\nSELECT [StartTime],\r\nDatabaseName,\r\nDATEDIFF(SECOND,StartTime,EndTime) Value\r\n  FROM msdb.[dbo].[CommandLog]\r\n  WHERE 1=1\r\nAND CommandType IN ('DBCC_CHECKDB')\r\n--AND Command LIKE '%DIFF%'\r\nAND $__timeFilter(StartTime)) A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',StartTime)/$IntervalValue*$IntervalValue,'2000-01-01'), DatabaseName\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource CommandLog (DBCC_CHECKDB)",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Maintenance - Integrity Checks",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 38
+      },
+      "id": 1146,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 5,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 10
+          },
+          "id": 569,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',StartTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   DatabaseName,\r\n\t   $Aggregate(Value) AS Value\r\nFROM (\r\nSELECT StartTime,\r\nDatabaseName,\r\nDATEDIFF(SECOND,(StartTime),(EndTime)) Value\r\n  FROM msdb.[dbo].[CommandLog]\r\n  WHERE 1=1\r\nAND CommandType IN ('UPDATE_STATISTICS')\r\n--AND Command LIKE '%DIFF%'\r\nAND $__timeFilter(StartTime))A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',StartTime)/$IntervalValue*$IntervalValue,'2000-01-01'),DatabaseName\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource CommandLog (UPDATE_STATISTICS)",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Maintenance - Update Statistics",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 39
+      },
+      "id": 498,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 5,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 11
+          },
+          "id": 572,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',StartTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   DatabaseName,\r\n\t   $Aggregate(Value) AS Value\r\nFROM (\r\nSELECT StartTime,\r\nDatabaseName,\r\nDATEDIFF(SECOND,StartTime,EndTime) Value\r\n  FROM msdb.[dbo].[CommandLog]\r\n  WHERE 1=1\r\nAND CommandType IN ('ALTER_INDEX')\r\n--AND Command LIKE '%DIFF%'\r\nAND $__timeFilter(StartTime))A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',StartTime)/$IntervalValue*$IntervalValue,'2000-01-01'),DatabaseName\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource CommandLog (ALTER_INDEX)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "RunStatus"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Run Status"
+                  },
+                  {
+                    "id": "unit",
+                    "value": "short"
+                  },
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "mode": "gradient",
+                      "type": "color-background"
+                    }
+                  },
+                  {
+                    "id": "custom.align"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "rgba(245, 54, 54, 0.9)"
+                        },
+                        {
+                          "color": "red",
+                          "value": 0
+                        },
+                        {
+                          "color": "rgba(50, 172, 45, 0.97)",
+                          "value": 1
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "RunStartTime"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Run Start Time"
+                  },
+                  {
+                    "id": "unit",
+                    "value": "short"
+                  },
+                  {
+                    "id": "decimals",
+                    "value": 2
+                  },
+                  {
+                    "id": "unit",
+                    "value": "time: YYYY-MM-DD HH:mm:ss"
+                  },
+                  {
+                    "id": "custom.align"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "RunDuration"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Run Duration"
+                  },
+                  {
+                    "id": "unit",
+                    "value": "s"
+                  },
+                  {
+                    "id": "decimals",
+                    "value": 2
+                  },
+                  {
+                    "id": "custom.align"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 18
+          },
+          "id": 507,
+          "links": [],
+          "options": {
+            "footer": {
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "Run Duration"
+              }
+            ]
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "table",
+              "rawSql": "\t   SELECT sJOB.name AS JobName\r\n\t\t, msdb.dbo.agent_datetime(run_date, run_time) AS RunStartTime\r\n\t\t, ( run_duration / 10000 * 60 * 60 ) + ( run_duration / 100 % 100 * 60 ) + ( run_duration % 100 ) AS RunDuration --seconds\r\n\t\t\t, sJOBH.run_status AS RunStatus\r\n\t\t\t--, CASE WHEN sJOBH.run_status = 0 THEN 'Failed'\r\n\t\t\t--\t   WHEN sJOBH.run_status = 1 THEN 'Succeeded'\r\n\t\t\t--\t   WHEN sJOBH.run_status = 2 THEN 'Retry'\r\n\t\t\t--\t   WHEN sJOBH.run_status = 3 THEN 'Canceled'\r\n\t\t\t--\t   WHEN sJOBH.run_status = 4 THEN 'In Progress'\r\n\t\t\t--END AS RunStatus\r\n\t   FROM msdb.dbo.sysjobs AS sJOB\r\n\t   LEFT JOIN\r\n\t   (\r\n\t\t   SELECT job_id\r\n\t\t\t\t, step_name\r\n\t\t\t\t, run_date\r\n\t\t\t\t, run_time\r\n\t\t\t\t, run_status\r\n\t\t\t\t, run_duration\r\n\t\t\t\t, message\r\n\t\t\t\t, ROW_NUMBER() OVER(PARTITION BY job_id\r\n\t\t\t\t\t\t\t\t\t\t\t   , step_id\r\n\t\t\t\t  ORDER BY run_date DESC\r\n\t\t\t\t\t\t , run_time DESC) AS RowNumber\r\n\t\t   FROM msdb.dbo.sysjobhistory\r\n\t\t   WHERE step_id <> 0\r\n\t   ) AS sJOBH ON sJOB.job_id = sJOBH.job_id AND \r\n\t\t\t\t\t sJOBH.RowNumber = 1\r\n\t\r\n\t   WHERE sJOB.enabled = 1 AND \r\n\t   ( sJOB.name LIKE 'DBA_SystemDatabaseBackup%'\r\n\t   OR sJOB.name LIKE 'DBA_UserDatabaseBackup%'\r\n\t   OR sJOB.name LIKE 'DBA_UpdateStatistics'\r\n\t   OR sJOB.Name LIKE 'DBA_SystemDatabaseIntegrityCheck'\r\n\t   OR sJOB.Name LIKE 'DBA_UserDatabaseIntegrityCheck'\r\n\t   OR sJOB.Name LIKE 'DBA_IndexMaintenance'\r\n\t   )\r\n\t\t\t OPTION(RECOMPILE);",
+              "refId": "A"
+            }
+          ],
+          "title": "Maintenance Jobs",
+          "transformations": [
+            {
+              "id": "merge",
+              "options": {
+                "reducers": []
+              }
+            }
+          ],
+          "type": "table"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Maintenance - Index",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 40
+      },
+      "id": 517,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 5,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "SOS_SCHEDULER_YIELD"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 12,
+            "x": 0,
+            "y": 12
+          },
+          "id": 530,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH WaitStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        WaitType,\r\n\t\tWaitCount,\r\n\t\tWait_Seconds\r\n    FROM [Archive].WaitStatistics\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   WaitType,\r\n\t   $Aggregate(Value) AS Value\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t   a.WaitType,\r\n\t   --(a.WaitCount - aPrior.WaitCount) AS WaitCountDelta,\r\n       (a.[Wait_Seconds] - aPrior.[Wait_Seconds]) AS Value\r\nFROM WaitStatistics a\r\nINNER JOIN WaitStatistics aPrior\r\nON a.WaitType = aPrior.WaitType\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.WaitCount >= aPrior.WaitCount) A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), WaitType\r\nORDER BY time ASC\r\n\r\n\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Waits",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Wait Statistics - Total",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 41
+      },
+      "id": 1348,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "Waits/WaitCount",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 5,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 13
+          },
+          "id": 531,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH WaitStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n    WaitType,\r\n\t\tWaitCount,\r\n\t\tWait_Seconds\r\n    FROM [Archive].WaitStatistics\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   WaitType,\r\n\t   $Aggregate(Value) AS Value\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t   a.WaitType,\r\n    (a.[Wait_Seconds] - aPrior.[Wait_Seconds]) / NULLIF((a.[WaitCount] - aPrior.[WaitCount]),0) AS Value\r\nFROM WaitStatistics a\r\nINNER JOIN WaitStatistics aPrior\r\nON a.WaitType = aPrior.WaitType\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.WaitCount >= aPrior.WaitCount) A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), WaitType\r\nORDER BY time ASC\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Avg Waits",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Wait Statistics - AVG",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "id": 1470,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 5,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 14
+          },
+          "id": 551,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH WaitStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n    WaitType,\r\n\t\tWaitCount,\r\n\t\tWait_Seconds,\r\n\t\tSignal_Seconds\r\n    FROM [Archive].WaitStatistics\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   $Aggregate([%signal (cpu) waits]) AS [%signal (cpu) waits],\r\n\t   $Aggregate([%resource waits]) AS [%resource waits]\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t   CAST(100.0 * SUM(a.Signal_Seconds-aPrior.Signal_Seconds) / NULLIF(SUM(a.Wait_Seconds-aPrior.Wait_Seconds),0) AS NUMERIC(20, 2)) AS [%signal (cpu) waits],\r\n     CAST(100.0 * SUM((a.Wait_Seconds-aPrior.Wait_Seconds) - (a.Signal_Seconds-aPrior.Signal_Seconds)) / NULLIF(SUM(a.Wait_Seconds-aPrior.Wait_Seconds),0) AS NUMERIC(20, 2)) AS [%resource waits]\r\nFROM WaitStatistics a\r\nINNER JOIN WaitStatistics aPrior\r\nON a.WaitType = aPrior.WaitType\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.WaitCount >= aPrior.WaitCount\r\nGROUP BY a.CheckDateTime) A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01')\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Signal Waits",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Wait Statistics - Signals",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 43
+      },
+      "id": 1502,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 15
+          },
+          "id": 532,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH WaitStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n    WaitType,\r\n\t\tWaitCount,\r\n\t\tWait_Seconds,\r\n\t\tSignal_Seconds\r\n    FROM [Archive].WaitStatistics\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   WaitType,\r\n\t   $Aggregate([%signal (cpu) waits]) AS [%signal (cpu) waits],\r\n\t   $Aggregate([%resource waits]) AS [%resource waits]\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t   a.WaitType,\r\n\t   CAST(100.0 * SUM(a.Signal_Seconds-aPrior.Signal_Seconds) / NULLIF(SUM(a.Wait_Seconds-aPrior.Wait_Seconds),0) AS NUMERIC(20, 2)) AS [%signal (cpu) waits],\r\n     CAST(100.0 * SUM((a.Wait_Seconds-aPrior.Wait_Seconds) - (a.Signal_Seconds-aPrior.Signal_Seconds)) / NULLIF(SUM(a.Wait_Seconds-aPrior.Wait_Seconds),0) AS NUMERIC(20, 2)) AS [%resource waits]\r\nFROM WaitStatistics a\r\nINNER JOIN WaitStatistics aPrior\r\nON a.WaitType = aPrior.WaitType\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.WaitCount >= aPrior.WaitCount\r\nGROUP BY a.CheckDateTime,a.WaitType) A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), WaitType\r\nORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Signal Waits",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Wait Statistics - Signals by Resource",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 44
+      },
+      "id": 538,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "CounterValue Batch Requests/sec                                                                                                              "
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 16
+          },
+          "id": 566,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH SQLStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        CounterName,\r\n\t\tCounterValue\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Batch Requests/sec',\r\n                         'SQL Compilations/sec',\r\n                         'SQL Re-Compilations/sec')\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   CounterName,\r\n\t   $Aggregate(CounterValue) AS CounterValue\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t     a.CounterName,\r\n       (a.[CounterValue] - aPrior.[CounterValue])\r\n\t   /\r\n\t   CASE WHEN DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) = 0 THEN 1 ELSE DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) END AS CounterValue\r\nFROM SQLStatistics a\r\nINNER JOIN SQLStatistics aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue]) A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), CounterName\r\nORDER BY time ASC\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval SQL Statistics",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 12,
+            "x": 0,
+            "y": 23
+          },
+          "id": 1862,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${DS_10.206.194.16\\PEA1}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH SQLStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        CounterName,\r\n\t\tCounterValue\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Batch Requests/sec')\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   CounterName,\r\n\t   $Aggregate(CounterValue) AS CounterValue\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t     a.CounterName,\r\n       (a.[CounterValue] - aPrior.[CounterValue])\r\n\t   /\r\n\t   CASE WHEN DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) = 0 THEN 1 ELSE DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) END AS CounterValue\r\nFROM SQLStatistics a\r\nINNER JOIN SQLStatistics aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue]) A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), CounterName\r\nORDER BY time ASC\r\n",
+              "refId": "A"
+            },
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "hide": false,
+              "rawSql": ";WITH SQLStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        CounterName,\r\n\t\tCounterValue\r\n    FROM [Archive].PerformanceCounter\r\n\tCROSS APPLY (SELECT DATEADD(MONTH,1,DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01')) AS DataAdd) T\r\n    WHERE 1=1\r\n    AND $__timeFilter(T.DataAdd)\r\n\tAND CounterName IN ('Batch Requests/sec')\r\n)\r\nSELECT $__time(T.DataAdd),\r\n\t   CounterName+'_PreviousMonth',\r\n\t   $Aggregate(CounterValue) AS CounterValue\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t     a.CounterName,\r\n       (a.[CounterValue] - aPrior.[CounterValue])\r\n\t   /\r\n\t   CASE WHEN DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) = 0 THEN 1 ELSE DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) END AS CounterValue\r\nFROM SQLStatistics a\r\nINNER JOIN SQLStatistics aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue]) A\r\nCROSS APPLY (SELECT DATEADD(MONTH,1,DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01')) AS DataAdd) T\r\nWHERE $__timeFilter(T.DataAdd)\r\nGROUP BY T.DataAdd, CounterName\r\nORDER BY time ASC",
+              "refId": "B"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval SQL Statistics Compare",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "SQL Activity - SQL Statistics",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 45
+      },
+      "id": 1584,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 24
+          },
+          "id": 574,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH SQLStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        CounterName,\r\n\t\tCounterValue\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Page Splits/sec')\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   CounterName,\r\n\t   $Aggregate(CounterValue) AS CounterValue\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t     a.CounterName,\r\n       (a.[CounterValue] - aPrior.[CounterValue])/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS CounterValue\r\nFROM SQLStatistics a\r\nINNER JOIN SQLStatistics aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue]) A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), CounterName\r\nORDER BY time ASC\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Page Splits/sec",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "SQL Activity - Page Splits",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 46
+      },
+      "id": 1616,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 18
+          },
+          "id": 575,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH SQLStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n\t\tCheckDateTime,\r\n        CounterName,\r\n\t\tCounterValue\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Forwarded Records/sec')\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   CounterName,\r\n\t   $Aggregate(CounterValue) AS CounterValue\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t     a.CounterName,\r\n       (a.[CounterValue] - aPrior.[CounterValue])/DATEDIFF(ss, aPrior.CheckDateTime, a.CheckDateTime) AS CounterValue\r\nFROM SQLStatistics a\r\nINNER JOIN SQLStatistics aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue])A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), CounterName\r\nORDER BY time ASC\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Forwarded Records/sec",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "SQL Activity - Forwarded Records",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 47
+      },
+      "id": 542,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 5,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 19
+          },
+          "id": 540,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\n\t   DriveLetter,\n\t   $Aggregate([Free%]) AS [Free%]\nFROM (\nSELECT CheckDateTime, \n       DriveLetter,\n       (TotalSizeMB - (TotalSizeMB - FreeSizeMB))*1.0/TotalSizeMB * 100.0 AS [Free%]\nFROM Archive.DriveSize\nWHERE 1=1\nAND $__timeFilter(CheckDateTime)\nAND (TotalSizeMB - (TotalSizeMB - FreeSizeMB))*1.0/TotalSizeMB * 100.0 < 20) A\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), DriveLetter\nORDER BY time ASC\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource Free Space Less Than 20%",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Capacity - Free %",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 48
+      },
+      "id": 1668,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "decmbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 20
+          },
+          "id": 543,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\n\t   DriveLetter,\n\t   $Aggregate(UsedSizeMB) AS UsedSize\nFROM (\nSELECT CheckDateTime, \n       DriveLetter,\n       TotalSizeMB - FreeSizeMB AS UsedSizeMB\nFROM Archive.DriveSize\nWHERE 1=1\nAND $__timeFilter(CheckDateTime))A\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), DriveLetter\nORDER BY time ASC\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Used Space",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Capacity - Used",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 49
+      },
+      "id": 1850,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 5,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "deckbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 21
+          },
+          "id": 1861,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval, DATEDIFF($Interval, 0, CheckDateTime),0) AS time, \r\n  CASE WHEN LEFT(DatabaseName,3) = 'KPD' THEN 'KPDB%'\r\n       WHEN LEFT(DatabaseName,3) = 'SCG' THEN 'SCG%'\r\n       WHEN LEFT(DatabaseName,3) = 'Par' THEN 'Partner%'\r\n  ELSE MAX(DatabaseName)\r\n  END AS DatabaseType, \r\n  SUM([UsedSizePage]* 8) AS Value\r\nFROM [Archive].[DatabaseSize]\r\n  WHERE $__timeFilter(CheckDateTime)\r\n  AND DatabaseName NOT IN ('AdminSQL','DBManagement','master','msdb','model','tempdb')\r\n  GROUP BY DATEADD($Interval, DATEDIFF($Interval, 0, CheckDateTime),0), LEFT(DatabaseName,3)\r\n  ORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource Database Size",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Capacity - By Database",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 50
+      },
+      "id": 1720,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "s"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 22
+          },
+          "id": 548,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',EventTimeStamp)/$IntervalValue*$IntervalValue,'2000-01-01') AS time, \n       SUM(DurationMS/1000) AS Duration,\n       SUM(TotalBlockCount) AS TotalBlockCount\nFROM Archive.BlockedProcessReport\nWHERE 1=1\nAND $__timeFilter(CheckDateTime)\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',EventTimeStamp)/$IntervalValue*$IntervalValue,'2000-01-01')\nORDER BY time ASC\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $IntervalValue $Interval Processes Blocked (Extended Events)",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Blocking - Extended Events",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 51
+      },
+      "id": 545,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 30
+          },
+          "id": 560,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   CounterName,\r\n\t   $Aggregate([Value]) AS [Value]\r\nFROM (\r\nSELECT  CheckDateTime,\r\n        CounterName,\r\n\t\tCounterValue AS Value\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\tAND CounterName IN ('Processes blocked'))A\r\n\tGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), CounterName\r\n\tORDER BY time ASC",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Processes blocked (performance counter)",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Blocking - Performance Counter",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 52
+      },
+      "id": 1742,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "ms"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "BlockingProcess"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 424
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "BlockedProcess"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 418
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "EventTimeStamp"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 214
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 24
+          },
+          "id": 555,
+          "links": [],
+          "options": {
+            "footer": {
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "8.5.22",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "table",
+              "rawSql": "SELECT EventTimeStamp,\n       TotalBlockCount,\n       BlockedProcess,\n       BlockingProcess,\n       BlockedClientApp,\n       BlockedHostName,\n       BlockedLoginName,\n       BlockedIsolationLevel,\n       BlockingClientApp,\n       BlockingHostName,\n       BlockingLoginName,\n       BlockingIsolationLevel\nFROM Archive.BlockedProcessReport\nWHERE 1=1\nAND $__timeFilter(CheckDateTime)\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource Processes Blocked Details",
+          "type": "table"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Blocking - Details",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 53
+      },
+      "id": 547,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "line"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 25
+          },
+          "id": 568,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": ";WITH SQLStatistics AS\r\n(\r\n    SELECT DENSE_RANK() OVER (\r\n            ORDER BY CheckDateTime ASC\r\n            ) AS ID,\r\n    CheckDateTime,\r\n    CounterName AS CounterName,\r\n\t\tCounterValue AS CounterValue\r\n    FROM [Archive].PerformanceCounter\r\n    WHERE 1=1\r\n    AND $__timeFilter(CheckDateTime)\r\n\t  AND CounterName IN ('Number of Deadlocks/sec',\r\n\t\t\t\t\t\t\t'Lock Timeouts (timeout > 0)/sec')\r\n)\r\nSELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01') AS time,\r\n\t   CounterName,\r\n\t   $Aggregate([Value]) AS [Value]\r\nFROM (\r\nSELECT a.CheckDateTime,\r\n\t     a.CounterName,\r\n       (a.[CounterValue] - aPrior.[CounterValue]) AS Value\r\nFROM SQLStatistics a\r\nINNER JOIN SQLStatistics aPrior\r\nON a.CounterName = aPrior.CounterName\r\nAND a.ID - 1 = aPrior.ID\r\nWHERE a.[CounterValue] >= aPrior.[CounterValue])A\r\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',CheckDateTime)/$IntervalValue*$IntervalValue,'2000-01-01'), CounterName\r\nORDER BY time ASC\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Locks Performance Counter",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Deadlock - Performance Counter",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 54
+      },
+      "id": 1764,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "ms"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 26
+          },
+          "id": 549,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean"
+              ],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',EventTimeStamp)/$IntervalValue*$IntervalValue,'2000-01-01') AS time, \n       COUNT(*) AS DeadlockCount\nFROM Archive.XMLDeadlockReport\nWHERE 1=1\nAND $__timeFilter(EventTimeStamp)\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',EventTimeStamp)/$IntervalValue*$IntervalValue,'2000-01-01')\nORDER BY time ASC\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Deadlocks (Extended Events)",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Deadlock - Extended Events",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 55
+      },
+      "id": 1766,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "ms"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 27
+          },
+          "id": 550,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "last"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',EventTimeStamp)/$IntervalValue*$IntervalValue,'2000-01-01') AS time, \n       LockedObject,\n       COUNT(*) AS DeadlockCount\nFROM Archive.XMLDeadlockReportShredded\nWHERE 1=1\nAND $__timeFilter(EventTimeStamp)\nAND LockedObject IS NOT NULL\nAND Victim = 1\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',EventTimeStamp)/$IntervalValue*$IntervalValue,'2000-01-01'),LockedObject\nORDER BY time ASC\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Deadlocks by Object",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Deadlock - By Object",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 56
+      },
+      "id": 1848,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "ms"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 28
+          },
+          "id": 552,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Mean",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.4",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "time_series",
+              "rawSql": "SELECT DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',EventTimeStamp)/$IntervalValue*$IntervalValue,'2000-01-01') AS time, \n       CAST(ErrorNumber AS VARCHAR(5)) AS Error,\n       CAST(Severity AS VARCHAR(2)) AS Severity,\n       CAST(ErrorMessage AS VARCHAR(50)) AS ErrorMessage,\n       COUNT(*) AS Value\nFROM Archive.ErrorReported E\nWHERE 1=1\nAND $__timeFilter(EventTimeStamp)\nGROUP BY DATEADD($Interval,DATEDIFF($Interval,'2000-01-01',EventTimeStamp)/$IntervalValue*$IntervalValue,'2000-01-01'), CAST(ErrorNumber AS VARCHAR(5)), CAST(Severity AS VARCHAR(2)),CAST(ErrorMessage AS VARCHAR(50))\nORDER BY time ASC\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource $Aggregate for $IntervalValue $Interval Error Reported",
+          "type": "timeseries"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Errors",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 57
+      },
+      "id": 554,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_10.206.194.16\\PEA1}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "ms"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "EventTimeStamp"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 187
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "ErrorNumber"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 144
+                  },
+                  {
+                    "id": "unit",
+                    "value": "string"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Severity"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 136
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "SQLText"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 256
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 6,
+            "x": 0,
+            "y": 42
+          },
+          "id": 559,
+          "links": [],
+          "options": {
+            "footer": {
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "EventTimeStamp"
+              }
+            ]
+          },
+          "pluginVersion": "8.5.22",
+          "repeat": "Datasource",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${Datasource}"
+              },
+              "format": "table",
+              "rawSql": "SELECT EventTimeStamp, \n       ErrorNumber,\n       Severity,\n       ErrorMessage,\n       [SQLText],\n       [ClientAppName], \n       [ClientHostName], \n       [DatabaseName], \n       [ServerPrincipalName]\nFROM Archive.ErrorReported E\nWHERE 1=1\nAND $__timeFilter(EventTimeStamp)\n\n",
+              "refId": "A"
+            }
+          ],
+          "title": "$Datasource Error Reported Details",
+          "type": "table"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Errors - Details",
+      "type": "row"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 39,
+  "tags": [
+    "DBA"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "Datasource",
+        "options": [],
+        "query": "mssql",
+        "queryValue": "po1f",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "MAX",
+          "value": "MAX"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "Aggregate",
+        "options": [
+          {
+            "selected": false,
+            "text": "MIN",
+            "value": "MIN"
+          },
+          {
+            "selected": true,
+            "text": "MAX",
+            "value": "MAX"
+          },
+          {
+            "selected": false,
+            "text": "AVG",
+            "value": "AVG"
+          }
+        ],
+        "query": "MIN,MAX,AVG",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "HOUR",
+          "value": "HOUR"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "Interval",
+        "options": [
+          {
+            "selected": false,
+            "text": "MINUTE",
+            "value": "MINUTE"
+          },
+          {
+            "selected": true,
+            "text": "HOUR",
+            "value": "HOUR"
+          },
+          {
+            "selected": false,
+            "text": "DAY",
+            "value": "DAY"
+          }
+        ],
+        "query": "MINUTE,HOUR,DAY",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "1",
+          "value": "1"
+        },
+        "hide": 0,
+        "name": "IntervalValue",
+        "options": [
+          {
+            "selected": true,
+            "text": "1",
+            "value": "1"
+          }
+        ],
+        "query": "1",
+        "skipUrlSync": false,
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "SQLServerOverviewV3",
+  "uid": "SQLServerOverviewV3",
+  "version": 5,
+  "weekStart": ""
+}

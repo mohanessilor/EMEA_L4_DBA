@@ -1,0 +1,1088 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_AEUWE1ER0247\\IO15",
+      "label": "AEUWE1ER0247\\IO15",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    },
+    {
+      "name": "DS_CENTRAL",
+      "label": "Central",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "canvas",
+      "name": "Canvas",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.2.2"
+    },
+    {
+      "type": "datasource",
+      "id": "mssql",
+      "name": "Microsoft SQL Server",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "limit": 100,
+        "name": "Annotations & Alerts",
+        "showIn": 0,
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": 1902,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "DBA"
+      ],
+      "targetBlank": true,
+      "title": "Other Dashboards",
+      "type": "dashboards"
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 489,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Show Dashboard",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "mssql",
+        "uid": "${Datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "null": {
+                  "color": "orange",
+                  "index": 0,
+                  "text": "."
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              },
+              {
+                "color": "dark-red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Col"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "#37872D",
+                      "value": 75
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 76
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 466,
+      "maxPerRow": 2,
+      "options": {
+        "infinitePan": false,
+        "inlineEditing": false,
+        "panZoom": false,
+        "root": {
+          "background": {
+            "color": {
+              "fixed": "transparent"
+            },
+            "image": {
+              "fixed": "",
+              "mode": "fixed"
+            },
+            "size": "cover"
+          },
+          "border": {
+            "color": {
+              "fixed": "dark-green"
+            }
+          },
+          "constraint": {
+            "horizontal": "left",
+            "vertical": "top"
+          },
+          "elements": [
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "right",
+                "color": {
+                  "fixed": "dark-blue"
+                },
+                "size": 10,
+                "text": {
+                  "field": "Col",
+                  "fixed": "Memory",
+                  "mode": "fixed"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Memory",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32.6944465637207,
+                "left": 126,
+                "top": 40,
+                "width": 55.58333206176758
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "field": "Col",
+                  "fixed": "super-light-blue"
+                },
+                "size": 20,
+                "text": {
+                  "field": "Col",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "cpuusage",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32.6944465637207,
+                "left": 74,
+                "top": 40,
+                "width": 45.77777862548828
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "right",
+                "color": {
+                  "fixed": "semi-dark-blue"
+                },
+                "size": 10,
+                "text": {
+                  "field": "Col",
+                  "fixed": "CPU",
+                  "mode": "fixed"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "cpu",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32.6944465637207,
+                "left": 6,
+                "top": 40,
+                "width": 62.125
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "field": "Percentage_Used",
+                  "fixed": "super-light-blue"
+                },
+                "size": 20,
+                "text": {
+                  "field": "Percentage_Used",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "MemUsage",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32.6944465637207,
+                "left": 191,
+                "top": 40,
+                "width": 67.56944274902344
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "super-light-blue"
+                },
+                "size": 18,
+                "text": {
+                  "field": "cntr_value",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 7",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32.6944465637207,
+                "left": 332,
+                "top": 40,
+                "width": 92.6388931274414
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "right",
+                "color": {
+                  "fixed": "dark-blue"
+                },
+                "size": 10,
+                "text": {
+                  "field": "Col",
+                  "fixed": "PLE",
+                  "mode": "fixed"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 8",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32.6944465637207,
+                "left": 268,
+                "top": 40,
+                "width": 43.59722137451172
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "super-light-blue"
+                },
+                "size": 12,
+                "text": {
+                  "field": "ServerName",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [
+                {
+                  "color": {
+                    "fixed": "blue"
+                  },
+                  "direction": "none",
+                  "lineStyle": {
+                    "animate": true,
+                    "style": "dotted"
+                  },
+                  "path": "straight",
+                  "size": {
+                    "fixed": 2,
+                    "max": 10,
+                    "min": 1
+                  },
+                  "source": {
+                    "x": 1,
+                    "y": 0
+                  },
+                  "sourceOriginal": {
+                    "x": 118,
+                    "y": 23
+                  },
+                  "target": {
+                    "x": -0.879084867589614,
+                    "y": -0.007407633463541666
+                  },
+                  "targetName": "Element 11",
+                  "targetOriginal": {
+                    "x": 178.11111068725586,
+                    "y": 23.111114501953125
+                  }
+                }
+              ],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 10",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 30,
+                "left": 20,
+                "top": 10,
+                "width": 116
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "super-light-blue"
+                },
+                "size": 12,
+                "text": {
+                  "field": "InstanceName",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 11",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 30,
+                "left": 192,
+                "top": 10,
+                "width": 68
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "field": "Percentage_Used",
+                  "fixed": "super-light-blue"
+                },
+                "size": 20,
+                "text": {
+                  "field": "NoOfDeadlocks",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 9",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32.6944465637207,
+                "left": 476,
+                "top": 40,
+                "width": 52.98611068725586
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "field": "Percentage_Used",
+                  "fixed": "super-light-blue"
+                },
+                "size": 20,
+                "text": {
+                  "field": "NoOfBlockings",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 12",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32.6944465637207,
+                "left": 610,
+                "top": 40,
+                "width": 58
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "right",
+                "color": {
+                  "fixed": "dark-blue"
+                },
+                "size": 10,
+                "text": {
+                  "field": "Col",
+                  "fixed": "Deadlocks",
+                  "mode": "fixed"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 13",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32.6944465637207,
+                "left": 406,
+                "top": 40,
+                "width": 55.58333206176758
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "right",
+                "color": {
+                  "fixed": "dark-blue"
+                },
+                "size": 10,
+                "text": {
+                  "field": "Col",
+                  "fixed": "Blockings",
+                  "mode": "fixed"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 14",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 32.6944465637207,
+                "left": 548,
+                "top": 40,
+                "width": 55.58333206176758
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                },
+                "image": {
+                  "mode": "fixed"
+                }
+              },
+              "border": {
+                "color": {
+                  "field": "Percentage_Used",
+                  "fixed": "dark-green"
+                },
+                "radius": 59,
+                "width": 1
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "transparent"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 15",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 71,
+                "left": 6,
+                "rotation": 0,
+                "top": 10,
+                "width": 693
+              },
+              "type": "rectangle"
+            }
+          ],
+          "name": "Element 1775723838555",
+          "oneClickMode": "off",
+          "placement": {
+            "height": 100,
+            "left": 0,
+            "rotation": 0,
+            "top": 0,
+            "width": 100
+          },
+          "type": "frame"
+        },
+        "showAdvancedTypes": false
+      },
+      "pluginVersion": "11.2.2",
+      "repeat": "Datasource",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_AEUWE1ER0247\\IO15}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "queryType": "randomWalk",
+          "rawQuery": true,
+          "rawSql": "set nocount on\r\nCREATE TABLE #sp_who2 (SPID INT,Status VARCHAR(255),\r\n      Login  VARCHAR(255),HostName  VARCHAR(255),\r\n      BlkBy  VARCHAR(255),DBName  VARCHAR(255),\r\n      Command VARCHAR(255),CPUTime INT,\r\n      DiskIO INT,LastBatch VARCHAR(255),\r\n      ProgramName VARCHAR(255),SPID2 INT,\r\n      REQUESTID INT)\r\nINSERT INTO #sp_who2 EXEC sp_who2\r\n\r\nSELECT\r\nCPU  Col\r\nFROM \r\n(Select Avg([SQLProcessUtilization]) CPU ,count(record_id) Prc From\r\n(SELECT  record.value('(./Record/@id)[1]',  'int')  AS  record_id,  \r\n   record.value('(./Record/SchedulerMonitorEvent/SystemHealth/ProcessUtilization)[1]',  'int')  \r\n   AS  [SQLProcessUtilization]\r\n     FROM  (  \r\n   SELECT  [timestamp],  CONVERT(xml,  record)  AS  [record]  \r\n   FROM  sys.dm_os_ring_buffers  WITH  (NOLOCK)\r\n   WHERE  ring_buffer_type  =  N'RING_BUFFER_SCHEDULER_MONITOR'  \r\n   AND  record  LIKE  N'%<SystemHealth>%')  AS  x  ) c) n ,\r\n(SELECT count(*) Cnt FROM  #sp_who2) m\r\n \r\nDROP TABLE #sp_who2",
+          "refId": "cpu",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "eTrackingUser",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "\tselect cast(100 *\r\n(SELECT 100* CAST(physical_memory_in_use_kb/1024 AS DECIMAL(18,2))\r\nFROM sys.dm_os_process_memory)\r\n/\r\n(SELECT 100 * CAST(total_physical_memory_kb/1024 AS DECIMAL(18,2))\r\nFROM sys.dm_os_sys_memory)\r\nas decimal(18,2)) As 'Percentage_Used'",
+          "refId": "memory",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "eTrackingUser",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_AEUWE1ER0247\\IO15}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n SERVERPROPERTY('MachineName') AS ServerName,\r\n SERVERPROPERTY('InstanceName') AS InstanceName,\r\n SERVERPROPERTY('Edition') AS Edition,\r\n SERVERPROPERTY('ProductVersion') AS ProductVersion,\r\n SERVERPROPERTY('ProductLevel') AS ProductLevel,\r\n (SELECT 100 * CAST(total_physical_memory_kb/1024 AS DECIMAL(18))\r\nFROM sys.dm_os_sys_memory) OSMemory,\r\n   (SELECT [value] FROM sys.configurations WHERE name like '%min server memory%') AS min_server_memory,\r\n   (SELECT [value] FROM sys.configurations WHERE name like '%max server memory%') AS max_server_memory",
+          "refId": "prty",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "eTrackingUser",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${Datasource}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT \r\n[counter_name],\r\n[cntr_value] FROM sys.dm_os_performance_counters\r\nWHERE [object_name] LIKE '%Manager%'\r\nAND [counter_name] = 'Page life expectancy'",
+          "refId": "ple",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "eTrackingUser",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_AEUWE1ER0247\\IO15}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT \r\n    (SELECT COUNT(*) \r\n     FROM [Archive].[XMLDeadlockReport]\r\n     WHERE EventTimeStamp >= DATEADD(HOUR, -24, GETDATE())\r\n    ) AS NoOfDeadlocks,\r\n    (SELECT COUNT(*) \r\n     FROM [Archive].[BlockedProcessReport]\r\n     WHERE EventTimeStamp >= DATEADD(HOUR, -24, GETDATE())\r\n    ) AS NoOfBlockings;",
+          "refId": "BD",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "osmem1",
+            "binary": {
+              "left": "OSMemory",
+              "operator": "/",
+              "right": "100"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "canvas"
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "definition": "SELECT ApplicationGroupName FROM Inventory.ServerList  ",
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "ApplicationGroupName",
+        "options": [],
+        "query": "SELECT ApplicationGroupName FROM Inventory.ServerList  ",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "definition": "SELECT SiteLocation FROM Inventory.ServerList WHERE ApplicationGroupName IN ($ApplicationGroupName) AND SiteLocation IS NOT NULL ORDER BY SiteLocation ASC",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Site",
+        "options": [],
+        "query": "SELECT SiteLocation FROM Inventory.ServerList WHERE ApplicationGroupName IN ($ApplicationGroupName) AND SiteLocation IS NOT NULL ORDER BY SiteLocation ASC",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "definition": "SELECT Environment \nFROM Inventory.ServerList \nWHERE SiteLocation IN ($Site)\nAND ApplicationGroupName IN ($ApplicationGroupName) ORDER BY Environment ASC",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Environment",
+        "options": [],
+        "query": "SELECT Environment \nFROM Inventory.ServerList \nWHERE SiteLocation IN ($Site)\nAND ApplicationGroupName IN ($ApplicationGroupName) ORDER BY Environment ASC",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CENTRAL}"
+        },
+        "definition": "SELECT ServerName \nFROM Inventory.ServerList \nWHERE\nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END\n\tAND\n\tApplicationGroupName IN ($ApplicationGroupName) \nAND SiteLocation IN ($Site)\nAND Environment IN ($Environment) and SQLMajor>10 ORDER BY ServerName ASC",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Datasource",
+        "options": [],
+        "query": "SELECT ServerName \nFROM Inventory.ServerList \nWHERE\nSupportGroup  LIKE \n  CASE\n    WHEN $__user = 18 THEN 'DXC%'\n    ELSE 'D%' END\n\tAND\n\tApplicationGroupName IN ($ApplicationGroupName) \nAND SiteLocation IN ($Site)\nAND Environment IN ($Environment) and SQLMajor>10 ORDER BY ServerName ASC",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "2026-02-23T22:42:35.468Z",
+    "to": "2026-02-24T10:42:35.468Z"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "CPU Memory & PLE",
+  "uid": "dffhca79e7g8we",
+  "version": 54,
+  "weekStart": ""
+}

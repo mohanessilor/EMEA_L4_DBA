@@ -1,0 +1,434 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_CASD",
+      "label": "CASD",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mssql",
+      "pluginName": "Microsoft SQL Server"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.2.2"
+    },
+    {
+      "type": "datasource",
+      "id": "mssql",
+      "name": "Microsoft SQL Server",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [
+        "ticket"
+      ],
+      "targetBlank": true,
+      "title": "New link",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${DS_CASD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "OpenDate"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 160
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ChangeOrderNumber"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 163
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 48,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_CASD}"
+          },
+          "format": "table",
+          "rawSql": "SELECT chg_ref_num AS ChangeOrderNumber, summary AS Summary, open_date AS OpenDate, close_date AS CloseDate, status AS Status, priority AS Priority, assignee AS Assignee\r\n\tFROM [ESSTH].[dbo].[ChangeOrders]\r\n\tWHERE 1 = 1\r\n\t  AND $__timeFilter(open_date)\r\n\t\tAND [group] IN ($Group)\r\n\t\tAND status = 'Closed'\r\n\t\tAND open_date IS NOT NULL",
+          "refId": "A"
+        }
+      ],
+      "title": "Change Order Closed",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${DS_CASD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 50,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_CASD}"
+          },
+          "format": "table",
+          "rawSql": "SELECT chg_ref_num AS ChangeOrderNumber, summary AS Summary, open_date AS OpenDate, status AS Status, priority AS Priority, assignee AS Assignee\r\n\tFROM [ESSTH].[dbo].[ChangeOrders]\r\n\tWHERE 1 = 1\r\n\t\tAND [group] IN ($Group)\r\n\t\tAND status NOT IN ('Closed','Cancelled')\r\n\t\tAND open_date IS NOT NULL",
+          "refId": "A"
+        }
+      ],
+      "title": "Change Order In Progress",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${DS_CASD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "left",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 24,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "id": 49,
+      "options": {
+        "legend": {
+          "calcs": [
+            "last",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_CASD}"
+          },
+          "format": "time_series",
+          "rawSql": "SELECT COALESCE(DATEADD(MONTH, DATEDIFF(MONTH, 0, OpenDate), 0), (DATEADD(MONTH, DATEDIFF(MONTH, 0, CloseDate), 0))) AS time\r\n\t,OpenCount\r\n\t,CloseCount\r\n\t,SUM(OpenCount) OVER (\r\n\t\tORDER BY OpenDate ROWS BETWEEN UNBOUNDED PRECEDING\r\n\t\t\t\tAND CURRENT ROW\r\n\t\t) - SUM(CloseCount) OVER (\r\n\t\tORDER BY CloseDate ROWS BETWEEN UNBOUNDED PRECEDING\r\n\t\t\t\tAND CURRENT ROW ) AS BackLog\r\nFROM (\r\n\tSELECT DATEADD(MONTH, DATEDIFF(MONTH, 0, open_date), 0) AS OpenDate\r\n\t\t,COUNT(*) AS OpenCount\r\n\tFROM [ESSTH].[dbo].[ChangeOrders]\r\n\tWHERE 1 = 1\r\n\t\tAND [group] IN ($Group)\r\n\t\tAND status <> 'Cancelled'\r\n\tGROUP BY DATEADD(MONTH, DATEDIFF(MONTH, 0, open_date), 0)\r\n\t) O\r\nFULL OUTER JOIN (\r\n\tSELECT DATEADD(MONTH, DATEDIFF(MONTH, 0, close_date), 0) AS CloseDate\r\n\t\t,COUNT(*) AS CloseCount\r\n\tFROM [ESSTH].[dbo].[ChangeOrders]\r\n\tWHERE 1 = 1\r\n\t\tAND [group] IN ($Group)\r\n\t\tAND status <> 'Cancelled'\r\n\tGROUP BY DATEADD(MONTH, DATEDIFF(MONTH, 0, close_date), 0)\r\n\t) C ON O.OpenDate = C.CloseDate\r\nWHERE COALESCE(OpenDate, CloseDate) IS NOT NULL\r\nORDER BY time ASC",
+          "refId": "A"
+        }
+      ],
+      "title": "Change Order Backlog",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${DS_CASD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 34
+      },
+      "id": 51,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.3.4",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${DS_CASD}"
+          },
+          "format": "table",
+          "rawSql": "EXEC [dbo].[USP_WOM_ChangeOrderSummary] @Group = $Group, @Date = $__timeFrom()",
+          "refId": "A"
+        }
+      ],
+      "title": "Change Order Backlog",
+      "type": "table"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "mssql",
+          "uid": "${DS_CASD}"
+        },
+        "definition": "SELECT GroupName FROM ESSTH.dbo.Groups WHERE Enable = 1",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Group",
+        "options": [],
+        "query": "SELECT GroupName FROM ESSTH.dbo.Groups WHERE Enable = 1",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1M/M",
+    "to": "now-1M/M"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "ITE MOM",
+  "uid": "rcZx6vL7z",
+  "version": 6,
+  "weekStart": ""
+}
